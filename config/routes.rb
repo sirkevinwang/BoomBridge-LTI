@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   match 'launch' => 'application#launch', via: [:get, :post], as: :lti_launch
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  # testing purposes only
   post 'grade/:score', to: 'application#grade', as: :lti_grade
 end

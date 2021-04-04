@@ -2,6 +2,7 @@
 require 'ims/lti'
 # Used to validate oauth signatures
 require 'oauth/request_proxy/action_controller_request'
+require 'oauth/request_proxy/rack_request'
 
 
 class ApplicationController < ActionController::Base
@@ -32,10 +33,62 @@ class ApplicationController < ActionController::Base
     session[:user_id] = params.require :user_id
     session[:lis_person_name_full] = params.require :lis_person_name_full
 
+    # stores the result_sourceid for grade passback
+    session[:lis_result_sourcedid] = params.require :lis_result_sourcedid unless params[:lis_result_sourcedid].nil?
+    # stores the url for grade passback
+    session[:lis_outcome_service_url] = params.require :lis_outcome_service_url unless params[:lis_outcome_service_url].nil?
+    # TODO: stores the canvas max points
+
     # set variables for use by the template
     @lis_person_name_full = session[:lis_person_name_full]
   end
 
+  def grade
+    # FIXME: when boom is up, use the floating point score calculated from the OCR image result
+    session[:score] = params[:score]
+    score = params[:score].to_f / 15
+    # Cited from: https://github.com/instructure/lti_example/blob/master/lti_example.rb
+    xml = %{
+    <?xml version = "1.0" encoding = "UTF-8"?>
+    <imsx_POXEnvelopeRequest xmlns = "http://www.imsglobal.org/lis/oms1p0/pox">
+      <imsx_POXHeader>
+        <imsx_POXRequestHeaderInfo>
+          <imsx_version>V1.0</imsx_version>
+          <imsx_messageIdentifier>12341234</imsx_messageIdentifier>
+        </imsx_POXRequestHeaderInfo>
+      </imsx_POXHeader>
+      <imsx_POXBody>
+        <replaceResultRequest>
+          <resultRecord>
+            <sourcedGUID>
+              <sourcedId>#{session[:lis_result_sourcedid]}</sourcedId>
+            </sourcedGUID>
+            <result>
+              <resultScore>
+                <language>en</language>
+                <textString>#{score}</textString>
+              </resultScore>
+            </result>
+          </resultRecord>
+        </replaceResultRequest>
+      </imsx_POXBody>
+    </imsx_POXEnvelopeRequest>
+    }
+    consumer = OAuth::Consumer.new(Rails.application.config.lti_settings['consumer_key'],  Rails.application.config.lti_settings['consumer_secret'])
+    token = OAuth::AccessToken.new(consumer)
+    response = token.post(session[:lis_outcome_service_url], xml, 'Content-Type' => 'application/xml')
+    
+    if response.body.match(/\bsuccess\b/)
+      # success
+      render :success
+      return
+    else 
+      # handle err here
+      puts response.body
+      render :error
+      return
+    end
+  end 
   # lTI XML Configuration
   # Used for easily installing your LTI into an LMS
   def lti_config

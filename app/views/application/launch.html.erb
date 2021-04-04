@@ -5,6 +5,6 @@
     <li>Template: app/views/application/launch.html.erb</li>
 </ul>
 
-
-<%= link_to '<button type="button">Get 5/15</button>'.html_safe, lti_grade_path1 %>
-<%= link_to '<button type="button">Get 15/15</button>'.html_safe, lti_grade_path2 %>
+<%= button_to 'Get 5/15'.html_safe, {:controller => "application", :action => "grade", :score => 5} , :method=>:post  %>
+<%= button_to 'Get 10/15'.html_safe, {:controller => "application", :action => "grade", :score => 10} , :method=>:post  %>
+<%= button_to 'Get 15/15'.html_safe, {:controller => "application", :action => "grade", :score => 15} , :method=>:post  %>
