@@ -43,10 +43,17 @@ class ApplicationController < ActionController::Base
     @lis_person_name_full = session[:lis_person_name_full]
   end
 
+  def success
+     render :success
+  end
   def grade
     # FIXME: when boom is up, use the floating point score calculated from the OCR image result
-    session[:score] = params[:score]
-    score = params[:score].to_f / 15
+    correct_pts = params[:correct_pts]
+    total_pts = params[:total_pts]
+    session[:correct_pts] = correct_pts
+    session[:total_pts] = total_pts
+
+    reported_grade = correct_pts.to_f / total_pts
     # Cited from: https://github.com/instructure/lti_example/blob/master/lti_example.rb
     xml = %{
     <?xml version = "1.0" encoding = "UTF-8"?>
@@ -66,7 +73,7 @@ class ApplicationController < ActionController::Base
             <result>
               <resultScore>
                 <language>en</language>
-                <textString>#{score}</textString>
+                <textString>#{reported_grade}</textString>
               </resultScore>
             </result>
           </resultRecord>
@@ -79,13 +86,9 @@ class ApplicationController < ActionController::Base
     response = token.post(session[:lis_outcome_service_url], xml, 'Content-Type' => 'application/xml')
     
     if response.body.match(/\bsuccess\b/)
-      # success
-      render :success
-      return
+      render :json => { success: 1, numCorrect:  correct_pts, numTotal: total_pts}
     else 
-      # handle err here
-      puts response.body
-      render :error
+      render :json => { success: 0, numCorrect:  0, numTotal: 0}
       return
     end
   end 

@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # testing purposes only
-  post 'grade/:score', to: 'application#grade', as: :lti_grade
+  # post 'grade/:correct_pts/:total_pts', to: 'application#grade', as: :lti_grade
+  post 'grade', to: 'application#grade', as: :lti_grade
+  get 'success', to: 'application#success', as: :lti_success
 end
