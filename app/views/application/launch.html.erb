@@ -1,10 +1,21 @@
-<h1>LTI Launch Verified!</h1>
-<ul>
-    <li>lis_person_name_full is <b><%= @lis_person_name_full %></b></li>
-    <li>Controller: Application#launch</li>
-    <li>Template: app/views/application/launch.html.erb</li>
-</ul>
+<h1>BoomBridge v0.1</h1>
+<p>
+    Welcome, <%= @lis_person_name_full %>
+</p>
 
-<%= button_to 'Get 5/15'.html_safe, {:controller => "application", :action => "grade", :score => 5} , :method=>:post  %>
-<%= button_to 'Get 10/15'.html_safe, {:controller => "application", :action => "grade", :score => 10} , :method=>:post  %>
-<%= button_to 'Get 15/15'.html_safe, {:controller => "application", :action => "grade", :score => 15} , :method=>:post  %>
+<div>
+    <h2>Upload your BoomCards screenshot here</h2>
+    <div class="drop-zone">
+        <span class="drop-zone__prompt">Drop file here or click to upload</span>
+        <input type="file" name="myFile" class="drop-zone__input">
+    </div>
+    <div id="spinner" class="spinner" style="display:none;">
+        <span class="spinner-inner-1"></span>
+        <span class="spinner-inner-2"></span>
+        <span class="spinner-inner-3"></span>
+    </div>
+</div>
+
+<%# button_to 'Get 5/15'.html_safe, {:controller => "application", :action => "grade", :score => 5} , :method=>:post  %>
+<%# button_to 'Get 10/15'.html_safe, {:controller => "application", :action => "grade", :score => 10} , :method=>:post  %>
+<%# button_to 'Get 15/15'.html_safe, {:controller => "application", :action => "grade", :score => 15} , :method=>:post  %>
