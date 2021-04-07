@@ -9,6 +9,10 @@ end
 gem 'rails', '~> 6.0.3'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
+<<<<<<< HEAD
+=======
+# gem 'pg'
+>>>>>>> personal/kevin/heroku-pg-db
 # Use Puma as the app server
 gem 'puma', '~> 4.3'
 
