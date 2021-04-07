@@ -120,16 +120,10 @@ GEM
     nio4r (2.5.7)
     nokogiri (1.11.2)
       mini_portile2 (~> 2.5.0)
-<<<<<<< HEAD
-=======
-      racc (~> 1.4)
-    nokogiri (1.11.2-x86_64-darwin)
->>>>>>> personal/kevin/heroku-pg-db
       racc (~> 1.4)
     nokogiri (1.11.2-x86_64-linux)
       racc (~> 1.4)
     oauth (0.5.6)
-    pg (1.2.3)
     public_suffix (4.0.6)
     puma (4.3.7)
       nio4r (~> 2.0)
@@ -212,10 +206,6 @@ GEM
 
 PLATFORMS
   ruby
-<<<<<<< HEAD
-=======
-  x86_64-darwin-19
->>>>>>> personal/kevin/heroku-pg-db
   x86_64-linux
 
 DEPENDENCIES
@@ -226,7 +216,6 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.2.1)
   oauth
-  pg
   puma (~> 4.3)
   rails (~> 6.0.3)
   sass-rails (~> 6.0)
