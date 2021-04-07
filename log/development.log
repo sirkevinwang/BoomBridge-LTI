@@ -2290,3 +2290,11 @@ puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
 puma (4.3.7) lib/puma/server.rb:472:in `process_client'
 puma (4.3.7) lib/puma/server.rb:328:in `block in run'
 puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/" for ::1 at 2021-04-07 04:34:38 -0400
+Processing by ApplicationController#index as HTML
+  Rendering application/index.html.erb within layouts/application
+  Rendered application/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 478)
+  Rendered layouts/_header.html.erb (Duration: 51.0ms | Allocations: 13216)
+Completed 200 OK in 66ms (Views: 59.3ms | Allocations: 16672)
+
+
