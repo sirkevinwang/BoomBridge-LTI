@@ -47,7 +47,6 @@ class ApplicationController < ActionController::Base
      render :success
   end
   def grade
-    # FIXME: when boom is up, use the floating point score calculated from the OCR image result
     correct_pts = params[:correct_pts]
     total_pts = params[:total_pts]
     session[:correct_pts] = correct_pts
