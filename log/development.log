@@ -2314,3 +2314,11 @@ Processing by ApplicationController#index as HTML
 Completed 200 OK in 10ms (Views: 9.4ms | Allocations: 5915)
 
 
+Started GET "/" for ::1 at 2021-04-07 11:33:14 -0400
+Processing by ApplicationController#index as HTML
+  Rendering application/index.html.erb within layouts/application
+  Rendered application/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 478)
+  Rendered layouts/_header.html.erb (Duration: 50.9ms | Allocations: 12321)
+Completed 200 OK in 67ms (Views: 61.9ms | Allocations: 15777)
+
+
