@@ -2244,3 +2244,58 @@ Processing by ApplicationController#index as HTML
 Completed 200 OK in 429ms (Views: 424.3ms | ActiveRecord: 0.0ms | Allocations: 78754)
 
 
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE DATABASE "boombridge" ENCODING = 'unicode'[0m
+Started GET "/" for ::1 at 2021-04-07 04:24:20 -0400
+Processing by ApplicationController#index as HTML
+  Rendering application/index.html.erb within layouts/application
+  Rendered application/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 478)
+  Rendered layouts/_header.html.erb (Duration: 177.0ms | Allocations: 41944)
+Completed 500 Internal Server Error in 189ms (Allocations: 45379)
+
+
+  
+ActionView::Template::Error (couldn't find file 'action_cable' with type 'application/javascript'
+Checked in these paths: 
+  /Users/kevin/Documents/GitHub/BoomBridge-LTI/app/assets/config
+  /Users/kevin/Documents/GitHub/BoomBridge-LTI/app/assets/images
+  /Users/kevin/Documents/GitHub/BoomBridge-LTI/app/assets/javascripts
+  /Users/kevin/Documents/GitHub/BoomBridge-LTI/app/assets/stylesheets
+  /Users/kevin/Documents/GitHub/BoomBridge-LTI/vendor/assets/javascripts
+  /Users/kevin/Documents/GitHub/BoomBridge-LTI/vendor/assets/stylesheets
+  /Users/kevin/.rvm/gems/ruby-2.5.7/gems/jquery-rails-4.4.0/vendor/assets/javascripts
+  /Users/kevin/.rvm/gems/ruby-2.5.7/gems/coffee-rails-5.0.0/lib/assets/javascripts
+  /Users/kevin/.rvm/gems/ruby-2.5.7/gems/actionview-6.0.3.6/lib/assets/compiled
+  /Users/kevin/.rvm/gems/ruby-2.5.7/gems/turbolinks-source-5.2.0/lib/assets/javascripts):
+  
+app/assets/javascripts/cable.js:4
+Started GET "/" for ::1 at 2021-04-07 04:26:06 -0400
+Processing by ApplicationController#index as HTML
+  Rendering application/index.html.erb within layouts/application
+  Rendered application/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 478)
+  Rendered layouts/_header.html.erb (Duration: 42.5ms | Allocations: 12088)
+Completed 500 Internal Server Error in 54ms (Allocations: 15523)
+
+
+  
+ActionView::Template::Error (couldn't find file 'action_cable' with type 'application/javascript'
+Checked in these paths: 
+  /Users/kevin/Documents/GitHub/BoomBridge-LTI/app/assets/config
+  /Users/kevin/Documents/GitHub/BoomBridge-LTI/app/assets/images
+  /Users/kevin/Documents/GitHub/BoomBridge-LTI/app/assets/javascripts
+  /Users/kevin/Documents/GitHub/BoomBridge-LTI/app/assets/stylesheets
+  /Users/kevin/Documents/GitHub/BoomBridge-LTI/vendor/assets/javascripts
+  /Users/kevin/Documents/GitHub/BoomBridge-LTI/vendor/assets/stylesheets
+  /Users/kevin/.rvm/gems/ruby-2.5.7/gems/jquery-rails-4.4.0/vendor/assets/javascripts
+  /Users/kevin/.rvm/gems/ruby-2.5.7/gems/coffee-rails-5.0.0/lib/assets/javascripts
+  /Users/kevin/.rvm/gems/ruby-2.5.7/gems/actionview-6.0.3.6/lib/assets/compiled
+  /Users/kevin/.rvm/gems/ruby-2.5.7/gems/turbolinks-source-5.2.0/lib/assets/javascripts):
+  
+app/assets/javascripts/cable.js:4
+Started GET "/" for ::1 at 2021-04-07 04:26:31 -0400
+Processing by ApplicationController#index as HTML
+  Rendering application/index.html.erb within layouts/application
+  Rendered application/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 67)
+  Rendered layouts/_header.html.erb (Duration: 166.8ms | Allocations: 51856)
+Completed 200 OK in 171ms (Views: 167.7ms | Allocations: 53324)
+
+
