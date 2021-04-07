@@ -2298,3 +2298,19 @@ Processing by ApplicationController#index as HTML
 Completed 200 OK in 66ms (Views: 59.3ms | Allocations: 16672)
 
 
+Started GET "/" for ::1 at 2021-04-07 04:44:39 -0400
+Processing by ApplicationController#index as HTML
+  Rendering application/index.html.erb within layouts/application
+  Rendered application/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 67)
+  Rendered layouts/_header.html.erb (Duration: 18.8ms | Allocations: 5436)
+Completed 200 OK in 21ms (Views: 19.8ms | Allocations: 5927)
+
+
+Started GET "/" for ::1 at 2021-04-07 04:44:39 -0400
+Processing by ApplicationController#index as HTML
+  Rendering application/index.html.erb within layouts/application
+  Rendered application/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 60)
+  Rendered layouts/_header.html.erb (Duration: 8.5ms | Allocations: 5432)
+Completed 200 OK in 10ms (Views: 9.4ms | Allocations: 5915)
+
+
