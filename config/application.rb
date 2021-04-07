@@ -1,14 +1,6 @@
 require_relative 'boot'
-# require 'rails/all'
-# require 'active_storage/engine'
-require 'action_controller/railtie'
-# require 'action_view/railtie'
-require 'action_mailer/railtie'
-# require 'active_job/railtie'
-# require 'action_cable/engine'
-require 'action_text/engine'
-# require 'rails/test_unit/railtie'
-require 'sprockets/railtie'
+require 'rails/all'
+
 # Load the app's custom environment variables here, so that they are loaded before environments/*.rb
 
 # Require the gems listed in Gemfile, including any gems

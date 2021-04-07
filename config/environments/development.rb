@@ -6,6 +6,7 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
   config.hosts << "tricky-monkey-30.loca.lt"
+  config.hosts << "boombridge.herokuapp.com"
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -32,10 +33,10 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
-  # config.active_support.deprecation = :log
+  config.active_support.deprecation = :log
 
   # Raise an error on page load if there are pending migrations.
-  # config.active_record.migration_error = :page_load
+  config.active_record.migration_error = :page_load
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
