@@ -2322,3 +2322,11 @@ Processing by ApplicationController#index as HTML
 Completed 200 OK in 67ms (Views: 61.9ms | Allocations: 15777)
 
 
+Started GET "/launch" for ::1 at 2021-04-08 22:08:00 -0700
+Processing by ApplicationController#launch as HTML
+  Rendering application/launch_error.html.erb within layouts/application
+  Rendered application/launch_error.html.erb within layouts/application (Duration: 2.6ms | Allocations: 86)
+  Rendered layouts/_header.html.erb (Duration: 684.4ms | Allocations: 67664)
+Completed 401 Unauthorized in 705ms (Views: 697.5ms | Allocations: 69402)
+
+
