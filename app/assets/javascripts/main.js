@@ -24,18 +24,15 @@ $(document).ready(function () {
             });
         });
 
-        console.log("I am here.");
 
         dropZoneElement.addEventListener("drop", (e) => {
-            console.log("I am inside");
             e.preventDefault();
 
+            //var t0 = performance.now()
             if (e.dataTransfer.files.length) {
                 inputElement.files = e.dataTransfer.files;
                 updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
                 file = e.dataTransfer.files[0];
-                console.log("file"+file);
-                // FIXME: this thing will only get called when the user drags and drops. If the user click the "upload file" button, then nothing will happen.
                 Tesseract.recognize(
                     file,
                     'eng', {
@@ -46,12 +43,14 @@ $(document).ready(function () {
                         text
                     }
                 }) => {
-                    console.log(text);
+                    //var t1 = performance.now()
+                    //console.log("OCR took " + (t1 - t0) + " milliseconds.")
                     var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
                     var numCorrect = splitCorrect[splitCorrect.length - 1]
 
                     var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
                     var numIncorrect = splitIncorrect[splitIncorrect.length - 1]
+
 
                     fetch('/grade', {
                         method: 'post',
@@ -62,7 +61,6 @@ $(document).ready(function () {
                         },
                         credentials: 'same-origin'
                     }).then(function (response) {
-                        //             console.log(response.data)
                         //             obj = JSON.parse(response.responseText);
                         //             if (obj['success'] = 1) {
                         //                 var tag = document.createElement("p");
@@ -78,7 +76,6 @@ $(document).ready(function () {
 
                 })
             }
-
             dropZoneElement.classList.remove("drop-zone--over");
         });
     });
@@ -92,15 +89,14 @@ $(document).ready(function () {
  * @param {File} file
  */
 function updateThumbnail(dropZoneElement, file) {
-    console.log("i am here updateThumbnail");
 
     $('#spinner').css('display', 'inline');
     let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
 
     // First time - remove the prompt
     if (dropZoneElement.querySelector(".drop-zone__prompt")) {
-        console.log("I am here 02");
 
+        //var t0 = performance.now()
         Tesseract.recognize(
             file,
             'eng', {
@@ -111,7 +107,8 @@ function updateThumbnail(dropZoneElement, file) {
                 text
             }
         }) => {
-            console.log(text);
+            //var t1 = performance.now()
+            //console.log("OCR took " + (t1 - t0) + " milliseconds.")
             var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
             var numCorrect = splitCorrect[splitCorrect.length - 1]
 
@@ -133,13 +130,11 @@ function updateThumbnail(dropZoneElement, file) {
             });
 
         })
-
         dropZoneElement.querySelector(".drop-zone__prompt").remove();
     }
 
     // First time - there is no thumbnail element, so lets create it
     if (!thumbnailElement) {
-        console.log("I am here 03");
         thumbnailElement = document.createElement("div");
         thumbnailElement.classList.add("drop-zone__thumb");
         dropZoneElement.appendChild(thumbnailElement);
@@ -149,7 +144,6 @@ function updateThumbnail(dropZoneElement, file) {
 
     // Show thumbnail for image files
     if (file.type.startsWith("image/")) {
-        console.log("I am here 04");
         const reader = new FileReader();
 
         reader.readAsDataURL(file);
