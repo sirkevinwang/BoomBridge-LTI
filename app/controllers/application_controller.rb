@@ -46,6 +46,7 @@ class ApplicationController < ActionController::Base
   def success
      render :success
   end
+  
   def grade
     correct_pts = params[:correct_pts]
     total_pts = params[:total_pts]
@@ -67,7 +68,7 @@ class ApplicationController < ActionController::Base
         <replaceResultRequest>
           <resultRecord>
             <sourcedGUID>
-              <sourcedId>#{session[:lis_result_sourcedid]}</sourcedId>
+              <sourcedId>#{params[:lis_result_sourcedid]}</sourcedId>
             </sourcedGUID>
             <result>
               <resultScore>
@@ -82,7 +83,7 @@ class ApplicationController < ActionController::Base
     }
     consumer = OAuth::Consumer.new(Rails.application.config.lti_settings['consumer_key'],  Rails.application.config.lti_settings['consumer_secret'])
     token = OAuth::AccessToken.new(consumer)
-    response = token.post(session[:lis_outcome_service_url], xml, 'Content-Type' => 'application/xml')
+    response = token.post(params[:lis_outcome_service_url], xml, 'Content-Type' => 'application/xml')
     
     if response.body.match(/\bsuccess\b/)
       render :json => { success: 1, numCorrect:  correct_pts, numTotal: total_pts}
