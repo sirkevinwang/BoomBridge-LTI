@@ -75,7 +75,7 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
-  config.action_dispatch.default_headers['X-Frame-Options'] = "ALLOW-FROM http://localhost"
+  config.action_dispatch.default_headers['X-Frame-Options'] = "ALLOW-FROM http://boombridge.herokuapp.com"
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)

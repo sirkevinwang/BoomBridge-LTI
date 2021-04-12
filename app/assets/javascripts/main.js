@@ -29,53 +29,56 @@ $(document).ready(function () {
             e.preventDefault();
 
             //var t0 = performance.now()
-            //if (e.dataTransfer.files.length) {
-            //    inputElement.files = e.dataTransfer.files;
-            //    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-            //    file = e.dataTransfer.files[0];
-            //    Tesseract.recognize(
-            //        file,
-            //        'eng', {
-            //        logger: m => console.log(m)
-            //    }
-            //    ).then(({
-            //        data: {
-            //            text
-            //       }
-            //    }) => {
-                    //var t1 = performance.now()
-                    //console.log("OCR took " + (t1 - t0) + " milliseconds.")
-            //        var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
-            //        var numCorrect = splitCorrect[splitCorrect.length - 1]
+            if (e.dataTransfer.files.length) {
+                inputElement.files = e.dataTransfer.files;
+                updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                file = e.dataTransfer.files[0];
+                // Tesseract.recognize(
+                //     file,
+                //     'eng', {
+                //     logger: m => console.log(m)
+                // }
+                // ).then(({
+                //     data: {
+                //         text
+                //     }
+                // }) => {
+                //     //var t1 = performance.now()
+                //     //console.log("OCR took " + (t1 - t0) + " milliseconds.")
+                //     var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
+                //     var numCorrect = splitCorrect[splitCorrect.length - 1]
 
-            //        var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
-            //        var numIncorrect = splitIncorrect[splitIncorrect.length - 1]
+                //     var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
+                //     var numIncorrect = splitIncorrect[splitIncorrect.length - 1]
 
+                //     console.log(lis_outcome_service_url);
+                //     console.log(lis_result_sourcedid);
 
-            //        fetch('/grade', {
-            //            method: 'post',
-            //            body: JSON.stringify({ correct_pts: parseInt(numCorrect), total_pts: parseInt(numCorrect) + parseInt(numIncorrect) }),
-            //            headers: {
-            //                'Content-Type': 'application/json',
-            //                'X-CSRF-Token': Rails.csrfToken()
-            //            },
-            //            credentials: 'same-origin'
-            //        }).then(function (response) {
-                        //             obj = JSON.parse(response.responseText);
-                        //             if (obj['success'] = 1) {
-                        //                 var tag = document.createElement("p");
-                        //                 var text = document.createTextNode("Got" + obj['numCorrect'] + "correct and " + 
-                        // obj['numTotal']) + "incorrect.";
-                        //                 tag.appendChild(text);
-                        //                 document.body.appendChild(tag);
-                        //             }
-            //            window.location.replace("/success");
-            //        }).then(function (data) {
-            //            console.log(data);
-            //        });
+                //     fetch('/grade', {
+                //         method: 'post',
+                //         body: JSON.stringify({
+                //             correct_pts: parseInt(numCorrect), total_pts: parseInt(numCorrect) + parseInt(numIncorrect), lis_result_sourcedid: lis_result_sourcedid, lis_outcome_service_url: lis_outcome_service_url }),
+                //         headers: {
+                //             'Content-Type': 'application/json',
+                //             'X-CSRF-Token': Rails.csrfToken()
+                //         },
+                //         credentials: 'same-origin'
+                //     }).then(function (response) {
+                //         //             obj = JSON.parse(response.responseText);
+                //         //             if (obj['success'] = 1) {
+                //         //                 var tag = document.createElement("p");
+                //         //                 var text = document.createTextNode("Got" + obj['numCorrect'] + "correct and " + 
+                //         // obj['numTotal']) + "incorrect.";
+                //         //                 tag.appendChild(text);
+                //         //                 document.body.appendChild(tag);
+                //         //             }
+                //         window.location.replace("/success");
+                //     }).then(function (data) {
+                //         console.log(data);
+                //     });
 
-            //    })
-            //}
+                // })
+            }
             dropZoneElement.classList.remove("drop-zone--over");
         });
     });
@@ -117,7 +120,12 @@ function updateThumbnail(dropZoneElement, file) {
 
             fetch('/grade', {
                 method: 'post',
-                body: JSON.stringify({ correct_pts: parseInt(numCorrect), total_pts: parseInt(numCorrect) + parseInt(numIncorrect) }),
+                body: JSON.stringify({
+                    correct_pts: parseInt(numCorrect), 
+                    total_pts: parseInt(numCorrect) + parseInt(numIncorrect), 
+                    lis_result_sourcedid: lis_result_sourcedid, 
+                    lis_outcome_service_url: lis_outcome_service_url }
+                ),
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-Token': Rails.csrfToken()
