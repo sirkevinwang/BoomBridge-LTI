@@ -29,38 +29,38 @@ $(document).ready(function () {
             e.preventDefault();
 
             //var t0 = performance.now()
-            if (e.dataTransfer.files.length) {
-                inputElement.files = e.dataTransfer.files;
-                updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-                file = e.dataTransfer.files[0];
-                Tesseract.recognize(
-                    file,
-                    'eng', {
-                    logger: m => console.log(m)
-                }
-                ).then(({
-                    data: {
-                        text
-                    }
-                }) => {
+            //if (e.dataTransfer.files.length) {
+            //    inputElement.files = e.dataTransfer.files;
+            //    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+            //    file = e.dataTransfer.files[0];
+            //    Tesseract.recognize(
+            //        file,
+            //        'eng', {
+            //        logger: m => console.log(m)
+            //    }
+            //    ).then(({
+            //        data: {
+            //            text
+            //       }
+            //    }) => {
                     //var t1 = performance.now()
                     //console.log("OCR took " + (t1 - t0) + " milliseconds.")
-                    var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
-                    var numCorrect = splitCorrect[splitCorrect.length - 1]
+            //        var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
+            //        var numCorrect = splitCorrect[splitCorrect.length - 1]
 
-                    var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
-                    var numIncorrect = splitIncorrect[splitIncorrect.length - 1]
+            //        var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
+            //        var numIncorrect = splitIncorrect[splitIncorrect.length - 1]
 
 
-                    fetch('/grade', {
-                        method: 'post',
-                        body: JSON.stringify({ correct_pts: parseInt(numCorrect), total_pts: parseInt(numCorrect) + parseInt(numIncorrect) }),
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-Token': Rails.csrfToken()
-                        },
-                        credentials: 'same-origin'
-                    }).then(function (response) {
+            //        fetch('/grade', {
+            //            method: 'post',
+            //            body: JSON.stringify({ correct_pts: parseInt(numCorrect), total_pts: parseInt(numCorrect) + parseInt(numIncorrect) }),
+            //            headers: {
+            //                'Content-Type': 'application/json',
+            //                'X-CSRF-Token': Rails.csrfToken()
+            //            },
+            //            credentials: 'same-origin'
+            //        }).then(function (response) {
                         //             obj = JSON.parse(response.responseText);
                         //             if (obj['success'] = 1) {
                         //                 var tag = document.createElement("p");
@@ -69,13 +69,13 @@ $(document).ready(function () {
                         //                 tag.appendChild(text);
                         //                 document.body.appendChild(tag);
                         //             }
-                        window.location.replace("/success");
-                    }).then(function (data) {
-                        console.log(data);
-                    });
+            //            window.location.replace("/success");
+            //        }).then(function (data) {
+            //            console.log(data);
+            //        });
 
-                })
-            }
+            //    })
+            //}
             dropZoneElement.classList.remove("drop-zone--over");
         });
     });
