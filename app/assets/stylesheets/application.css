@@ -27,3 +27,32 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+.card-button {
+  background-color: rgba(255,255,255, 0.18);
+  width: fit-content;
+  padding: 0.825rem 3.825rem;
+  border-radius: 1rem;
+  margin: auto;
+}
+
+.card-button:hover {
+  cursor: pointer;
+}
+
+.card-button-label {
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-top: 0.35rem;
+}
+
+.completion-subheading {
+  font-weight: 400;
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+#icon-reload {
+    height: 1.5rem;
+}
+
