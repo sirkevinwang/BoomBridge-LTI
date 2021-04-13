@@ -6,6 +6,7 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
   config.hosts << "boombridge.herokuapp.com"
+  config.hosts << ".loca.lt"
   # Do not eager load code on boot.
   config.eager_load = false
 

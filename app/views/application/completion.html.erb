@@ -1,0 +1,15 @@
+<div class="text-center">
+    <% if session[:correct_pts] != session[:total_pts]%>
+    <h1>Uh oh, no gift &#128577;</h1>
+    <h2>You didn’t get all questions (<%= session[:correct_pts] %> / <%= session[:total_pts]%>).</h2>
+    <% else %>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <%= javascript_tag do %>
+    $(document).ready(function () {
+        confetti();
+    })
+    <% end %>
+    <h1>It’s a &#128054;</h1>
+    <h2>Your score is <%= session[:correct_pts] %> / <%= session[:total_pts]%>!</h2>
+    <% end %>
+</div>

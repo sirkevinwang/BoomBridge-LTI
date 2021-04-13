@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+
+.text-center {
+  text-align: center;
+}
+
+.vc-parent {
+  position: relative;
+}
+.vc-child {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -1,18 +1,17 @@
 <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-a11y="true"></script>
-
 <h1>
-    Welcome, <%= @lis_person_name_full %>
+    Hi, <%= @lis_person_name_given %>
 </h1>
 
 <div>
-    <h2> <i class="fas fa-camera"></i> Screenshot Your Boom Cards</h2>
-    <h3>Make sure they look like these:</h3>
-    <img src="correct.png" height="200" alt="Correct">
-    <img src="wrong.png" height="200" alt="Wrong">
-    <h2><i class="fas fa-upload"></i> Submit here</h2>
+    <h2 class="subtitle"> <i class="fas fa-camera"></i> Screenshot Your Boom Cards</h2>
+    <h3 class="caption">Make sure they look like these:</h3>
+    <img class="sample-image" src="correct.png" height="200" alt="Correct">
+    <img class="sample-image" src="wrong.png" height="200" alt="Wrong">
+    <h2 class="subtitle"><i class="fas fa-upload"></i> Submit here</h2>
 
     <div class="drop-zone">
-        <span class="drop-zone__prompt">Drop file here or click to upload</span>
+        <span class="drop-zone__prompt caption">Drop file here or click to upload</span>
         <input type="file" name="myFile" class="drop-zone__input">
     </div>
     <div id="spinner" class="spinner" style="display:none;">
@@ -25,6 +24,6 @@
 
 
 <%= javascript_tag do %>
-    var lis_result_sourcedid = "<%= session[:lis_result_sourcedid] %>";
-    var lis_outcome_service_url = "<%= session[:lis_outcome_service_url] %>";
+var lis_result_sourcedid = "<%= session[:lis_result_sourcedid] %>";
+var lis_outcome_service_url = "<%= session[:lis_outcome_service_url] %>";
 <% end %>
