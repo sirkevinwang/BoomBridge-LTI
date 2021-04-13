@@ -1,89 +1,17 @@
-// FIXME: this thing gets called twice!
 $(document).ready(function () {
-    document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-        const dropZoneElement = inputElement.closest(".drop-zone");
+    renderWelcomeSection();
+    addInputEventListeners();
 
-        dropZoneElement.addEventListener("click", (e) => {
-            inputElement.click();
-        });
-
-        inputElement.addEventListener("change", (e) => {
-            if (inputElement.files.length) {
-                updateThumbnail(dropZoneElement, inputElement.files[0]);
-            }
-        });
-
-        dropZoneElement.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            dropZoneElement.classList.add("drop-zone--over");
-        });
-
-        ["dragleave", "dragend"].forEach((type) => {
-            dropZoneElement.addEventListener(type, (e) => {
-                dropZoneElement.classList.remove("drop-zone--over");
-            });
-        });
-
-
-        dropZoneElement.addEventListener("drop", (e) => {
-            e.preventDefault();
-
-            //var t0 = performance.now()
-            if (e.dataTransfer.files.length) {
-                inputElement.files = e.dataTransfer.files;
-                updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-                file = e.dataTransfer.files[0];
-                // Tesseract.recognize(
-                //     file,
-                //     'eng', {
-                //     logger: m => console.log(m)
-                // }
-                // ).then(({
-                //     data: {
-                //         text
-                //     }
-                // }) => {
-                //     //var t1 = performance.now()
-                //     //console.log("OCR took " + (t1 - t0) + " milliseconds.")
-                //     var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
-                //     var numCorrect = splitCorrect[splitCorrect.length - 1]
-
-                //     var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
-                //     var numIncorrect = splitIncorrect[splitIncorrect.length - 1]
-
-                //     console.log(lis_outcome_service_url);
-                //     console.log(lis_result_sourcedid);
-
-                //     fetch('/grade', {
-                //         method: 'post',
-                //         body: JSON.stringify({
-                //             correct_pts: parseInt(numCorrect), total_pts: parseInt(numCorrect) + parseInt(numIncorrect), lis_result_sourcedid: lis_result_sourcedid, lis_outcome_service_url: lis_outcome_service_url }),
-                //         headers: {
-                //             'Content-Type': 'application/json',
-                //             'X-CSRF-Token': Rails.csrfToken()
-                //         },
-                //         credentials: 'same-origin'
-                //     }).then(function (response) {
-                //         //             obj = JSON.parse(response.responseText);
-                //         //             if (obj['success'] = 1) {
-                //         //                 var tag = document.createElement("p");
-                //         //                 var text = document.createTextNode("Got" + obj['numCorrect'] + "correct and " + 
-                //         // obj['numTotal']) + "incorrect.";
-                //         //                 tag.appendChild(text);
-                //         //                 document.body.appendChild(tag);
-                //         //             }
-                //         window.location.replace("/success");
-                //     }).then(function (data) {
-                //         console.log(data);
-                //     });
-
-                // })
-            }
-            dropZoneElement.classList.remove("drop-zone--over");
-        });
+    $("#failure-reload-btn").click(function () {
+        // just to clear out the already existing file uploads
+        // FIXME: cannot click to select after a partial-credit upload
+        renderWelcomeSection();
+        var old_element = document.getElementById("dropzone");
+        old_element.value = '';
+        old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
+        addInputEventListeners();
     });
 });
-// });
 
 /**
  * Updates the thumbnail on a drop zone element.
@@ -92,8 +20,7 @@ $(document).ready(function () {
  * @param {File} file
  */
 function updateThumbnail(dropZoneElement, file) {
-
-    $('#spinner').css('display', 'inline');
+    renderProcessingSection();
     let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
 
     // First time - remove the prompt
@@ -112,29 +39,49 @@ function updateThumbnail(dropZoneElement, file) {
         }) => {
             //var t1 = performance.now()
             //console.log("OCR took " + (t1 - t0) + " milliseconds.")
+            // FIXME: handle the part where "corret , incorrect is not found"
+
             var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
-            var numCorrect = splitCorrect[splitCorrect.length - 1]
+            var numCorrect = splitCorrect[splitCorrect.length - 1];
+            var correctPts = parseInt(numCorrect);
 
             var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
-            var numIncorrect = splitIncorrect[splitIncorrect.length - 1]
+            var numIncorrect = splitIncorrect[splitIncorrect.length - 1];
+            var totalPts = parseInt(numCorrect) + parseInt(numIncorrect);
 
             fetch('/grade', {
                 method: 'post',
                 body: JSON.stringify({
-                    correct_pts: parseInt(numCorrect), 
-                    total_pts: parseInt(numCorrect) + parseInt(numIncorrect), 
+                    correct_pts: correctPts, 
+                    total_pts: totalPts, 
                     lis_result_sourcedid: lis_result_sourcedid, 
-                    lis_outcome_service_url: lis_outcome_service_url }
-                ),
+                    lis_outcome_service_url: lis_outcome_service_url 
+                }),
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-Token': Rails.csrfToken()
                 },
                 credentials: 'same-origin'
-            }).then(function (response) {
-                window.location.replace("/success");
-            }).then(function (data) {
-                console.log(data);
+            })
+            .then(response => response.json())
+            .then(result => {
+                // here server will respond a 200 success
+                // first check here if Canvas got the grade
+                // console.log(result)
+                if (result["success"] === 1) {
+                    // then case on full mark or not
+                    if (correctPts === totalPts) {
+                        // render the full-marks page
+                        renderFullMarksPage(correctPts, totalPts);
+                    } else {
+                        // render the partial credit page with option to reload the welcome section
+                        renderPartialCreditPage(correctPts, totalPts);
+                    }
+                }
+            })
+            .catch(error => {
+                // here server is dead
+                // console.error('Error:', error);
             });
 
         })
@@ -149,16 +96,102 @@ function updateThumbnail(dropZoneElement, file) {
     }
 
     thumbnailElement.dataset.label = file.name;
+    thumbnailElement.style.backgroundImage = null;
+}
 
-    // Show thumbnail for image files
-    if (file.type.startsWith("image/")) {
-        const reader = new FileReader();
+// 1
+function renderWelcomeSection() {
+    hideProcessingSection();
+    hideResultSection();
+    $("#welcome-section").css("display", "block");
+}
 
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            thumbnailElement.style.backgroundImage = url('${reader.result}');
-        };
-    } else {
-        thumbnailElement.style.backgroundImage = null;
-    }
+// 2
+function renderProcessingSection() {
+    hideWelcomeSection();
+    $("#processing-section").css("display", "inline");
+}
+
+// 3
+function renderFullMarksPage(correctPts, totalPts) {
+    hideProcessingSection();
+    $("#result-section").css("display", "block");
+    $("#full-marks-page").css("display", "block");
+    $("#full-marks-page-note").html("Your score is " + correctPts + " / " + totalPts + "!");
+    confetti();
+}
+
+// 3
+function renderPartialCreditPage(correctPts, totalPts) {
+    hideProcessingSection();
+    $("#result-section").css("display", "block");
+    $("#partial-credit-page-note").html("You didn’t get all questions (" + correctPts + " / " + totalPts + ").");
+    $("#partial-credit-page").css("display", "block");
+}
+
+// hide view utilities
+function hideWelcomeSection() {
+    $("#welcome-section").css("display", "none");
+}
+
+function hideProcessingSection() {
+    $("#processing-section").css("display", "none");
+}
+
+function hideResultSection() {
+    $("#display-section").css("display", "none");
+    $("#partial-credit-page").css("display", "none");
+    $("#full-marks-page").css("display", "none");
+}
+
+function showResultSection() {
+    $("#display-section").css("display", "block");
+}
+
+function addInputEventListeners() {
+    $(document).ready(function() {
+        document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+            const dropZoneElement = inputElement.closest(".drop-zone");
+
+            dropZoneElement.addEventListener("click", (e) => {
+                inputElement.click();
+            });
+
+            inputElement.addEventListener("change", (e) => {
+                if (inputElement.files.length != 0) {
+                    console.log("called")
+                    updateThumbnail(dropZoneElement, inputElement.files[inputElement.files.length - 1]);
+                }
+            });
+
+            dropZoneElement.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZoneElement.classList.add("drop-zone--over");
+            });
+
+            ["dragleave", "dragend"].forEach((type) => {
+                dropZoneElement.addEventListener(type, (e) => {
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            });
+
+            dropZoneElement.addEventListener("drop", (e) => {
+                e.preventDefault();
+
+                //var t0 = performance.now()
+                if (e.dataTransfer.files.length) {
+                    inputElement.files = e.dataTransfer.files;
+                    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                    file = e.dataTransfer.files[0];
+                }
+                dropZoneElement.classList.remove("drop-zone--over");
+            });
+        });
+
+    });
+   
+}
+
+let clickEventFunction = (e) => {
+
 }
