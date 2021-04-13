@@ -33,51 +33,6 @@ $(document).ready(function () {
                 inputElement.files = e.dataTransfer.files;
                 updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
                 file = e.dataTransfer.files[0];
-                // Tesseract.recognize(
-                //     file,
-                //     'eng', {
-                //     logger: m => console.log(m)
-                // }
-                // ).then(({
-                //     data: {
-                //         text
-                //     }
-                // }) => {
-                //     //var t1 = performance.now()
-                //     //console.log("OCR took " + (t1 - t0) + " milliseconds.")
-                //     var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
-                //     var numCorrect = splitCorrect[splitCorrect.length - 1]
-
-                //     var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
-                //     var numIncorrect = splitIncorrect[splitIncorrect.length - 1]
-
-                //     console.log(lis_outcome_service_url);
-                //     console.log(lis_result_sourcedid);
-
-                //     fetch('/grade', {
-                //         method: 'post',
-                //         body: JSON.stringify({
-                //             correct_pts: parseInt(numCorrect), total_pts: parseInt(numCorrect) + parseInt(numIncorrect), lis_result_sourcedid: lis_result_sourcedid, lis_outcome_service_url: lis_outcome_service_url }),
-                //         headers: {
-                //             'Content-Type': 'application/json',
-                //             'X-CSRF-Token': Rails.csrfToken()
-                //         },
-                //         credentials: 'same-origin'
-                //     }).then(function (response) {
-                //         //             obj = JSON.parse(response.responseText);
-                //         //             if (obj['success'] = 1) {
-                //         //                 var tag = document.createElement("p");
-                //         //                 var text = document.createTextNode("Got" + obj['numCorrect'] + "correct and " + 
-                //         // obj['numTotal']) + "incorrect.";
-                //         //                 tag.appendChild(text);
-                //         //                 document.body.appendChild(tag);
-                //         //             }
-                //         window.location.replace("/success");
-                //     }).then(function (data) {
-                //         console.log(data);
-                //     });
-
-                // })
             }
             dropZoneElement.classList.remove("drop-zone--over");
         });
@@ -95,7 +50,7 @@ function updateThumbnail(dropZoneElement, file) {
 
     $('#spinner').css('display', 'inline');
     let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
-
+    console.log(typeof file)
     // First time - remove the prompt
     if (dropZoneElement.querySelector(".drop-zone__prompt")) {
 
@@ -161,4 +116,86 @@ function updateThumbnail(dropZoneElement, file) {
     } else {
         thumbnailElement.style.backgroundImage = null;
     }
+}
+
+function removeImageBlanks(imageObject) {
+    imgWidth = imageObject.width;
+    imgHeight = imageObject.height;
+    var canvas = document.createElement('canvas');
+    canvas.setAttribute("width", imgWidth);
+    canvas.setAttribute("height", imgHeight);
+    var context = canvas.getContext('2d');
+    context.drawImage(imageObject, 0, 0);
+
+    var imageData = context.getImageData(0, 0, imgWidth, imgHeight),
+        data = imageData.data,
+        getRBG = function(x, y) {
+            var offset = imgWidth * y + x;
+            return {
+                red:     data[offset * 4],
+                green:   data[offset * 4 + 1],
+                blue:    data[offset * 4 + 2],
+                opacity: data[offset * 4 + 3]
+            };
+        },
+        isWhite = function (rgb) {
+            // many images contain noise, as the white is not a pure #fff white
+            return rgb.red > 200 && rgb.green > 200 && rgb.blue > 200;
+        },
+                scanY = function (fromTop) {
+        var offset = fromTop ? 1 : -1;
+
+        // loop through each row
+        for(var y = fromTop ? 0 : imgHeight - 1; fromTop ? (y < imgHeight) : (y > -1); y += offset) {
+
+            // loop through each column
+            for(var x = 0; x < imgWidth; x++) {
+                var rgb = getRBG(x, y);
+                if (!isWhite(rgb)) {
+                    if (fromTop) {
+                        return y;
+                    } else {
+                        return Math.min(y + 1, imgHeight);
+                    }
+                }
+            }
+        }
+        return null; // all image is white
+    },
+    scanX = function (fromLeft) {
+        var offset = fromLeft? 1 : -1;
+
+        // loop through each column
+        for(var x = fromLeft ? 0 : imgWidth - 1; fromLeft ? (x < imgWidth) : (x > -1); x += offset) {
+
+            // loop through each row
+            for(var y = 0; y < imgHeight; y++) {
+                var rgb = getRBG(x, y);
+                if (!isWhite(rgb)) {
+                    if (fromLeft) {
+                        return x;
+                    } else {
+                        return Math.min(x + 1, imgWidth);
+                    }
+                }      
+            }
+        }
+        return null; // all image is white
+    };
+
+    var cropTop = scanY(true),
+        cropBottom = scanY(false),
+        cropLeft = scanX(true),
+        cropRight = scanX(false),
+        cropWidth = cropRight - cropLeft,
+        cropHeight = cropBottom - cropTop;
+
+    canvas.setAttribute("width", cropWidth);
+    canvas.setAttribute("height", cropHeight);
+    // finally crop the guy
+    canvas.getContext("2d").drawImage(imageObject,
+        cropLeft, cropTop, cropWidth, cropHeight,
+        0, 0, cropWidth, cropHeight);
+
+    return canvas.toDataURL();
 }
