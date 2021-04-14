@@ -4,12 +4,11 @@ $(document).ready(function () {
 
     $("#failure-reload-btn").click(function () {
         // just to clear out the already existing file uploads
-        // FIXME: cannot click to select after a partial-credit upload
         renderWelcomeSection();
         var old_element = document.getElementById("dropzone");
-        old_element.value = '';
+        var dropzoneInputElem = document.getElementById("drop-zone-input");
+        dropzoneInputElem.value = null;
         old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
-        addInputEventListeners();
     });
 });
 
@@ -158,8 +157,8 @@ function addInputEventListeners() {
             });
 
             inputElement.addEventListener("change", (e) => {
+                console.log("called")
                 if (inputElement.files.length != 0) {
-                    console.log("called")
                     updateThumbnail(dropZoneElement, inputElement.files[inputElement.files.length - 1]);
                 }
             });
