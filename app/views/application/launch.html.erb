@@ -1,30 +1,52 @@
-<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-a11y="true"></script>
+<!-- Welcome Section -->
+<div id="welcome-section" style="display:none;">
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-a11y="true"></script>
+    <%= javascript_tag do %>
+    var lis_result_sourcedid = "<%= session[:lis_result_sourcedid] %>";
+    var lis_outcome_service_url = "<%= session[:lis_outcome_service_url] %>";
+    <% end %>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <h1>
+        Hi, <%= @lis_person_name_given %>
+    </h1>
 
-<h1>
-    Welcome, <%= @lis_person_name_full %>
-</h1>
+    <div>
+        <h2 class="subtitle"> <i class="fas fa-camera"></i> Screenshot Your Boom Cards</h2>
+        <h3 class="caption">Make sure they look like these:</h3>
+        <img class="sample-image" src="correct.png" height="200" alt="Correct">
+        <img class="sample-image" src="wrong.png" height="200" alt="Wrong">
+        <h2 class="subtitle"><i class="fas fa-upload"></i> Submit here</h2>
 
-<div>
-    <h2> <i class="fas fa-camera"></i> Screenshot Your Boom Cards</h2>
-    <h3>Make sure they look like these:</h3>
-    <img src="correct.png" height="200" alt="Correct">
-    <img src="wrong.png" height="200" alt="Wrong">
-    <h2><i class="fas fa-upload"></i> Submit here</h2>
-
-    <div class="drop-zone">
-        <span class="drop-zone__prompt">Drop file here or click to upload</span>
-        <input type="file" name="myFile" class="drop-zone__input">
+        <div class="drop-zone" id="dropzone">
+            <span class="drop-zone__prompt caption">Drop file here or click to upload</span>
+            <input type="file" name="myFile" class="drop-zone__input" id="drop-zone-input">
+        </div>
     </div>
-    <div id="spinner" class="spinner" style="display:none;">
-        <span class="spinner-inner-1"></span>
-        <span class="spinner-inner-2"></span>
-        <span class="spinner-inner-3"></span>
+</div>
+
+<!-- Processing (Spinner) Section -->
+<div id="processing-section" class="text-center" style="display:none;">
+    <h1>Unwrapping Your Gift...</h1>
+    <div class="margin-center">
+        <%= image_tag "icons/icon_gift.png", id: "icon_gift" %>
+        <div class="loader"></div>
+    </div>
+</div>
+
+<!-- Result Section -->
+<div id="result-section" class="text-center" style="display: none;">
+    <div id="partial-credit-page" style="display: none;">
+        <h1>Uh oh, no gift &#128577;</h1>
+        <h2 class="completion-subheading" id="partial-credit-page-note">You didn’t get all questions (<%= session[:correct_pts] %> / <%= session[:total_pts]%>).</h2>
+        <div class="text-center card-button" id="failure-reload-btn">
+            <%= image_tag "icons/icon_reload.png", id: 'icon-reload'%>
+            <h5 class="card-button-label">Try Again</h5>
+        </div>
+    </div>
+
+    <div id="full-marks-page" style="display: none;">
+        <h1>It’s a &#128054;</h1>
+        <h5 class="completion-subheading" id="full-marks-page-note">Your score is <%= session[:correct_pts] %> / <%= session[:total_pts]%>!</h5>
     </div>
 
 </div>
-
-
-<%= javascript_tag do %>
-    var lis_result_sourcedid = "<%= session[:lis_result_sourcedid] %>";
-    var lis_outcome_service_url = "<%= session[:lis_outcome_service_url] %>";
-<% end %>

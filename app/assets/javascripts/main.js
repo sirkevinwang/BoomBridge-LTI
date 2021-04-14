@@ -1,44 +1,16 @@
-// FIXME: this thing gets called twice!
 $(document).ready(function () {
-    document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-        const dropZoneElement = inputElement.closest(".drop-zone");
+    renderWelcomeSection();
+    addInputEventListeners();
 
-        dropZoneElement.addEventListener("click", (e) => {
-            inputElement.click();
-        });
-
-        inputElement.addEventListener("change", (e) => {
-            if (inputElement.files.length) {
-                updateThumbnail(dropZoneElement, inputElement.files[0]);
-            }
-        });
-
-        dropZoneElement.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            dropZoneElement.classList.add("drop-zone--over");
-        });
-
-        ["dragleave", "dragend"].forEach((type) => {
-            dropZoneElement.addEventListener(type, (e) => {
-                dropZoneElement.classList.remove("drop-zone--over");
-            });
-        });
-
-
-        dropZoneElement.addEventListener("drop", (e) => {
-            e.preventDefault();
-
-            //var t0 = performance.now()
-            if (e.dataTransfer.files.length) {
-                inputElement.files = e.dataTransfer.files;
-                updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-                file = e.dataTransfer.files[0];
-            }
-            dropZoneElement.classList.remove("drop-zone--over");
-        });
+    $("#failure-reload-btn").click(function () {
+        // just to clear out the already existing file uploads
+        renderWelcomeSection();
+        var old_element = document.getElementById("dropzone");
+        var dropzoneInputElem = document.getElementById("drop-zone-input");
+        dropzoneInputElem.value = null;
+        old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
     });
 });
-// });
 
 /**
  * Updates the thumbnail on a drop zone element.
@@ -47,8 +19,7 @@ $(document).ready(function () {
  * @param {File} file
  */
 function updateThumbnail(dropZoneElement, file) {
-
-    $('#spinner').css('display', 'inline');
+    renderProcessingSection();
     let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
     console.log(typeof file)
     // First time - remove the prompt
@@ -67,29 +38,49 @@ function updateThumbnail(dropZoneElement, file) {
         }) => {
             //var t1 = performance.now()
             //console.log("OCR took " + (t1 - t0) + " milliseconds.")
+            // FIXME: handle the part where "corret , incorrect is not found"
+
             var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
-            var numCorrect = splitCorrect[splitCorrect.length - 1]
+            var numCorrect = splitCorrect[splitCorrect.length - 1];
+            var correctPts = parseInt(numCorrect);
 
             var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
-            var numIncorrect = splitIncorrect[splitIncorrect.length - 1]
+            var numIncorrect = splitIncorrect[splitIncorrect.length - 1];
+            var totalPts = parseInt(numCorrect) + parseInt(numIncorrect);
 
             fetch('/grade', {
                 method: 'post',
                 body: JSON.stringify({
-                    correct_pts: parseInt(numCorrect), 
-                    total_pts: parseInt(numCorrect) + parseInt(numIncorrect), 
+                    correct_pts: correctPts, 
+                    total_pts: totalPts, 
                     lis_result_sourcedid: lis_result_sourcedid, 
-                    lis_outcome_service_url: lis_outcome_service_url }
-                ),
+                    lis_outcome_service_url: lis_outcome_service_url 
+                }),
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-Token': Rails.csrfToken()
                 },
                 credentials: 'same-origin'
-            }).then(function (response) {
-                window.location.replace("/success");
-            }).then(function (data) {
-                console.log(data);
+            })
+            .then(response => response.json())
+            .then(result => {
+                // here server will respond a 200 success
+                // first check here if Canvas got the grade
+                // console.log(result)
+                if (result["success"] === 1) {
+                    // then case on full mark or not
+                    if (correctPts === totalPts) {
+                        // render the full-marks page
+                        renderFullMarksPage(correctPts, totalPts);
+                    } else {
+                        // render the partial credit page with option to reload the welcome section
+                        renderPartialCreditPage(correctPts, totalPts);
+                    }
+                }
+            })
+            .catch(error => {
+                // here server is dead
+                // console.error('Error:', error);
             });
 
         })
@@ -104,98 +95,102 @@ function updateThumbnail(dropZoneElement, file) {
     }
 
     thumbnailElement.dataset.label = file.name;
-
-    // Show thumbnail for image files
-    if (file.type.startsWith("image/")) {
-        const reader = new FileReader();
-
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            thumbnailElement.style.backgroundImage = url('${reader.result}');
-        };
-    } else {
-        thumbnailElement.style.backgroundImage = null;
-    }
+    thumbnailElement.style.backgroundImage = null;
 }
 
-function removeImageBlanks(imageObject) {
-    imgWidth = imageObject.width;
-    imgHeight = imageObject.height;
-    var canvas = document.createElement('canvas');
-    canvas.setAttribute("width", imgWidth);
-    canvas.setAttribute("height", imgHeight);
-    var context = canvas.getContext('2d');
-    context.drawImage(imageObject, 0, 0);
+// 1
+function renderWelcomeSection() {
+    hideProcessingSection();
+    hideResultSection();
+    $("#welcome-section").css("display", "block");
+}
 
-    var imageData = context.getImageData(0, 0, imgWidth, imgHeight),
-        data = imageData.data,
-        getRBG = function(x, y) {
-            var offset = imgWidth * y + x;
-            return {
-                red:     data[offset * 4],
-                green:   data[offset * 4 + 1],
-                blue:    data[offset * 4 + 2],
-                opacity: data[offset * 4 + 3]
-            };
-        },
-        isWhite = function (rgb) {
-            // many images contain noise, as the white is not a pure #fff white
-            return rgb.red > 200 && rgb.green > 200 && rgb.blue > 200;
-        },
-                scanY = function (fromTop) {
-        var offset = fromTop ? 1 : -1;
+// 2
+function renderProcessingSection() {
+    hideWelcomeSection();
+    $("#processing-section").css("display", "inline");
+}
 
-        // loop through each row
-        for(var y = fromTop ? 0 : imgHeight - 1; fromTop ? (y < imgHeight) : (y > -1); y += offset) {
+// 3
+function renderFullMarksPage(correctPts, totalPts) {
+    hideProcessingSection();
+    $("#result-section").css("display", "block");
+    $("#full-marks-page").css("display", "block");
+    $("#full-marks-page-note").html("Your score is " + correctPts + " / " + totalPts + "!");
+    confetti();
+}
 
-            // loop through each column
-            for(var x = 0; x < imgWidth; x++) {
-                var rgb = getRBG(x, y);
-                if (!isWhite(rgb)) {
-                    if (fromTop) {
-                        return y;
-                    } else {
-                        return Math.min(y + 1, imgHeight);
-                    }
+// 3
+function renderPartialCreditPage(correctPts, totalPts) {
+    hideProcessingSection();
+    $("#result-section").css("display", "block");
+    $("#partial-credit-page-note").html("You didn’t get all questions (" + correctPts + " / " + totalPts + ").");
+    $("#partial-credit-page").css("display", "block");
+}
+
+// hide view utilities
+function hideWelcomeSection() {
+    $("#welcome-section").css("display", "none");
+}
+
+function hideProcessingSection() {
+    $("#processing-section").css("display", "none");
+}
+
+function hideResultSection() {
+    $("#display-section").css("display", "none");
+    $("#partial-credit-page").css("display", "none");
+    $("#full-marks-page").css("display", "none");
+}
+
+function showResultSection() {
+    $("#display-section").css("display", "block");
+}
+
+function addInputEventListeners() {
+    $(document).ready(function() {
+        document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+            const dropZoneElement = inputElement.closest(".drop-zone");
+
+            dropZoneElement.addEventListener("click", (e) => {
+                inputElement.click();
+            });
+
+            inputElement.addEventListener("change", (e) => {
+                console.log("called")
+                if (inputElement.files.length != 0) {
+                    updateThumbnail(dropZoneElement, inputElement.files[inputElement.files.length - 1]);
                 }
-            }
-        }
-        return null; // all image is white
-    },
-    scanX = function (fromLeft) {
-        var offset = fromLeft? 1 : -1;
+            });
 
-        // loop through each column
-        for(var x = fromLeft ? 0 : imgWidth - 1; fromLeft ? (x < imgWidth) : (x > -1); x += offset) {
+            dropZoneElement.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZoneElement.classList.add("drop-zone--over");
+            });
 
-            // loop through each row
-            for(var y = 0; y < imgHeight; y++) {
-                var rgb = getRBG(x, y);
-                if (!isWhite(rgb)) {
-                    if (fromLeft) {
-                        return x;
-                    } else {
-                        return Math.min(x + 1, imgWidth);
-                    }
-                }      
-            }
-        }
-        return null; // all image is white
-    };
+            ["dragleave", "dragend"].forEach((type) => {
+                dropZoneElement.addEventListener(type, (e) => {
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            });
 
-    var cropTop = scanY(true),
-        cropBottom = scanY(false),
-        cropLeft = scanX(true),
-        cropRight = scanX(false),
-        cropWidth = cropRight - cropLeft,
-        cropHeight = cropBottom - cropTop;
+            dropZoneElement.addEventListener("drop", (e) => {
+                e.preventDefault();
 
-    canvas.setAttribute("width", cropWidth);
-    canvas.setAttribute("height", cropHeight);
-    // finally crop the guy
-    canvas.getContext("2d").drawImage(imageObject,
-        cropLeft, cropTop, cropWidth, cropHeight,
-        0, 0, cropWidth, cropHeight);
+                //var t0 = performance.now()
+                if (e.dataTransfer.files.length) {
+                    inputElement.files = e.dataTransfer.files;
+                    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                    file = e.dataTransfer.files[0];
+                }
+                dropZoneElement.classList.remove("drop-zone--over");
+            });
+        });
 
-    return canvas.toDataURL();
+    });
+   
+}
+
+let clickEventFunction = (e) => {
+
 }
