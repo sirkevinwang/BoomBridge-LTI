@@ -44,6 +44,16 @@
         </div>
     </div>
 
+    <div id="wrong-image-page" style="display: none;">
+        <h1>Uh oh, no gift &#128577;</h1>
+        <h2 class="completion-subheading" id="wrong-image-page-note">Perhaps you turned in the wrong screenshot. Try again.</h2>
+        <div class="text-center card-button" id="failure-reload-btn">
+            <%= image_tag "icons/icon_reload.png", id: 'icon-reload'%>
+            <h5 class="card-button-label">Try Again</h5>
+        </div>
+    </div>
+
+
     <div id="full-marks-page" style="display: none;">
         <h1>It’s a &#128054;</h1>
         <h5 class="completion-subheading" id="full-marks-page-note">Your score is <%= session[:correct_pts] %> / <%= session[:total_pts]%>!</h5>

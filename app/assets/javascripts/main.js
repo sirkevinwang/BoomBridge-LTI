@@ -39,53 +39,71 @@ function updateThumbnail(dropZoneElement, file) {
             //var t1 = performance.now()
             //console.log("OCR took " + (t1 - t0) + " milliseconds.")
             // FIXME: handle the part where "corret , incorrect is not found"
+            
+            var numCorrect = ""
+            var correctPts = -1
+            var numIncorrect = ""
+            var totalPts = -1
+            console.log(totalPts)
+            try{
+                var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
+                numCorrect = splitCorrect[splitCorrect.length - 1];
+                correctPts = parseInt(numCorrect);
 
-            var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
-            var numCorrect = splitCorrect[splitCorrect.length - 1];
-            var correctPts = parseInt(numCorrect);
+                var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
+                numIncorrect = splitIncorrect[splitIncorrect.length - 1];
+                totalPts = parseInt(numCorrect) + parseInt(numIncorrect);
 
-            var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
-            var numIncorrect = splitIncorrect[splitIncorrect.length - 1];
-            var totalPts = parseInt(numCorrect) + parseInt(numIncorrect);
-
-            fetch('/grade', {
-                method: 'post',
-                body: JSON.stringify({
-                    correct_pts: correctPts, 
-                    total_pts: totalPts, 
-                    lis_result_sourcedid: lis_result_sourcedid, 
-                    lis_outcome_service_url: lis_outcome_service_url 
-                }),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-Token': Rails.csrfToken()
-                },
-                credentials: 'same-origin'
-            })
-            .then(response => response.json())
-            .then(result => {
-                // here server will respond a 200 success
-                // first check here if Canvas got the grade
-                // console.log(result)
-                if (result["success"] === 1) {
-                    // then case on full mark or not
-                    if (correctPts === totalPts) {
-                        // render the full-marks page
-                        renderFullMarksPage(correctPts, totalPts);
-                    } else {
-                        // render the partial credit page with option to reload the welcome section
-                        renderPartialCreditPage(correctPts, totalPts);
+            }catch(err){
+                console.log("error")
+            }
+            
+            if (!isNaN(correctPts) || !isNaN(totalPts)){
+                console.log("correctPts")
+                console.log(correctPts)
+                console.log("totalPts")
+                console.log(totalPts)
+                fetch('/grade', {
+                    method: 'post',
+                    body: JSON.stringify({
+                        correct_pts: correctPts, 
+                        total_pts: totalPts, 
+                        lis_result_sourcedid: lis_result_sourcedid, 
+                        lis_outcome_service_url: lis_outcome_service_url 
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': Rails.csrfToken()
+                    },
+                    credentials: 'same-origin'
+                })
+                .then(response => response.json())
+                .then(result => {
+                    // here server will respond a 200 success
+                    // first check here if Canvas got the grade
+                    // console.log(result)
+                    if (result["success"] === 1) {
+                        // then case on full mark or not
+                        if (correctPts === totalPts) {
+                            // render the full-marks page
+                            renderFullMarksPage(correctPts, totalPts);
+                        } else {
+                            // render the partial credit page with option to reload the welcome section
+                            renderPartialCreditPage(correctPts, totalPts);
+                        }
                     }
-                }
-            })
-            .catch(error => {
-                // here server is dead
-                // console.error('Error:', error);
-            });
+                })
+                .catch(error => {
+                    // here server is dead
+                    // console.error('Error:', error);
+                });
+            } else {
+                renderWrongImagePage();
+            }
 
-        })
-        dropZoneElement.querySelector(".drop-zone__prompt").remove();
-    }
+            })
+            dropZoneElement.querySelector(".drop-zone__prompt").remove();
+        }
 
     // First time - there is no thumbnail element, so lets create it
     if (!thumbnailElement) {
@@ -126,6 +144,13 @@ function renderPartialCreditPage(correctPts, totalPts) {
     $("#result-section").css("display", "block");
     $("#partial-credit-page-note").html("You didn’t get all questions (" + correctPts + " / " + totalPts + ").");
     $("#partial-credit-page").css("display", "block");
+}
+
+function renderWrongImagePage(){
+    hideProcessingSection();
+    $("#result-section").css("display", "block");
+    $("#wrong-image-page-note").html("Perhaps you turned in the wrong screenshot. Try again.");
+    $("#wrong-image-page").css("display", "block");
 }
 
 // hide view utilities
