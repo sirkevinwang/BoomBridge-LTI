@@ -2,33 +2,13 @@ $(document).ready(function () {
     renderWelcomeSection();
     addInputEventListeners();
 
-    $(".text-center card-button").click(function () {
-        //e.preventDefault();
+    $("div.text-center.card-button").click(function () {
         renderWelcomeSection();
         var old_element = document.getElementById("dropzone");
         var dropzoneInputElem = document.getElementById("drop-zone-input");
         dropzoneInputElem.value = null;
         old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
     });
-    
-
-    //$("#failure-reload-btn").click(function () {
-        // just to clear out the already existing file uploads
-    //    renderWelcomeSection();
-    //    var old_element = document.getElementById("dropzone");
-    //    var dropzoneInputElem = document.getElementById("drop-zone-input");
-    //    dropzoneInputElem.value = null;
-    //    old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
-    //});
-
-    //$("#failure-reload-btn-2").click(function () {
-        // just to clear out the already existing file uploads
-    //    renderWelcomeSection();
-    //    var old_element = document.getElementById("dropzone");
-    //    var dropzoneInputElem = document.getElementById("drop-zone-input");
-    //    dropzoneInputElem.value = null;
-    //    old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
-    //});
 });
 
 /**
@@ -101,7 +81,7 @@ function updateThumbnail(dropZoneElement, file) {
                 console.log("error")
             }
             
-            if (!isNaN(correctPts) || !isNaN(totalPts)){
+            if (!isNaN(correctPts) || correctPts === -1 || totalPts === -1 || !isNaN(totalPts)){
                 
                 fetch('/grade', {
                     method: 'post',
@@ -206,6 +186,7 @@ function hideResultSection() {
     $("#display-section").css("display", "none");
     $("#partial-credit-page").css("display", "none");
     $("#full-marks-page").css("display", "none");
+    $("#wrong-image-page").css("display", "none");
 }
 
 function showResultSection() {
