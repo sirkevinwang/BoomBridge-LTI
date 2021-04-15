@@ -3,7 +3,7 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-  config.hosts << "strange-shrimp-59.loca.lt"
+  config.hosts << "ugly-husky-54.loca.lt"
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers

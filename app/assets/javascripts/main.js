@@ -2,14 +2,33 @@ $(document).ready(function () {
     renderWelcomeSection();
     addInputEventListeners();
 
-    $("#failure-reload-btn").click(function () {
-        // just to clear out the already existing file uploads
+    $(".text-center card-button").click(function () {
+        //e.preventDefault();
         renderWelcomeSection();
         var old_element = document.getElementById("dropzone");
         var dropzoneInputElem = document.getElementById("drop-zone-input");
         dropzoneInputElem.value = null;
         old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
     });
+    
+
+    //$("#failure-reload-btn").click(function () {
+        // just to clear out the already existing file uploads
+    //    renderWelcomeSection();
+    //    var old_element = document.getElementById("dropzone");
+    //    var dropzoneInputElem = document.getElementById("drop-zone-input");
+    //    dropzoneInputElem.value = null;
+    //    old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
+    //});
+
+    //$("#failure-reload-btn-2").click(function () {
+        // just to clear out the already existing file uploads
+    //    renderWelcomeSection();
+    //    var old_element = document.getElementById("dropzone");
+    //    var dropzoneInputElem = document.getElementById("drop-zone-input");
+    //    dropzoneInputElem.value = null;
+    //    old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
+    //});
 });
 
 /**
@@ -22,10 +41,35 @@ function updateThumbnail(dropZoneElement, file) {
     renderProcessingSection();
     let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
     console.log(typeof file)
+
+    //var img = new Image(),
+    //$canvas = $("<canvas>"),
+    //canvas = $canvas[0],
+    //context;
+
+    //img.crossOrigin = "anonymous";
+    //img.onload = function () {
+    //    $canvas.attr({ width: this.width, height: this.height });
+    //    context = canvas.getContext("2d");
+    //    if (context) {
+    //        context.drawImage(this, 0, 0);
+    //        $("body").append("<p>original image:</p>").append($canvas);
+        
+    //        removeBlanks(this.width, this.height);
+    //    } else {
+    //        alert('Get a real browser!');
+    //    }
+    //};
+
+    // define here an image from your domain
+    //img.src = file;
+    //file = img.src;
+    //var timeCrop = performance.now();
+    //console.log("cropping took " + (timeCrop - t0) + " milliseconds.")
     // First time - remove the prompt
     if (dropZoneElement.querySelector(".drop-zone__prompt")) {
 
-        //var t0 = performance.now()
+        var t0 = performance.now()
         Tesseract.recognize(
             file,
             'eng', {
@@ -36,8 +80,8 @@ function updateThumbnail(dropZoneElement, file) {
                 text
             }
         }) => {
-            //var t1 = performance.now()
-            //console.log("OCR took " + (t1 - t0) + " milliseconds.")
+            var t1 = performance.now()
+            console.log("OCR took " + (t1 - t0) + " milliseconds.")
             // FIXME: handle the part where "corret , incorrect is not found"
             
             var numCorrect = ""
@@ -197,11 +241,12 @@ function addInputEventListeners() {
             dropZoneElement.addEventListener("drop", (e) => {
                 e.preventDefault();
 
-                //var t0 = performance.now()
+                var t0 = performance.now()
                 if (e.dataTransfer.files.length) {
                     inputElement.files = e.dataTransfer.files;
                     updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
                     file = e.dataTransfer.files[0];
+                    
                 }
                 dropZoneElement.classList.remove("drop-zone--over");
             });
@@ -214,3 +259,72 @@ function addInputEventListeners() {
 let clickEventFunction = (e) => {
 
 }
+
+var removeBlanks = function (imgWidth, imgHeight) {
+    var imageData = context.getImageData(0, 0, imgWidth, imgHeight),
+        data = imageData.data,
+        getRBG = function(x, y) {
+            var offset = imgWidth * y + x;
+            return {
+                red:     data[offset * 4],
+                green:   data[offset * 4 + 1],
+                blue:    data[offset * 4 + 2],
+                opacity: data[offset * 4 + 3]
+            };
+        },
+        isWhite = function (rgb) {
+            // many images contain noise, as the white is not a pure #fff white
+            return rgb.red > 200 && rgb.green > 200 && rgb.blue > 200;
+        },
+        scanY = function (fromTop) {
+            var offset = fromTop ? 1 : -1;
+            
+            // loop through each row
+            for(var y = fromTop ? 0 : imgHeight - 1; fromTop ? (y < imgHeight) : (y > -1); y += offset) {
+                
+                // loop through each column
+                for(var x = 0; x < imgWidth; x++) {
+                    var rgb = getRBG(x, y);
+                    if (!isWhite(rgb)) {
+                        return y;                        
+                    }      
+                }
+            }
+            return null; // all image is white
+        },
+        scanX = function (fromLeft) {
+            var offset = fromLeft? 1 : -1;
+            
+            // loop through each column
+            for(var x = fromLeft ? 0 : imgWidth - 1; fromLeft ? (x < imgWidth) : (x > -1); x += offset) {
+                
+                // loop through each row
+                for(var y = 0; y < imgHeight; y++) {
+                    var rgb = getRBG(x, y);
+                    if (!isWhite(rgb)) {
+                        return x;                        
+                    }      
+                }
+            }
+            return null; // all image is white
+        };
+    
+    var cropTop = scanY(true),
+        cropBottom = scanY(false),
+        cropLeft = scanX(true),
+        cropRight = scanX(false),
+        cropWidth = cropRight - cropLeft,
+        cropHeight = cropBottom - cropTop;
+    
+    var $croppedCanvas = $("<canvas>").attr({ width: cropWidth, height: cropHeight });
+    
+    // finally crop the guy
+    $croppedCanvas[0].getContext("2d").drawImage(canvas,
+        cropLeft, cropTop, cropWidth, cropHeight,
+        0, 0, cropWidth, cropHeight);
+    
+    $("body").
+        append("<p>same image with white spaces cropped:</p>").
+        append($croppedCanvas);
+    console.log(cropTop, cropBottom, cropLeft, cropRight);
+};
