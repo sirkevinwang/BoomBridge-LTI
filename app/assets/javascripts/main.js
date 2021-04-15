@@ -44,7 +44,6 @@ function updateThumbnail(dropZoneElement, file) {
             var correctPts = -1
             var numIncorrect = ""
             var totalPts = -1
-            console.log(totalPts)
             try{
                 var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
                 numCorrect = splitCorrect[splitCorrect.length - 1];
@@ -59,10 +58,7 @@ function updateThumbnail(dropZoneElement, file) {
             }
             
             if (!isNaN(correctPts) || !isNaN(totalPts)){
-                console.log("correctPts")
-                console.log(correctPts)
-                console.log("totalPts")
-                console.log(totalPts)
+                
                 fetch('/grade', {
                     method: 'post',
                     body: JSON.stringify({
@@ -182,7 +178,6 @@ function addInputEventListeners() {
             });
 
             inputElement.addEventListener("change", (e) => {
-                console.log("called")
                 if (inputElement.files.length != 0) {
                     updateThumbnail(dropZoneElement, inputElement.files[inputElement.files.length - 1]);
                 }
