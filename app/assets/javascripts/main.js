@@ -1,14 +1,38 @@
 $(document).ready(function () {
+    console.log("in ready");
     renderWelcomeSection();
     addInputEventListeners();
 
     $("div.text-center.card-button").click(function () {
+        console.log("in clcik try button");
         renderWelcomeSection();
+        //addInputEventListeners();
         var old_element = document.getElementById("dropzone");
         var dropzoneInputElem = document.getElementById("drop-zone-input");
-        dropzoneInputElem.value = null;
-        old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
+        if(dropzoneInputElem!= null) dropzoneInputElem.file = null;
+        if(old_element!=null) old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
+        //if(old_element!=null) old_element.innerHTML = "<input type='file' name='myFile' class='drop-zone__input'>"
+        addInputEventListeners();
     });
+    
+
+    //$("#failure-reload-btn").click(function () {
+        // just to clear out the already existing file uploads
+    //    renderWelcomeSection();
+    //    var old_element = document.getElementById("dropzone");
+    //    var dropzoneInputElem = document.getElementById("drop-zone-input");
+    //    dropzoneInputElem.value = null;
+    //    old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
+    //});
+
+    //$("#failure-reload-btn-2").click(function () {
+        // just to clear out the already existing file uploads
+    //    renderWelcomeSection();
+    //    var old_element = document.getElementById("dropzone");
+    //    var dropzoneInputElem = document.getElementById("drop-zone-input");
+    //    dropzoneInputElem.value = null;
+    //    old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
+    //});
 });
 
 /**
@@ -81,7 +105,7 @@ function updateThumbnail(dropZoneElement, file) {
                 console.log("error")
             }
             
-            if (!isNaN(correctPts) || correctPts === -1 || totalPts === -1 || !isNaN(totalPts)){
+            if (!isNaN(correctPts) || !isNaN(totalPts)){
                 
                 fetch('/grade', {
                     method: 'post',
@@ -123,6 +147,7 @@ function updateThumbnail(dropZoneElement, file) {
 
             })
             dropZoneElement.querySelector(".drop-zone__prompt").remove();
+  
         }
 
     // First time - there is no thumbnail element, so lets create it
@@ -138,6 +163,7 @@ function updateThumbnail(dropZoneElement, file) {
 
 // 1
 function renderWelcomeSection() {
+    console.log("in render welcome")
     hideProcessingSection();
     hideResultSection();
     $("#welcome-section").css("display", "block");
@@ -164,6 +190,7 @@ function renderPartialCreditPage(correctPts, totalPts) {
     $("#result-section").css("display", "block");
     $("#partial-credit-page-note").html("You didn’t get all questions (" + correctPts + " / " + totalPts + ").");
     $("#partial-credit-page").css("display", "block");
+    
 }
 
 function renderWrongImagePage(){
@@ -194,24 +221,40 @@ function showResultSection() {
 }
 
 function addInputEventListeners() {
+    console.log("in addInputEventListener")
     $(document).ready(function() {
+        console.log("in addInputEvent ready");
         document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+            console.log(inputElement);
             const dropZoneElement = inputElement.closest(".drop-zone");
 
+            console.log("before click");
+            console.log(dropZoneElement);
+
             dropZoneElement.addEventListener("click", (e) => {
+                console.log('in click');
+
                 inputElement.click();
             });
 
+            console.log("before change");
+
             inputElement.addEventListener("change", (e) => {
+                console.log("inside change");
+                console.log(inputElement.files.length);
                 if (inputElement.files.length != 0) {
                     updateThumbnail(dropZoneElement, inputElement.files[inputElement.files.length - 1]);
                 }
             });
 
+            console.log("before dragover");
+
             dropZoneElement.addEventListener("dragover", (e) => {
                 e.preventDefault();
                 dropZoneElement.classList.add("drop-zone--over");
             });
+
+            console.log("before dragleave");
 
             ["dragleave", "dragend"].forEach((type) => {
                 dropZoneElement.addEventListener(type, (e) => {
@@ -219,7 +262,10 @@ function addInputEventListeners() {
                 });
             });
 
+            console.log("before drop");
+
             dropZoneElement.addEventListener("drop", (e) => {
+                console.log("in drop");
                 e.preventDefault();
 
                 var t0 = performance.now()
@@ -238,10 +284,13 @@ function addInputEventListeners() {
 }
 
 let clickEventFunction = (e) => {
+    console.log("in click event function");
 
+    console.log(e);
 }
 
 var removeBlanks = function (imgWidth, imgHeight) {
+    console.log("in removeBlanks");
     var imageData = context.getImageData(0, 0, imgWidth, imgHeight),
         data = imageData.data,
         getRBG = function(x, y) {
