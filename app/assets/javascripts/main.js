@@ -9,30 +9,12 @@ $(document).ready(function () {
         //addInputEventListeners();
         var old_element = document.getElementById("dropzone");
         var dropzoneInputElem = document.getElementById("drop-zone-input");
-        if(dropzoneInputElem!= null) dropzoneInputElem.file = null;
-        if(old_element!=null) old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
-        //if(old_element!=null) old_element.innerHTML = "<input type='file' name='myFile' class='drop-zone__input'>"
-        addInputEventListeners();
+        old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
+        if (dropzoneInputElem.file != null) {
+            dropzoneInputElem.file = null;
+            addInputEventListeners();
+        }
     });
-    
-
-    //$("#failure-reload-btn").click(function () {
-        // just to clear out the already existing file uploads
-    //    renderWelcomeSection();
-    //    var old_element = document.getElementById("dropzone");
-    //    var dropzoneInputElem = document.getElementById("drop-zone-input");
-    //    dropzoneInputElem.value = null;
-    //    old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
-    //});
-
-    //$("#failure-reload-btn-2").click(function () {
-        // just to clear out the already existing file uploads
-    //    renderWelcomeSection();
-    //    var old_element = document.getElementById("dropzone");
-    //    var dropzoneInputElem = document.getElementById("drop-zone-input");
-    //    dropzoneInputElem.value = null;
-    //    old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
-    //});
 });
 
 /**
@@ -40,41 +22,45 @@ $(document).ready(function () {
  *
  * @param {HTMLElement} dropZoneElement
  * @param {File} file
+ * 
  */
+var blob = {};
 function updateThumbnail(dropZoneElement, file) {
     renderProcessingSection();
     let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
     console.log(typeof file)
 
-    //var img = new Image(),
-    //$canvas = $("<canvas>"),
-    //canvas = $canvas[0],
-    //context;
+    var img = new Image(),
+    $canvas = $("<canvas>"),
+    canvas = $canvas[0],
+    context;
 
-    //img.crossOrigin = "anonymous";
-    //img.onload = function () {
-    //    $canvas.attr({ width: this.width, height: this.height });
-    //    context = canvas.getContext("2d");
-    //    if (context) {
-    //        context.drawImage(this, 0, 0);
-    //        $("body").append("<p>original image:</p>").append($canvas);
+    img.crossOrigin = "anonymous";
+    img.onload = function () {
+        $canvas.attr({ width: this.width, height: this.height });
+        context = canvas.getContext("2d");
+        if (context) {
+            context.drawImage(this, 0, 0);
+            $("body").append("<p>original image:</p>").append($canvas);
         
-    //        removeBlanks(this.width, this.height);
-    //    } else {
-    //        alert('Get a real browser!');
-    //    }
-    //};
+            removeBlanks(this.width, this.height);
+        } else {
+            alert('Get a real browser!');
+        }
+    };
 
     // define here an image from your domain
-    //img.src = file;
+    img.src = file;
     //file = img.src;
-    //var timeCrop = performance.now();
-    //console.log("cropping took " + (timeCrop - t0) + " milliseconds.")
+    var timeCrop = performance.now();
+    console.log("cropping took " + (timeCrop - t0) + " milliseconds.")
     // First time - remove the prompt
     if (dropZoneElement.querySelector(".drop-zone__prompt")) {
         const newImage = document.querySelector('#placeholder');
         const reader = new FileReader();
-        reader.readAsDataURL(file);
+        console.log("file")
+        console.log(typeof(file))
+        reader.readAsDataURL(blob);
         console.log("result")
         console.log(reader.result)
         newImage.src = reader.result;
@@ -229,40 +215,25 @@ function showResultSection() {
 }
 
 function addInputEventListeners() {
-    console.log("in addInputEventListener")
     $(document).ready(function() {
-        console.log("in addInputEvent ready");
         document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-            console.log(inputElement);
             const dropZoneElement = inputElement.closest(".drop-zone");
-
-            console.log("before click");
-            console.log(dropZoneElement);
-
             dropZoneElement.addEventListener("click", (e) => {
-                console.log('in click');
-
                 inputElement.click();
             });
 
-            console.log("before change");
 
             inputElement.addEventListener("change", (e) => {
-                console.log("inside change");
                 console.log(inputElement.files.length);
                 if (inputElement.files.length != 0) {
                     updateThumbnail(dropZoneElement, inputElement.files[inputElement.files.length - 1]);
                 }
             });
 
-            console.log("before dragover");
-
             dropZoneElement.addEventListener("dragover", (e) => {
                 e.preventDefault();
                 dropZoneElement.classList.add("drop-zone--over");
             });
-
-            console.log("before dragleave");
 
             ["dragleave", "dragend"].forEach((type) => {
                 dropZoneElement.addEventListener(type, (e) => {
@@ -270,29 +241,26 @@ function addInputEventListeners() {
                 });
             });
 
-            console.log("before drop");
-
             dropZoneElement.addEventListener("drop", (e) => {
-                console.log("in drop");
                 e.preventDefault();
 
-                var t0 = performance.now()
                 if (e.dataTransfer.files.length) {
                     inputElement.files = e.dataTransfer.files;
                     updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
                     file = e.dataTransfer.files[0];
-                    
+                    //new code for cropping
+                    var base64Img = e.target.result;
+                    var binaryImg = convertDataURIToBinary(base64Img);
+                    blob = new Blob([binaryImg], {type: file.type});
+                    console.log(blob)
                 }
                 dropZoneElement.classList.remove("drop-zone--over");
             });
         });
-
     });
-   
 }
 
 let clickEventFunction = (e) => {
-    console.log("in click event function");
 
     console.log(e);
 }
@@ -381,4 +349,21 @@ function removeImageBlanks(imageObject) {
         0, 0, cropWidth, cropHeight);
 
     return canvas.toDataURL();
+}
+
+var BASE64_MARKER = ';base64,';
+
+function convertDataURIToBinary(dataURI) {
+    var BASE64_MARKER = ';base64,';
+
+    var base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
+    var base64 = dataURI.substring(base64Index);
+    var raw = window.atob(base64);
+    var rawLength = raw.length;
+    var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+    for(i = 0; i < rawLength; i++) {
+        array[i] = raw.charCodeAt(i);
+    }
+    return array;
 }
