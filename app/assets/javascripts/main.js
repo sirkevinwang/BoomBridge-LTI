@@ -72,10 +72,18 @@ function updateThumbnail(dropZoneElement, file) {
     //console.log("cropping took " + (timeCrop - t0) + " milliseconds.")
     // First time - remove the prompt
     if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+        const newImage = document.querySelector('#placeholder');
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        console.log("result")
+        console.log(reader.result)
+        newImage.src = reader.result;
+        var imageData = removeImageBlanks(newImage)
+
 
         var t0 = performance.now()
         Tesseract.recognize(
-            file,
+            imageData,
             'eng', {
             logger: m => console.log(m)
         }
@@ -289,8 +297,19 @@ let clickEventFunction = (e) => {
     console.log(e);
 }
 
-var removeBlanks = function (imgWidth, imgHeight) {
-    console.log("in removeBlanks");
+
+function removeImageBlanks(imageObject) {
+    imgWidth = imageObject.width;
+    imgHeight = imageObject.height;
+    var canvas = document.createElement('canvas');
+    canvas.setAttribute("width", imgWidth);
+    canvas.setAttribute("height", imgHeight);
+    var context = canvas.getContext('2d');
+    context.drawImage(imageObject, 0, 0);
+    console.log("hi")
+    console.log(imgWidth)
+    console.log(imgWidth)
+    console.log(imageObject)
     var imageData = context.getImageData(0, 0, imgWidth, imgHeight),
         data = imageData.data,
         getRBG = function(x, y) {
@@ -306,55 +325,60 @@ var removeBlanks = function (imgWidth, imgHeight) {
             // many images contain noise, as the white is not a pure #fff white
             return rgb.red > 200 && rgb.green > 200 && rgb.blue > 200;
         },
-        scanY = function (fromTop) {
-            var offset = fromTop ? 1 : -1;
-            
-            // loop through each row
-            for(var y = fromTop ? 0 : imgHeight - 1; fromTop ? (y < imgHeight) : (y > -1); y += offset) {
-                
-                // loop through each column
-                for(var x = 0; x < imgWidth; x++) {
-                    var rgb = getRBG(x, y);
-                    if (!isWhite(rgb)) {
-                        return y;                        
-                    }      
-                }
-            }
-            return null; // all image is white
-        },
-        scanX = function (fromLeft) {
-            var offset = fromLeft? 1 : -1;
-            
+                scanY = function (fromTop) {
+        var offset = fromTop ? 1 : -1;
+
+        // loop through each row
+        for(var y = fromTop ? 0 : imgHeight - 1; fromTop ? (y < imgHeight) : (y > -1); y += offset) {
+
             // loop through each column
-            for(var x = fromLeft ? 0 : imgWidth - 1; fromLeft ? (x < imgWidth) : (x > -1); x += offset) {
-                
-                // loop through each row
-                for(var y = 0; y < imgHeight; y++) {
-                    var rgb = getRBG(x, y);
-                    if (!isWhite(rgb)) {
-                        return x;                        
-                    }      
+            for(var x = 0; x < imgWidth; x++) {
+                var rgb = getRBG(x, y);
+                if (!isWhite(rgb)) {
+                    if (fromTop) {
+                        return y;
+                    } else {
+                        return Math.min(y + 1, imgHeight);
+                    }
                 }
             }
-            return null; // all image is white
-        };
-    
+        }
+        return null; // all image is white
+    },
+    scanX = function (fromLeft) {
+        var offset = fromLeft? 1 : -1;
+
+        // loop through each column
+        for(var x = fromLeft ? 0 : imgWidth - 1; fromLeft ? (x < imgWidth) : (x > -1); x += offset) {
+
+            // loop through each row
+            for(var y = 0; y < imgHeight; y++) {
+                var rgb = getRBG(x, y);
+                if (!isWhite(rgb)) {
+                    if (fromLeft) {
+                        return x;
+                    } else {
+                        return Math.min(x + 1, imgWidth);
+                    }
+                }      
+            }
+        }
+        return null; // all image is white
+    };
+
     var cropTop = scanY(true),
         cropBottom = scanY(false),
         cropLeft = scanX(true),
         cropRight = scanX(false),
         cropWidth = cropRight - cropLeft,
         cropHeight = cropBottom - cropTop;
-    
-    var $croppedCanvas = $("<canvas>").attr({ width: cropWidth, height: cropHeight });
-    
+
+    canvas.setAttribute("width", cropWidth);
+    canvas.setAttribute("height", cropHeight);
     // finally crop the guy
-    $croppedCanvas[0].getContext("2d").drawImage(canvas,
+    canvas.getContext("2d").drawImage(imageObject,
         cropLeft, cropTop, cropWidth, cropHeight,
         0, 0, cropWidth, cropHeight);
-    
-    $("body").
-        append("<p>same image with white spaces cropped:</p>").
-        append($croppedCanvas);
-    console.log(cropTop, cropBottom, cropLeft, cropRight);
-};
+
+    return canvas.toDataURL();
+}
