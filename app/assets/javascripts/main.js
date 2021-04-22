@@ -3,16 +3,17 @@ $(document).ready(function () {
     renderWelcomeSection();
     addInputEventListeners();
 
-    $("div.text-center.card-button").click(function () {
+    $("div.text-center.card-button").click(function() {
         console.log("in clcik try button");
         renderWelcomeSection();
         //addInputEventListeners();
         var old_element = document.getElementById("dropzone");
         var dropzoneInputElem = document.getElementById("drop-zone-input");
-        if(dropzoneInputElem!= null) dropzoneInputElem.file = null;
-        if(old_element!=null) old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
-        //if(old_element!=null) old_element.innerHTML = "<input type='file' name='myFile' class='drop-zone__input'>"
-        addInputEventListeners();
+        old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
+        if (dropzoneInputElem.file != null) {
+            dropzoneInputElem.file = null;
+            addInputEventListeners();
+        }
     });
 });
 
@@ -67,7 +68,7 @@ function updateThumbnail(dropZoneElement, file) {
         }) => {
             var t1 = performance.now()
             console.log("OCR took " + (t1 - t0) + " milliseconds.")
-            // FIXME: handle the part where "corret , incorrect is not found"
+            // FIXME: handle the part where "correct , incorrect is not found"
             
             var numCorrect = ""
             var correctPts = -1
@@ -82,7 +83,7 @@ function updateThumbnail(dropZoneElement, file) {
                 numIncorrect = splitIncorrect[splitIncorrect.length - 1];
                 totalPts = parseInt(numCorrect) + parseInt(numIncorrect);
 
-            }catch(err){
+            } catch(err){
                 console.log("error")
             }
             
@@ -262,12 +263,6 @@ function addInputEventListeners() {
 
     });
    
-}
-
-let clickEventFunction = (e) => {
-    console.log("in click event function");
-
-    console.log(e);
 }
 
 var removeBlanks = function (imgWidth, imgHeight) {
