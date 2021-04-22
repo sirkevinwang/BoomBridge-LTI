@@ -14,25 +14,6 @@ $(document).ready(function () {
         //if(old_element!=null) old_element.innerHTML = "<input type='file' name='myFile' class='drop-zone__input'>"
         addInputEventListeners();
     });
-    
-
-    //$("#failure-reload-btn").click(function () {
-        // just to clear out the already existing file uploads
-    //    renderWelcomeSection();
-    //    var old_element = document.getElementById("dropzone");
-    //    var dropzoneInputElem = document.getElementById("drop-zone-input");
-    //    dropzoneInputElem.value = null;
-    //    old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
-    //});
-
-    //$("#failure-reload-btn-2").click(function () {
-        // just to clear out the already existing file uploads
-    //    renderWelcomeSection();
-    //    var old_element = document.getElementById("dropzone");
-    //    var dropzoneInputElem = document.getElementById("drop-zone-input");
-    //    dropzoneInputElem.value = null;
-    //    old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
-    //});
 });
 
 /**
