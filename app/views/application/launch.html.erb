@@ -7,18 +7,21 @@
     <% end %>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <h1>
-        Hi, <%= @lis_person_name_given %>
+        <span class = "eng">Hi, </span><span class = "lkt">Hau, </span><%= @lis_person_name_given %>
     </h1>
 
+    <button id="Eng">English</button>
+    <button id="Lak">Lakȟótiyapi</button>
+
     <div>
-        <h2 class="subtitle"> <i class="fas fa-camera"></i> Screenshot Your Boom Cards</h2>
-        <h3 class="caption">Make sure they look like these:</h3>
+        <h2 class="subtitle"> <i class="fas fa-camera"></i><span class = "eng">Screenshot Your Boom Cards</span><span class = "lkt">Boom Cards kiŋ itówapi ikíkču wo/we</span></h2>
+        <h3 class="caption"><span class = "eng">Make sure they look like these:</span><span class = "lkt">Léčheča kte héčha:</span></h3>
         <img class="sample-image" src="correct.png" height="200" alt="Correct">
         <img class="sample-image" src="wrong.png" height="200" alt="Wrong">
-        <h2 class="subtitle"><i class="fas fa-upload"></i> Submit here</h2>
-
+        <h2 class="subtitle"><i class="fas fa-upload"></i><span class = "eng">Submit here</span><span class = "lkt">Lél iyáyeya yo/ye</span></h2>
         <div class="drop-zone" id="dropzone">
-            <span class="drop-zone__prompt caption">Drop file here or click to upload</span>
+            <span class = "eng" class="drop-zone__prompt caption">Drop file here or click to upload</span>
+            <span class = "lkt" class="drop-zone__prompt caption">Translate this!</span>
             <input type="file" accept=".png,.jpg,.jpeg,.heif" name="myFile" class="drop-zone__input" id="drop-zone-input">
         </div>
     </div>
@@ -26,7 +29,7 @@
 
 <!-- Processing (Spinner) Section -->
 <div id="processing-section" class="text-center" style="display:none;">
-    <h1>Unwrapping Your Gift...</h1>
+    <h1><span class = "eng">Unwrapping Your Gift...</span><span class = "lkt">Wak’úpi Yaglúžužu (kte)...</span></h1>
     <div class="margin-center">
         <%= image_tag "icons/icon_gift.png", id: "icon_gift" %>
         <div class="loader"></div>
@@ -36,27 +39,32 @@
 <!-- Result Section -->
 <div id="result-section" class="text-center" style="display: none;">
     <div id="partial-credit-page" style="display: none;">
-        <h1>Uh oh, no gift &#128577;</h1>
-        <h2 class="completion-subheading" id="partial-credit-page-note">You didn’t get all questions (<%= session[:correct_pts] %> / <%= session[:total_pts]%>).</h2>
+        <h1><span class = "eng">Uh oh, no gift &#128577;</span><span class = "lkt">Akšáka, wak’úpi waníče &#128577;</span></h1>
+        <h2 class="completion-subheading" id="partial-credit-page-note"><span class = "eng">You didn’t get all questions </span><span class = "lkt">Wóiyuŋǧe kiŋ iyúha taŋyáŋ alúpte šni </span>(<%= session[:correct_pts] %> / <%= session[:total_pts]%>).</h2>
         <div class="text-center card-button" id="failure-reload-btn">
             <%= image_tag "icons/icon_reload.png", id: 'icon-reload'%>
-            <h5 class="card-button-label">Try Again</h5>
+            <h5 class="card-button-label"><span class = "eng">Try Again</span><span class = "lkt">Akhé iyútȟa yo/ye</span></h5>
         </div>
     </div>
 
     <div id="wrong-image-page" style="display: none;">
-        <h1>Uh oh, no gift &#128577;</h1>
-        <h2 class="completion-subheading" id="wrong-image-page-note">Perhaps you turned in the wrong screenshot. Try again.</h2>
+        <h1 class = "eng">Uh oh, no gift &#128577;</h1>
+        <h1 class = "eng">Akšáka, wak’úpi waníče &#128577;</h1>
+        <h2 class="completion-subheading" id="wrong-image-page-note">
+            <span class = "eng">Perhaps you turned in the wrong screenshot. Try again.</span>
+            <span class = "lkt">Translate this!</span>
+        </h2>
         <div class="text-center card-button" id="failure-reload-btn">
             <%= image_tag "icons/icon_reload.png", id: 'icon-reload'%>
-            <h5 class="card-button-label">Try Again</h5>
+            <h5 class="card-button-label"><span class = "eng">Try Again</span><span class = "lkt">Akhé iyútȟa yo/ye</span></h5>
         </div>
     </div>
 
 
     <div id="full-marks-page" style="display: none;">
-        <h1>It’s a &#128054;</h1>
-        <h5 class="completion-subheading" id="full-marks-page-note">Your score is <%= session[:correct_pts] %> / <%= session[:total_pts]%>!</h5>
+        <h1 class = "eng">It’s a &#128054;</h1>
+        <h1 class = "lkt">&#128054; héčha!</h1>
+        <h5 class="completion-subheading" id="full-marks-page-note"><span class = "eng">Your score is <%= session[:correct_pts] %> / <%= session[:total_pts]%>!</span><span class = "lkt">Your score is <%= session[:correct_pts] %> / <%= session[:total_pts]%>!</span></h5>
     </div>
 
 </div>

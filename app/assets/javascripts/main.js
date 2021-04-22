@@ -1,10 +1,8 @@
 $(document).ready(function () {
-    console.log("in ready");
     renderWelcomeSection();
     addInputEventListeners();
 
     $("div.text-center.card-button").click(function() {
-        console.log("in clcik try button");
         renderWelcomeSection();
         //addInputEventListeners();
         var old_element = document.getElementById("dropzone");
@@ -203,23 +201,14 @@ function showResultSection() {
 }
 
 function addInputEventListeners() {
-    console.log("in addInputEventListener")
     $(document).ready(function() {
-        console.log("in addInputEvent ready");
         document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-            console.log(inputElement);
             const dropZoneElement = inputElement.closest(".drop-zone");
 
-            console.log("before click");
-            console.log(dropZoneElement);
-
             dropZoneElement.addEventListener("click", (e) => {
-                console.log('in click');
-
                 inputElement.click();
             });
 
-            console.log("before change");
 
             inputElement.addEventListener("change", (e) => {
                 console.log("inside change");
@@ -229,14 +218,11 @@ function addInputEventListeners() {
                 }
             });
 
-            console.log("before dragover");
 
             dropZoneElement.addEventListener("dragover", (e) => {
                 e.preventDefault();
                 dropZoneElement.classList.add("drop-zone--over");
             });
-
-            console.log("before dragleave");
 
             ["dragleave", "dragend"].forEach((type) => {
                 dropZoneElement.addEventListener(type, (e) => {
@@ -244,10 +230,7 @@ function addInputEventListeners() {
                 });
             });
 
-            console.log("before drop");
-
             dropZoneElement.addEventListener("drop", (e) => {
-                console.log("in drop");
                 e.preventDefault();
 
                 var t0 = performance.now()
@@ -334,3 +317,27 @@ var removeBlanks = function (imgWidth, imgHeight) {
         append($croppedCanvas);
     console.log(cropTop, cropBottom, cropLeft, cropRight);
 };
+
+//$('#sel').change(function(){
+//    if($(this).val()=="lak"){
+//            $('.lakota').show();
+//            $('.english').hide();
+//    }
+//    else{
+//            $('.english').show();
+//            $('.lakota').hide();
+//    }       
+//});
+
+$('.eng').hide();
+
+$(document).on('click', '#Lak', function() {
+    console.log("in lak")
+    $(".eng").css("display", "none");
+    $(".lkt").css("display", "block");
+});
+$(document).on('click', '#Eng', function() {
+    console.log("in eng")
+    $(".lkt").css("display", "none");
+    $(".eng").css("display", "block");
+});
