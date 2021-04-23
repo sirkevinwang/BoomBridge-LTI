@@ -6,9 +6,13 @@
     var lis_outcome_service_url = "<%= session[:lis_outcome_service_url] %>";
     <% end %>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
-    <h1>
-        <span class = "eng">Hi, </span><span class = "lkt">Hau, </span><%= @lis_person_name_given %>
+    <h1 class = "eng">
+        Hi, <%= @lis_person_name_given %>
     </h1>
+    <h1 class = "lkt">
+        Hi, <%= @lis_person_name_given %>
+    </h1>
+
 
     <button id="Eng">English</button>
     <button id="Lak">Lakȟótiyapi</button>
@@ -54,6 +58,7 @@
             <span class = "eng">Perhaps you turned in the wrong screenshot. Try again.</span>
             <span class = "lkt">Translate this!</span>
         </h2>
+        
         <div class="text-center card-button" id="failure-reload-btn">
             <%= image_tag "icons/icon_reload.png", id: 'icon-reload'%>
             <h5 class="card-button-label"><span class = "eng">Try Again</span><span class = "lkt">Akhé iyútȟa yo/ye</span></h5>
