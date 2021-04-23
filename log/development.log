@@ -5576,3 +5576,579 @@ Processing by ApplicationController#launch as HTML
 Completed 401 Unauthorized in 34ms (Views: 32.7ms | Allocations: 7567)
 
 
+Started GET "/" for 72.95.250.184 at 2021-04-23 12:08:45 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#index as HTML
+  Rendering application/index.html.erb within layouts/application
+  Rendered application/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 478)
+  Rendered layouts/_header.html.erb (Duration: 90.6ms | Allocations: 13907)
+Completed 200 OK in 105ms (Views: 101.4ms | Allocations: 16387)
+
+
+Started POST "/" for 72.95.250.184 at 2021-04-23 12:08:45 -0700
+Started POST "/" for 72.95.250.184 at 2021-04-23 12:08:45 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Started POST "/" for 72.95.250.184 at 2021-04-23 12:08:45 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Started POST "/" for 72.95.250.184 at 2021-04-23 12:08:45 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActionController::RoutingError (No route matches [POST] "/"):
+  
+actionpack (6.0.3.6) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.6) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/" for 72.95.250.184 at 2021-04-23 12:08:45 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActionController::RoutingError (No route matches [POST] "/"):
+  
+actionpack (6.0.3.6) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.6) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  
+ActionController::RoutingError (No route matches [POST] "/"):
+  
+actionpack (6.0.3.6) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.6) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  
+ActionController::RoutingError (No route matches [POST] "/"):
+  
+actionpack (6.0.3.6) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.6) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  
+ActionController::RoutingError (No route matches [POST] "/"):
+  
+actionpack (6.0.3.6) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.6) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/" for 72.95.250.184 at 2021-04-23 12:08:45 -0700
+Started POST "/" for 72.95.250.184 at 2021-04-23 12:08:45 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActionController::RoutingError (No route matches [POST] "/"):
+  
+actionpack (6.0.3.6) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.6) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  
+ActionController::RoutingError (No route matches [POST] "/"):
+  
+actionpack (6.0.3.6) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.6) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/" for 72.95.250.184 at 2021-04-23 12:08:45 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActionController::RoutingError (No route matches [POST] "/"):
+  
+actionpack (6.0.3.6) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.6) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/" for 72.95.250.184 at 2021-04-23 12:08:57 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActionController::RoutingError (No route matches [POST] "/"):
+  
+actionpack (6.0.3.6) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.6) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.6) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.6) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/launch" for 72.95.250.184 at 2021-04-23 12:09:12 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619204951", "oauth_nonce"=>"TKmIUgbJvKtgs38ooJwe9T0j0gUbyQkaQ4CTqGIRrqk", "oauth_version"=>"1.0", "context_id"=>"d6eb22f45e94c2e6116ce45d5fb2ba59ca2c4325", "context_label"=>"test", "context_title"=>"test", "custom_canvas_api_domain"=>"redcloudschool.instructure.com", "custom_canvas_assignment_id"=>"20011", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"A", "custom_canvas_course_id"=>"2880", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"3579", "custom_canvas_user_login_id"=>"kevinwang1@cmu.edu", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://redcloudschool.instructure.com/api/lti/v1/tools/309/ext_grade_passback", "ext_lti_assignment_id"=>"91dfa0b9-d987-439f-9bdd-ea72bad73f42", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://redcloudschool.instructure.com/api/lti/v1/turnitin/outcomes_placement/309", "ext_roles"=>"urn:lti:instrole:ims/lis/Instructor,urn:lti:role:ims/lis/Instructor,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://redcloudschool.instructure.com/courses/2880/external_content/success/external_tool_redirect", "lis_outcome_service_url"=>"https://redcloudschool.instructure.com/api/lti/v1/tools/309/grade_passback", "lis_person_contact_email_primary"=>"kevinwang1@cmu.edu", "lis_person_name_family"=>"Wang", "lis_person_name_full"=>"Kevin Wang", "lis_person_name_given"=>"Kevin", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"75e47d658abf24f26e00396ee57d0f2febd9f11c", "resource_link_title"=>"A", "roles"=>"Instructor", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"hFLyBs7AmN3vwRLxPvjb48Nzcazb85lWPPAPAHIS:canvas-lms", "tool_consumer_instance_name"=>"Red Cloud Indian School", "user_id"=>"ca2b357e22f99efe16f3abb29d30ca311b5cffb1", "user_image"=>"https://canvas.instructure.com/images/messages/avatar-50.png", "oauth_signature"=>"ECe8TpFnMki4+Z594oB0tTOKoWU="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 12.2ms | Allocations: 1852)
+  Rendered layouts/_header.html.erb (Duration: 25.2ms | Allocations: 5817)
+Completed 200 OK in 48ms (Views: 40.7ms | Allocations: 10952)
+
+
+Started POST "/launch" for 72.95.250.184 at 2021-04-23 12:09:14 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619204954", "oauth_nonce"=>"T0QaNYGLTZQsLmSqWlvsw6qVMwLnJSh41gZLmTq0RM", "oauth_version"=>"1.0", "context_id"=>"d6eb22f45e94c2e6116ce45d5fb2ba59ca2c4325", "context_label"=>"test", "context_title"=>"test", "custom_canvas_api_domain"=>"redcloudschool.instructure.com", "custom_canvas_assignment_id"=>"20011", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"A", "custom_canvas_course_id"=>"2880", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"3595", "custom_canvas_user_login_id"=>"3168d8e24acd6fb8a91f020a2cebf3fce48d2951", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://redcloudschool.instructure.com/api/lti/v1/tools/309/ext_grade_passback", "ext_lti_assignment_id"=>"91dfa0b9-d987-439f-9bdd-ea72bad73f42", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://redcloudschool.instructure.com/api/lti/v1/turnitin/outcomes_placement/309", "ext_roles"=>"urn:lti:instrole:ims/lis/Student,urn:lti:role:ims/lis/Learner,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://redcloudschool.instructure.com/courses/2880/external_content/success/external_tool_redirect", "lis_outcome_service_url"=>"https://redcloudschool.instructure.com/api/lti/v1/tools/309/grade_passback", "lis_person_contact_email_primary"=>"", "lis_person_name_family"=>"Student", "lis_person_name_full"=>"Test Student", "lis_person_name_given"=>"Test", "lis_result_sourcedid"=>"309-2880-20011-3595-5048876caafcc57c62c2f425765a6ece783f53ff", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"75e47d658abf24f26e00396ee57d0f2febd9f11c", "resource_link_title"=>"A", "roles"=>"Learner", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"hFLyBs7AmN3vwRLxPvjb48Nzcazb85lWPPAPAHIS:canvas-lms", "tool_consumer_instance_name"=>"Red Cloud Indian School", "user_id"=>"5a86762d5cdae94b581725721922e1bb130827ee", "user_image"=>"https://canvas.instructure.com/images/messages/avatar-50.png", "oauth_signature"=>"dwpGoy73EMTFYJ39YkrFK+aQWXA="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1348)
+  Rendered layouts/_header.html.erb (Duration: 19.4ms | Allocations: 5807)
+Completed 200 OK in 31ms (Views: 25.6ms | Allocations: 11037)
+
+
+Started POST "/grade" for 72.95.250.184 at 2021-04-23 12:09:55 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>5, "total_pts"=>10, "lis_result_sourcedid"=>"309-2880-20011-3595-5048876caafcc57c62c2f425765a6ece783f53ff", "lis_outcome_service_url"=>"https://redcloudschool.instructure.com/api/lti/v1/tools/309/grade_passback", "application"=>{"correct_pts"=>5, "total_pts"=>10, "lis_result_sourcedid"=>"309-2880-20011-3595-5048876caafcc57c62c2f425765a6ece783f53ff", "lis_outcome_service_url"=>"https://redcloudschool.instructure.com/api/lti/v1/tools/309/grade_passback"}}
+Completed 200 OK in 851ms (Views: 0.3ms | Allocations: 3092)
+
+
+Started POST "/grade" for 72.95.250.184 at 2021-04-23 12:10:49 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>10, "total_pts"=>10, "lis_result_sourcedid"=>"309-2880-20011-3595-5048876caafcc57c62c2f425765a6ece783f53ff", "lis_outcome_service_url"=>"https://redcloudschool.instructure.com/api/lti/v1/tools/309/grade_passback", "application"=>{"correct_pts"=>10, "total_pts"=>10, "lis_result_sourcedid"=>"309-2880-20011-3595-5048876caafcc57c62c2f425765a6ece783f53ff", "lis_outcome_service_url"=>"https://redcloudschool.instructure.com/api/lti/v1/tools/309/grade_passback"}}
+Completed 200 OK in 696ms (Views: 0.4ms | Allocations: 3175)
+
+
+Started POST "/launch" for 72.95.250.184 at 2021-04-23 12:11:06 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619205065", "oauth_nonce"=>"55yLZKVlbudHRFo9P6zwIu62KvbU8QWnDLEjXAQ9c", "oauth_version"=>"1.0", "context_id"=>"d6eb22f45e94c2e6116ce45d5fb2ba59ca2c4325", "context_label"=>"test", "context_title"=>"test", "custom_canvas_api_domain"=>"redcloudschool.instructure.com", "custom_canvas_assignment_id"=>"20011", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"A", "custom_canvas_course_id"=>"2880", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"3579", "custom_canvas_user_login_id"=>"kevinwang1@cmu.edu", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://redcloudschool.instructure.com/api/lti/v1/tools/309/ext_grade_passback", "ext_lti_assignment_id"=>"91dfa0b9-d987-439f-9bdd-ea72bad73f42", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://redcloudschool.instructure.com/api/lti/v1/turnitin/outcomes_placement/309", "ext_roles"=>"urn:lti:instrole:ims/lis/Instructor,urn:lti:role:ims/lis/Instructor,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://redcloudschool.instructure.com/courses/2880/external_content/success/external_tool_redirect", "lis_outcome_service_url"=>"https://redcloudschool.instructure.com/api/lti/v1/tools/309/grade_passback", "lis_person_contact_email_primary"=>"kevinwang1@cmu.edu", "lis_person_name_family"=>"Wang", "lis_person_name_full"=>"Kevin Wang", "lis_person_name_given"=>"Kevin", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"75e47d658abf24f26e00396ee57d0f2febd9f11c", "resource_link_title"=>"A", "roles"=>"Instructor", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"hFLyBs7AmN3vwRLxPvjb48Nzcazb85lWPPAPAHIS:canvas-lms", "tool_consumer_instance_name"=>"Red Cloud Indian School", "user_id"=>"ca2b357e22f99efe16f3abb29d30ca311b5cffb1", "user_image"=>"https://canvas.instructure.com/images/messages/avatar-50.png", "oauth_signature"=>"/77qEPIgKmrlTbiqNkLjSSZF6Uc="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 5.5ms | Allocations: 1366)
+  Rendered layouts/_header.html.erb (Duration: 32.9ms | Allocations: 5808)
+Completed 200 OK in 44ms (Views: 39.4ms | Allocations: 11096)
+
+
+Started GET "/launch" for 76.103.219.233 at 2021-04-23 16:42:57 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Rendering application/launch_error.html.erb within layouts/application
+  Rendered application/launch_error.html.erb within layouts/application (Duration: 1.7ms | Allocations: 331)
+  Rendered layouts/_header.html.erb (Duration: 59.2ms | Allocations: 13910)
+Completed 401 Unauthorized in 80ms (Views: 74.8ms | Allocations: 17126)
+
+
+Started POST "/launch" for 76.103.219.233 at 2021-04-23 16:43:01 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619221381", "oauth_nonce"=>"hbgmhstkXMZK2yxyZLrUCnMo5W1DkDyeqc489oy0VMc", "oauth_version"=>"1.0", "context_id"=>"a8db5736cf6945defe256b088b0d5eb70f9f7075", "context_label"=>"lheimann", "context_title"=>"Larry Heimann's Canvas Sandbox", "custom_canvas_api_domain"=>"canvas.cmu.edu", "custom_canvas_assignment_id"=>"360743", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"Lesson 2", "custom_canvas_course_id"=>"22705", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"41095", "custom_canvas_user_login_id"=>"caitlinh@andrew.cmu.edu", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/ext_grade_passback", "ext_lti_assignment_id"=>"9863d4eb-96f7-4959-90ea-dd82831dd921", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://canvas.cmu.edu/api/lti/v1/turnitin/outcomes_placement/8289", "ext_roles"=>"urn:lti:instrole:ims/lis/Instructor,urn:lti:instrole:ims/lis/Student,urn:lti:role:ims/lis/Instructor,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://canvas.cmu.edu/courses/22705/external_content/success/external_tool_redirect", "lis_course_offering_sourcedid"=>"lheimann@andrew.cmu.edu", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "lis_person_contact_email_primary"=>"caitlinh@andrew.cmu.edu", "lis_person_name_family"=>"Huang", "lis_person_name_full"=>"Caitlin Huang", "lis_person_name_given"=>"Caitlin", "lis_person_sourcedid"=>"19A8A8FE-4210-11E8-8001-005056AE2541", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"2ba5d82002627e0e2545bd62f2c5ab5a00a7387a", "resource_link_title"=>"Lesson 2", "roles"=>"Instructor", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"DIaU25Do2cCPgvrq077VyeLlWOqVJBOryZuHIMrU:canvas-lms", "tool_consumer_instance_name"=>"Carnegie Mellon University", "user_id"=>"0ae93449a18b6528b581e1f07180b58768bacce7", "user_image"=>"https://canvas.instructure.com/images/messages/avatar-50.png", "oauth_signature"=>"ylqLATj1/AdzBobizJg3BWfHyl0="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 9.9ms | Allocations: 1838)
+  Rendered layouts/_header.html.erb (Duration: 12.3ms | Allocations: 5810)
+Completed 200 OK in 29ms (Views: 23.5ms | Allocations: 11943)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:43:21 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 435ms (Views: 0.4ms | Allocations: 3115)
+
+
+Started POST "/launch" for 76.103.219.233 at 2021-04-23 16:43:30 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619221409", "oauth_nonce"=>"Iaj8Z8lXn9bdZOoJyNE2D0cPtGI7cOO5X2W55H88", "oauth_version"=>"1.0", "context_id"=>"a8db5736cf6945defe256b088b0d5eb70f9f7075", "context_label"=>"lheimann", "context_title"=>"Larry Heimann's Canvas Sandbox", "custom_canvas_api_domain"=>"canvas.cmu.edu", "custom_canvas_assignment_id"=>"360743", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"Lesson 2", "custom_canvas_course_id"=>"22705", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"82208", "custom_canvas_user_login_id"=>"53eaa4a1fe0b5ff19efe34df56a14b9d10e5a2a9", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/ext_grade_passback", "ext_lti_assignment_id"=>"9863d4eb-96f7-4959-90ea-dd82831dd921", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://canvas.cmu.edu/api/lti/v1/turnitin/outcomes_placement/8289", "ext_roles"=>"urn:lti:instrole:ims/lis/Student,urn:lti:role:ims/lis/Learner,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://canvas.cmu.edu/courses/22705/external_content/success/external_tool_redirect", "lis_course_offering_sourcedid"=>"lheimann@andrew.cmu.edu", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "lis_person_contact_email_primary"=>"", "lis_person_name_family"=>"Student", "lis_person_name_full"=>"Test Student", "lis_person_name_given"=>"Test", "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"2ba5d82002627e0e2545bd62f2c5ab5a00a7387a", "resource_link_title"=>"Lesson 2", "roles"=>"Learner", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"DIaU25Do2cCPgvrq077VyeLlWOqVJBOryZuHIMrU:canvas-lms", "tool_consumer_instance_name"=>"Carnegie Mellon University", "user_id"=>"90d5ef73c4893b6e1b7f3d919c71d14f52a02578", "user_image"=>"https://canvas.cmu.edu/images/messages/avatar-50.png", "oauth_signature"=>"EuNENMA7rfTJYQMHGyZLuCols5g="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1365)
+  Rendered layouts/_header.html.erb (Duration: 12.0ms | Allocations: 5807)
+Completed 200 OK in 22ms (Views: 16.9ms | Allocations: 11206)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:43:37 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 893ms (Views: 0.3ms | Allocations: 3112)
+
+
+Started GET "/launch" for 76.103.219.233 at 2021-04-23 16:43:46 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Rendering application/launch_error.html.erb within layouts/application
+  Rendered application/launch_error.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+  Rendered layouts/_header.html.erb (Duration: 26.1ms | Allocations: 5893)
+Completed 401 Unauthorized in 32ms (Views: 28.5ms | Allocations: 7568)
+
+
+Started POST "/launch" for 76.103.219.233 at 2021-04-23 16:43:46 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619221425", "oauth_nonce"=>"uGTqhmlU0szUWMalcxbigDgbOrsDRIvOAWfSN0nu04", "oauth_version"=>"1.0", "context_id"=>"a8db5736cf6945defe256b088b0d5eb70f9f7075", "context_label"=>"lheimann", "context_title"=>"Larry Heimann's Canvas Sandbox", "custom_canvas_api_domain"=>"canvas.cmu.edu", "custom_canvas_assignment_id"=>"360743", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"Lesson 2", "custom_canvas_course_id"=>"22705", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"82208", "custom_canvas_user_login_id"=>"53eaa4a1fe0b5ff19efe34df56a14b9d10e5a2a9", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/ext_grade_passback", "ext_lti_assignment_id"=>"9863d4eb-96f7-4959-90ea-dd82831dd921", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://canvas.cmu.edu/api/lti/v1/turnitin/outcomes_placement/8289", "ext_roles"=>"urn:lti:instrole:ims/lis/Student,urn:lti:role:ims/lis/Learner,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://canvas.cmu.edu/courses/22705/external_content/success/external_tool_redirect", "lis_course_offering_sourcedid"=>"lheimann@andrew.cmu.edu", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "lis_person_contact_email_primary"=>"", "lis_person_name_family"=>"Student", "lis_person_name_full"=>"Test Student", "lis_person_name_given"=>"Test", "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"2ba5d82002627e0e2545bd62f2c5ab5a00a7387a", "resource_link_title"=>"Lesson 2", "roles"=>"Learner", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"DIaU25Do2cCPgvrq077VyeLlWOqVJBOryZuHIMrU:canvas-lms", "tool_consumer_instance_name"=>"Carnegie Mellon University", "user_id"=>"90d5ef73c4893b6e1b7f3d919c71d14f52a02578", "user_image"=>"https://canvas.cmu.edu/images/messages/avatar-50.png", "oauth_signature"=>"2qiy6+tyWw3dlHuR1q8b5wlXY5g="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1365)
+  Rendered layouts/_header.html.erb (Duration: 13.9ms | Allocations: 5807)
+Completed 200 OK in 25ms (Views: 18.3ms | Allocations: 11197)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:44:03 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 783ms (Views: 0.2ms | Allocations: 3136)
+
+
+Started POST "/launch" for 76.103.219.233 at 2021-04-23 16:45:23 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619221522", "oauth_nonce"=>"lr9Vul4IZLAeEEinGMrTOolWTWFgrPqTAeWPMXPrEn4", "oauth_version"=>"1.0", "context_id"=>"a8db5736cf6945defe256b088b0d5eb70f9f7075", "context_label"=>"lheimann", "context_title"=>"Larry Heimann's Canvas Sandbox", "custom_canvas_api_domain"=>"canvas.cmu.edu", "custom_canvas_assignment_id"=>"360743", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"Lesson 2", "custom_canvas_course_id"=>"22705", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"82208", "custom_canvas_user_login_id"=>"53eaa4a1fe0b5ff19efe34df56a14b9d10e5a2a9", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/ext_grade_passback", "ext_lti_assignment_id"=>"9863d4eb-96f7-4959-90ea-dd82831dd921", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://canvas.cmu.edu/api/lti/v1/turnitin/outcomes_placement/8289", "ext_roles"=>"urn:lti:instrole:ims/lis/Student,urn:lti:role:ims/lis/Learner,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://canvas.cmu.edu/courses/22705/external_content/success/external_tool_redirect", "lis_course_offering_sourcedid"=>"lheimann@andrew.cmu.edu", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "lis_person_contact_email_primary"=>"", "lis_person_name_family"=>"Student", "lis_person_name_full"=>"Test Student", "lis_person_name_given"=>"Test", "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"2ba5d82002627e0e2545bd62f2c5ab5a00a7387a", "resource_link_title"=>"Lesson 2", "roles"=>"Learner", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"DIaU25Do2cCPgvrq077VyeLlWOqVJBOryZuHIMrU:canvas-lms", "tool_consumer_instance_name"=>"Carnegie Mellon University", "user_id"=>"90d5ef73c4893b6e1b7f3d919c71d14f52a02578", "user_image"=>"https://canvas.cmu.edu/images/messages/avatar-50.png", "oauth_signature"=>"sFfsJS4H5e5xFyCifDPvonuVyW8="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 3.9ms | Allocations: 1365)
+  Rendered layouts/_header.html.erb (Duration: 9.9ms | Allocations: 5807)
+Completed 200 OK in 21ms (Views: 15.5ms | Allocations: 11195)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:45:50 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 687ms (Views: 0.3ms | Allocations: 3120)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:46:00 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 717ms (Views: 0.3ms | Allocations: 3116)
+
+
+Started POST "/launch" for 76.103.219.233 at 2021-04-23 16:48:07 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619221686", "oauth_nonce"=>"Sc2SytPg3wLT39h10cc9TUsBpW6pnrWlcjxKwZk", "oauth_version"=>"1.0", "context_id"=>"a8db5736cf6945defe256b088b0d5eb70f9f7075", "context_label"=>"lheimann", "context_title"=>"Larry Heimann's Canvas Sandbox", "custom_canvas_api_domain"=>"canvas.cmu.edu", "custom_canvas_assignment_id"=>"360743", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"Lesson 2", "custom_canvas_course_id"=>"22705", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"82208", "custom_canvas_user_login_id"=>"53eaa4a1fe0b5ff19efe34df56a14b9d10e5a2a9", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/ext_grade_passback", "ext_lti_assignment_id"=>"9863d4eb-96f7-4959-90ea-dd82831dd921", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://canvas.cmu.edu/api/lti/v1/turnitin/outcomes_placement/8289", "ext_roles"=>"urn:lti:instrole:ims/lis/Student,urn:lti:role:ims/lis/Learner,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://canvas.cmu.edu/courses/22705/external_content/success/external_tool_redirect", "lis_course_offering_sourcedid"=>"lheimann@andrew.cmu.edu", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "lis_person_contact_email_primary"=>"", "lis_person_name_family"=>"Student", "lis_person_name_full"=>"Test Student", "lis_person_name_given"=>"Test", "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"2ba5d82002627e0e2545bd62f2c5ab5a00a7387a", "resource_link_title"=>"Lesson 2", "roles"=>"Learner", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"DIaU25Do2cCPgvrq077VyeLlWOqVJBOryZuHIMrU:canvas-lms", "tool_consumer_instance_name"=>"Carnegie Mellon University", "user_id"=>"90d5ef73c4893b6e1b7f3d919c71d14f52a02578", "user_image"=>"https://canvas.cmu.edu/images/messages/avatar-50.png", "oauth_signature"=>"dIFIKAmHbEqLnXgVs1tvKE1VbUY="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 4.8ms | Allocations: 1794)
+  Rendered layouts/_header.html.erb (Duration: 14.5ms | Allocations: 5973)
+Completed 200 OK in 28ms (Views: 24.1ms | Allocations: 12517)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:48:27 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 737ms (Views: 0.4ms | Allocations: 3122)
+
+
+Started POST "/launch" for 76.103.219.233 at 2021-04-23 16:48:31 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619221710", "oauth_nonce"=>"iitwVNuzpFyzJtSBYmpTwAPbI25dSFikXdJmCFI9cg", "oauth_version"=>"1.0", "context_id"=>"a8db5736cf6945defe256b088b0d5eb70f9f7075", "context_label"=>"lheimann", "context_title"=>"Larry Heimann's Canvas Sandbox", "custom_canvas_api_domain"=>"canvas.cmu.edu", "custom_canvas_assignment_id"=>"360743", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"Lesson 2", "custom_canvas_course_id"=>"22705", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"82208", "custom_canvas_user_login_id"=>"53eaa4a1fe0b5ff19efe34df56a14b9d10e5a2a9", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/ext_grade_passback", "ext_lti_assignment_id"=>"9863d4eb-96f7-4959-90ea-dd82831dd921", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://canvas.cmu.edu/api/lti/v1/turnitin/outcomes_placement/8289", "ext_roles"=>"urn:lti:instrole:ims/lis/Student,urn:lti:role:ims/lis/Learner,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://canvas.cmu.edu/courses/22705/external_content/success/external_tool_redirect", "lis_course_offering_sourcedid"=>"lheimann@andrew.cmu.edu", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "lis_person_contact_email_primary"=>"", "lis_person_name_family"=>"Student", "lis_person_name_full"=>"Test Student", "lis_person_name_given"=>"Test", "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"2ba5d82002627e0e2545bd62f2c5ab5a00a7387a", "resource_link_title"=>"Lesson 2", "roles"=>"Learner", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"DIaU25Do2cCPgvrq077VyeLlWOqVJBOryZuHIMrU:canvas-lms", "tool_consumer_instance_name"=>"Carnegie Mellon University", "user_id"=>"90d5ef73c4893b6e1b7f3d919c71d14f52a02578", "user_image"=>"https://canvas.cmu.edu/images/messages/avatar-50.png", "oauth_signature"=>"O42iQeTbC2hPue1RRjrDurfKI3o="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1364)
+  Rendered layouts/_header.html.erb (Duration: 8.3ms | Allocations: 5807)
+Completed 200 OK in 19ms (Views: 13.7ms | Allocations: 11195)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:48:39 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 696ms (Views: 0.3ms | Allocations: 3133)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:48:51 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 676ms (Views: 0.3ms | Allocations: 3119)
+
+
+Started POST "/launch" for 76.103.219.233 at 2021-04-23 16:48:54 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619221734", "oauth_nonce"=>"lKrsb20xjxhMqpfZwFZFa0hwLvcgDWC3GITJLrb3w", "oauth_version"=>"1.0", "context_id"=>"a8db5736cf6945defe256b088b0d5eb70f9f7075", "context_label"=>"lheimann", "context_title"=>"Larry Heimann's Canvas Sandbox", "custom_canvas_api_domain"=>"canvas.cmu.edu", "custom_canvas_assignment_id"=>"360743", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"Lesson 2", "custom_canvas_course_id"=>"22705", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"82208", "custom_canvas_user_login_id"=>"53eaa4a1fe0b5ff19efe34df56a14b9d10e5a2a9", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/ext_grade_passback", "ext_lti_assignment_id"=>"9863d4eb-96f7-4959-90ea-dd82831dd921", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://canvas.cmu.edu/api/lti/v1/turnitin/outcomes_placement/8289", "ext_roles"=>"urn:lti:instrole:ims/lis/Student,urn:lti:role:ims/lis/Learner,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://canvas.cmu.edu/courses/22705/external_content/success/external_tool_redirect", "lis_course_offering_sourcedid"=>"lheimann@andrew.cmu.edu", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "lis_person_contact_email_primary"=>"", "lis_person_name_family"=>"Student", "lis_person_name_full"=>"Test Student", "lis_person_name_given"=>"Test", "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"2ba5d82002627e0e2545bd62f2c5ab5a00a7387a", "resource_link_title"=>"Lesson 2", "roles"=>"Learner", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"DIaU25Do2cCPgvrq077VyeLlWOqVJBOryZuHIMrU:canvas-lms", "tool_consumer_instance_name"=>"Carnegie Mellon University", "user_id"=>"90d5ef73c4893b6e1b7f3d919c71d14f52a02578", "user_image"=>"https://canvas.cmu.edu/images/messages/avatar-50.png", "oauth_signature"=>"d1cpwLnFEVA1MYn2xStnq304OIE="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 3.6ms | Allocations: 1365)
+  Rendered layouts/_header.html.erb (Duration: 7.3ms | Allocations: 5808)
+Completed 200 OK in 17ms (Views: 12.8ms | Allocations: 11197)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:49:02 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 682ms (Views: 0.3ms | Allocations: 3116)
+
+
+Started POST "/launch" for 76.103.219.233 at 2021-04-23 16:49:33 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619221772", "oauth_nonce"=>"hHHUgONfd8TZHpIL5pywffgPRCE0gJ98UnDAkJE", "oauth_version"=>"1.0", "context_id"=>"a8db5736cf6945defe256b088b0d5eb70f9f7075", "context_label"=>"lheimann", "context_title"=>"Larry Heimann's Canvas Sandbox", "custom_canvas_api_domain"=>"canvas.cmu.edu", "custom_canvas_assignment_id"=>"360743", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"Lesson 2", "custom_canvas_course_id"=>"22705", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"82208", "custom_canvas_user_login_id"=>"53eaa4a1fe0b5ff19efe34df56a14b9d10e5a2a9", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/ext_grade_passback", "ext_lti_assignment_id"=>"9863d4eb-96f7-4959-90ea-dd82831dd921", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://canvas.cmu.edu/api/lti/v1/turnitin/outcomes_placement/8289", "ext_roles"=>"urn:lti:instrole:ims/lis/Student,urn:lti:role:ims/lis/Learner,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://canvas.cmu.edu/courses/22705/external_content/success/external_tool_redirect", "lis_course_offering_sourcedid"=>"lheimann@andrew.cmu.edu", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "lis_person_contact_email_primary"=>"", "lis_person_name_family"=>"Student", "lis_person_name_full"=>"Test Student", "lis_person_name_given"=>"Test", "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"2ba5d82002627e0e2545bd62f2c5ab5a00a7387a", "resource_link_title"=>"Lesson 2", "roles"=>"Learner", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"DIaU25Do2cCPgvrq077VyeLlWOqVJBOryZuHIMrU:canvas-lms", "tool_consumer_instance_name"=>"Carnegie Mellon University", "user_id"=>"90d5ef73c4893b6e1b7f3d919c71d14f52a02578", "user_image"=>"https://canvas.cmu.edu/images/messages/avatar-50.png", "oauth_signature"=>"nlI5Z5Nwwk/BI+Ee8AzBJrOHWFs="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 6.4ms | Allocations: 1365)
+  Rendered layouts/_header.html.erb (Duration: 16.2ms | Allocations: 5808)
+Completed 200 OK in 30ms (Views: 24.1ms | Allocations: 11197)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:49:44 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 576ms (Views: 0.5ms | Allocations: 3123)
+
+
+Started POST "/launch" for 76.103.219.233 at 2021-04-23 16:50:04 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619221803", "oauth_nonce"=>"4cJ271RMZK8hDniwWZXBSnUvJiU2Dbxs6CbDOhJw", "oauth_version"=>"1.0", "context_id"=>"a8db5736cf6945defe256b088b0d5eb70f9f7075", "context_label"=>"lheimann", "context_title"=>"Larry Heimann's Canvas Sandbox", "custom_canvas_api_domain"=>"canvas.cmu.edu", "custom_canvas_assignment_id"=>"360743", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"Lesson 2", "custom_canvas_course_id"=>"22705", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"82208", "custom_canvas_user_login_id"=>"53eaa4a1fe0b5ff19efe34df56a14b9d10e5a2a9", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/ext_grade_passback", "ext_lti_assignment_id"=>"9863d4eb-96f7-4959-90ea-dd82831dd921", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://canvas.cmu.edu/api/lti/v1/turnitin/outcomes_placement/8289", "ext_roles"=>"urn:lti:instrole:ims/lis/Student,urn:lti:role:ims/lis/Learner,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://canvas.cmu.edu/courses/22705/external_content/success/external_tool_redirect", "lis_course_offering_sourcedid"=>"lheimann@andrew.cmu.edu", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "lis_person_contact_email_primary"=>"", "lis_person_name_family"=>"Student", "lis_person_name_full"=>"Test Student", "lis_person_name_given"=>"Test", "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"2ba5d82002627e0e2545bd62f2c5ab5a00a7387a", "resource_link_title"=>"Lesson 2", "roles"=>"Learner", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"DIaU25Do2cCPgvrq077VyeLlWOqVJBOryZuHIMrU:canvas-lms", "tool_consumer_instance_name"=>"Carnegie Mellon University", "user_id"=>"90d5ef73c4893b6e1b7f3d919c71d14f52a02578", "user_image"=>"https://canvas.cmu.edu/images/messages/avatar-50.png", "oauth_signature"=>"r+X4H8x8Nb9ovF5WYg8+CghFWMw="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 4.1ms | Allocations: 1365)
+  Rendered layouts/_header.html.erb (Duration: 11.8ms | Allocations: 5807)
+Completed 200 OK in 23ms (Views: 17.0ms | Allocations: 11227)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:50:15 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 637ms (Views: 0.2ms | Allocations: 3130)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:50:30 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 870ms (Views: 0.3ms | Allocations: 3123)
+
+
+Started POST "/launch" for 76.103.219.233 at 2021-04-23 16:50:35 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619221834", "oauth_nonce"=>"DphTjtST4ri1x1c8RLBTGglxPHkoc2ESPenZgg4LU", "oauth_version"=>"1.0", "context_id"=>"a8db5736cf6945defe256b088b0d5eb70f9f7075", "context_label"=>"lheimann", "context_title"=>"Larry Heimann's Canvas Sandbox", "custom_canvas_api_domain"=>"canvas.cmu.edu", "custom_canvas_assignment_id"=>"360743", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"Lesson 2", "custom_canvas_course_id"=>"22705", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"82208", "custom_canvas_user_login_id"=>"53eaa4a1fe0b5ff19efe34df56a14b9d10e5a2a9", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/ext_grade_passback", "ext_lti_assignment_id"=>"9863d4eb-96f7-4959-90ea-dd82831dd921", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://canvas.cmu.edu/api/lti/v1/turnitin/outcomes_placement/8289", "ext_roles"=>"urn:lti:instrole:ims/lis/Student,urn:lti:role:ims/lis/Learner,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://canvas.cmu.edu/courses/22705/external_content/success/external_tool_redirect", "lis_course_offering_sourcedid"=>"lheimann@andrew.cmu.edu", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "lis_person_contact_email_primary"=>"", "lis_person_name_family"=>"Student", "lis_person_name_full"=>"Test Student", "lis_person_name_given"=>"Test", "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"2ba5d82002627e0e2545bd62f2c5ab5a00a7387a", "resource_link_title"=>"Lesson 2", "roles"=>"Learner", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"DIaU25Do2cCPgvrq077VyeLlWOqVJBOryZuHIMrU:canvas-lms", "tool_consumer_instance_name"=>"Carnegie Mellon University", "user_id"=>"90d5ef73c4893b6e1b7f3d919c71d14f52a02578", "user_image"=>"https://canvas.cmu.edu/images/messages/avatar-50.png", "oauth_signature"=>"9MKWzz3Fp8IZvhkuwE3dinaa73w="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 8.0ms | Allocations: 1364)
+  Rendered layouts/_header.html.erb (Duration: 16.9ms | Allocations: 5807)
+Completed 200 OK in 32ms (Views: 26.0ms | Allocations: 11194)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:50:44 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>3, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 872ms (Views: 0.5ms | Allocations: 3113)
+
+
+Started POST "/launch" for 76.103.219.233 at 2021-04-23 16:50:49 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#launch as HTML
+  Parameters: {"oauth_consumer_key"=>"ckckck", "oauth_signature_method"=>"HMAC-SHA1", "oauth_timestamp"=>"1619221848", "oauth_nonce"=>"iBCxN8JOcr1Bid2gtbvfSrdVuqkpIsVJMzNdq1A7s", "oauth_version"=>"1.0", "context_id"=>"a8db5736cf6945defe256b088b0d5eb70f9f7075", "context_label"=>"lheimann", "context_title"=>"Larry Heimann's Canvas Sandbox", "custom_canvas_api_domain"=>"canvas.cmu.edu", "custom_canvas_assignment_id"=>"360743", "custom_canvas_assignment_points_possible"=>"10", "custom_canvas_assignment_title"=>"Lesson 2", "custom_canvas_course_id"=>"22705", "custom_canvas_enrollment_state"=>"active", "custom_canvas_user_id"=>"82208", "custom_canvas_user_login_id"=>"53eaa4a1fe0b5ff19efe34df56a14b9d10e5a2a9", "custom_canvas_workflow_state"=>"available", "ext_ims_lis_basic_outcome_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/ext_grade_passback", "ext_lti_assignment_id"=>"9863d4eb-96f7-4959-90ea-dd82831dd921", "ext_outcome_data_values_accepted"=>"url,text", "ext_outcome_result_total_score_accepted"=>"true", "ext_outcome_submission_submitted_at_accepted"=>"true", "ext_outcomes_tool_placement_url"=>"https://canvas.cmu.edu/api/lti/v1/turnitin/outcomes_placement/8289", "ext_roles"=>"urn:lti:instrole:ims/lis/Student,urn:lti:role:ims/lis/Learner,urn:lti:sysrole:ims/lis/User", "launch_presentation_document_target"=>"iframe", "launch_presentation_locale"=>"en", "launch_presentation_return_url"=>"https://canvas.cmu.edu/courses/22705/external_content/success/external_tool_redirect", "lis_course_offering_sourcedid"=>"lheimann@andrew.cmu.edu", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "lis_person_contact_email_primary"=>"", "lis_person_name_family"=>"Student", "lis_person_name_full"=>"Test Student", "lis_person_name_given"=>"Test", "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lti_message_type"=>"basic-lti-launch-request", "lti_version"=>"LTI-1p0", "oauth_callback"=>"about:blank", "resource_link_id"=>"2ba5d82002627e0e2545bd62f2c5ab5a00a7387a", "resource_link_title"=>"Lesson 2", "roles"=>"Learner", "tool_consumer_info_product_family_code"=>"canvas", "tool_consumer_info_version"=>"cloud", "tool_consumer_instance_contact_email"=>"notifications@instructure.com", "tool_consumer_instance_guid"=>"DIaU25Do2cCPgvrq077VyeLlWOqVJBOryZuHIMrU:canvas-lms", "tool_consumer_instance_name"=>"Carnegie Mellon University", "user_id"=>"90d5ef73c4893b6e1b7f3d919c71d14f52a02578", "user_image"=>"https://canvas.cmu.edu/images/messages/avatar-50.png", "oauth_signature"=>"vxbm4bCyjZBAAmyPENIo5UF0U3s="}
+  Rendering application/launch.html.erb within layouts/application
+  Rendered application/launch.html.erb within layouts/application (Duration: 8.0ms | Allocations: 1365)
+  Rendered layouts/_header.html.erb (Duration: 24.1ms | Allocations: 5807)
+Completed 200 OK in 41ms (Views: 34.6ms | Allocations: 11195)
+
+
+Started POST "/grade" for 76.103.219.233 at 2021-04-23 16:50:59 -0700
+Cannot render console from ::ffff:10.42.154.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ApplicationController#grade as */*
+  Parameters: {"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback", "application"=>{"correct_pts"=>1, "total_pts"=>3, "lis_result_sourcedid"=>"8289-22705-360743-82208-f9b9b6d97c166d1ecf903efd28932fcc234428cc", "lis_outcome_service_url"=>"https://canvas.cmu.edu/api/lti/v1/tools/8289/grade_passback"}}
+Completed 200 OK in 900ms (Views: 0.3ms | Allocations: 3120)
+
+
