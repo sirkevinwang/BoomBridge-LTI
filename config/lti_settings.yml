@@ -1,0 +1,7 @@
+production:
+  consumer_key: ckckck
+  consumer_secret: cscscs
+
+development:
+  consumer_key: ckckck
+  consumer_secret: cscscs

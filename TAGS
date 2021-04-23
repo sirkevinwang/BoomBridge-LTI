@@ -1,0 +1,38 @@
+
+app/models/application_record.rb,67
+class ApplicationRecord < ActiveRecord::BaseApplicationRecord1,0
+
+app/jobs/application_job.rb,58
+class ApplicationJob < ActiveJob::BaseApplicationJob1,0
+
+app/controllers/application_controller.rb,137
+class ApplicationController < ActionController::BaseApplicationController7,0
+  def launchlaunch16,0
+  def lti_configlti_config41,0
+
+app/helpers/launch_helper.rb,37
+module LaunchHelperLaunchHelper1,0
+
+app/helpers/xml_helper.rb,31
+module XmlHelperXmlHelper1,0
+
+app/helpers/application_helper.rb,47
+module ApplicationHelperApplicationHelper1,0
+
+app/channels/application_cable/connection.rb,195
+module ApplicationCableApplicationCable1,0
+  class Connection < ActionCable::Connection::BaseConnection2,0
+  class Connection < ActionCable::Connection::BaseApplicationCable::Connection2,0
+
+app/channels/application_cable/channel.rb,177
+module ApplicationCableApplicationCable1,0
+  class Channel < ActionCable::Channel::BaseChannel2,0
+  class Channel < ActionCable::Channel::BaseApplicationCable::Channel2,0
+
+config/environment.rb,45
+OAUTH_10_SUPPORT = trueOAUTH_10_SUPPORT3,0
+
+config/application.rb,156
+module TemplateTemplate10,0
+  class Application < Rails::ApplicationApplication11,0
+  class Application < Rails::ApplicationTemplate::Application11,0
