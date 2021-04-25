@@ -106,18 +106,22 @@ $size: 30px;
 body {
     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     color: white;
-    background-color: #000;
+    background-color: #202020;
     padding: 2rem;
 }
 
 .subtitle {
-  font-weight: 600;
-  font-size: 1.25rem;
+  margin-top: 2.5rem;
+  font-weight: 500;
+  font-size: 1.5rem;
 }
 
 .caption {
-  font-weight: 600;
-  font-size: 0.75rem;
+  margin-top: .25rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #e8e8e8;
+  padding-bottom: 1rem;
 }
 
 .sample-image {
@@ -126,4 +130,14 @@ body {
 
 .icon-reload {
   height: 1.3rem;
+}
+
+.heading-icon {
+  height: 1.5rem;
+  vertical-align: middle;
+  padding-right: .25rem;
+}
+
+.leading-margin {
+  margin-left: 2rem;
 }
