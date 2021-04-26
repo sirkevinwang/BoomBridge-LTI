@@ -18,20 +18,28 @@
     <button id="Lak">Lakȟótiyapi</button>
 
     <div>
-        <h2 class="subtitle eng"> <i class="fas fa-camera"></i>  Screenshot Your Boom Cards</h2>
-        <h2 class="subtitle lkt"> <i class="fas fa-camera"></i>  Boom Cards kiŋ itówapi ikíkču wo/we</h2>
+        <h2 class="subtitle" style="margin-bottom: 0.3rem;">
+            <%= image_tag "icons/icon_screenshot.png", class: "heading-icon"%>
+            <span class="text eng">Screenshot Your Boom Cards</span>
+            <span class="text lkt">Boom Cards kiŋ itówapi ikíkču wo/we</span>
+        </h2>
+        <h3 class="caption leading-margin eng">Make sure they look like these:</h3>
+        <h3 class="caption leading-margin lkt">Léčheča kte héčha:</h3>
+        <img class="sample-image leading-margin" src="correct.png" height="200" alt="Correct">
+        <img class="sample-image leading-margin" src="wrong.png" height="200" alt="Wrong">
+        <h2 class="subtitle eng"><%= image_tag "icons/icon_upload.png", class: "heading-icon" %> Submit here</h2>
+        <h2 class="subtitle lkt"><%= image_tag "icons/icon_upload.png", class: "heading-icon" %> Lél iyáyeya yo/ye</h2>
 
-        <h3 class="caption eng">Make sure they look like these:</h3>
-        <h3 class="caption lkt">Léčheča kte héčha:</h3>
-
-        <img class="sample-image" src="correct.png" height="200" alt="Correct">
-        <img class="sample-image" src="wrong.png" height="200" alt="Wrong">
-        <h2 class="subtitle eng"><i class="fas fa-upload"></i>Submit here</h2>
-        <h2 class="subtitle lkt"><i class="fas fa-upload"></i>Lél iyáyeya yo/ye</h2>
-
-        <div class="drop-zone" id="dropzone">
-            <span class="drop-zone__prompt caption"><span class="eng">Drop file here or click to upload</span><span class="lkt">Itówapi kiŋ lél égnakiŋ naíŋš waŋkál okšú kta akákpi yo/ye.</span></span>
-            <input type="file" accept=".png,.jpg,.jpeg,.heif" name="myFile" class="drop-zone__input" id="drop-zone-input">
+        <div class="leading-margin">
+            <input type="file" id="upload" hidden />
+            <label for="upload">
+                <div class="upload-container">
+                    <%= image_tag "icons/icon_photo.png", id: 'icon-photo' %> <br>
+                    <span class="upload-label eng">Click to Upload</span>
+                    <!--check this translation-->
+                    <span class="upload-label lkt">naíŋš waŋkál okšú kta akákpi yo/ye</span>
+                </div>
+            </label>
         </div>
     </div>
 </div>
@@ -84,10 +92,60 @@
 
 
     <div id="full-marks-page" style="display: none;">
-        <h1 class = "eng">It’s a &#128054;</h1>
-        <h1 class = "lkt">&#128054; héčha!</h1>
+        <h1 id="gift"></h1>
+        <script>
+            /* Right now only contains animal emojis, but any "gift" emojis
+                can be added as desired.
+               Look up decimal emoji codes at https://www.quackit.com/character_sets/
+                emoji/emoji_v3.0/unicode_emoji_v3.0_characters_all.cfm
+             */
+            var possible_gifts = [
+                "&#128018;", // monkey
+                "&#129421;", // gorilla
+                "&#128021;", // dog
+                "&#128008;", // cat
+                "&#128005;", // tiger
+                "&#128006;", // leopard
+                "&#128014;", // horse
+                "&#129420;", // deer
+                "&#128002;", // ox
+                "&#128003;", // water buffalo
+                "&#128004;", // cow
+                "&#128022;", // pig
+                "&#128017;", // sheep
+                "&#128042;", // camel
+                "&#128043;", // two-hump camel
+                "&#128024;", // elephant
+                "&#129423;", // rhinoceros
+                "&#128001;", // mouse
+                "&#128007;", // rabbit
+                "&#129415;", // bat
+                "&#129411;", // turkey
+                "&#128038;", // bird
+                "&#128039;", // penguin
+                "&#128010;", // crocodile
+                "&#128034;", // turtle
+                "&#129422;", // lizard
+                "&#128013;", // snake
+                "&#128009;", // dragon
+                "&#128051;", // whale
+                "&#128032;", // fish
+                "&#129416;", // shark
+                "&#128025;", // octopus
+                "&#129425;", // squid
+                "&#129419;", // butterfly
+                "&#128029;", // bee
+                "&#128030;", // ladybug
+                "&#129410;" // scorpion
+            ];
+            console.log(lakhota);
+            var gift = possible_gifts[Math.floor(Math.random() * possible_gifts.length)];
+            document.getElementById("gift").innerHTML = "It's a " + gift + "!";
+        </script>
+
         <h5 class="completion-subheading eng" id="full-marks-page-note">Your score is <%= session[:correct_pts] %> / <%= session[:total_pts]%>!</h5>
         <h5 class="completion-subheading lkt" id="full-marks-page-note"><%= session[:correct_pts] %> / <%= session[:total_pts]%> yákámna!</h5>
+
     </div>
 
 </div>

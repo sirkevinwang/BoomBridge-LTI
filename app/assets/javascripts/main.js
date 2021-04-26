@@ -4,26 +4,17 @@ $(document).ready(function () {
 
     $("div.text-center.card-button").click(function() {
         renderWelcomeSection();
-        //addInputEventListeners();
-        var old_element = document.getElementById("dropzone");
-        var dropzoneInputElem = document.getElementById("drop-zone-input");
-        old_element.innerHTML = "<span class='drop-zone__prompt caption'>Drop file here or click to upload</span> <input type='file' name='myFile' class='drop-zone__input'>"
-        if (dropzoneInputElem.file != null) {
-            dropzoneInputElem.file = null;
+        let inputElement = document.getElementById("upload");
+
+        if (inputElement.file != null) {
+            inputElement.file = null;
             addInputEventListeners();
         }
     });
 });
 
-/**
- * Updates the thumbnail on a drop zone element.
- *
- * @param {HTMLElement} dropZoneElement
- * @param {File} file
- */
-function updateThumbnail(dropZoneElement, file) {
+function process_screenshot(file) {
     renderProcessingSection();
-    let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
     console.log(typeof file)
 
     //var img = new Image(),
@@ -50,95 +41,79 @@ function updateThumbnail(dropZoneElement, file) {
     //file = img.src;
     //var timeCrop = performance.now();
     //console.log("cropping took " + (timeCrop - t0) + " milliseconds.")
-    // First time - remove the prompt
-    if (dropZoneElement.querySelector(".drop-zone__prompt")) {
 
-        var t0 = performance.now()
-        Tesseract.recognize(
-            file,
-            'eng', {
-            logger: m => console.log(m)
-        }
-        ).then(({
-            data: {
-                text
-            }
-        }) => {
-            var t1 = performance.now()
-            console.log("OCR took " + (t1 - t0) + " milliseconds.")
-            // FIXME: handle the part where "correct , incorrect is not found"
-            
-            var numCorrect = ""
-            var correctPts = -1
-            var numIncorrect = ""
-            var totalPts = -1
-            try{
-                var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
-                numCorrect = splitCorrect[splitCorrect.length - 1];
-                correctPts = parseInt(numCorrect);
 
-                var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
-                numIncorrect = splitIncorrect[splitIncorrect.length - 1];
-                totalPts = parseInt(numCorrect) + parseInt(numIncorrect);
-
-            } catch(err){
-                console.log("error")
-            }
-            
-            if (!isNaN(correctPts) || !isNaN(totalPts)){
-                
-                fetch('/grade', {
-                    method: 'post',
-                    body: JSON.stringify({
-                        correct_pts: correctPts, 
-                        total_pts: totalPts, 
-                        lis_result_sourcedid: lis_result_sourcedid, 
-                        lis_outcome_service_url: lis_outcome_service_url 
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-Token': Rails.csrfToken()
-                    },
-                    credentials: 'same-origin'
-                })
-                .then(response => response.json())
-                .then(result => {
-                    // here server will respond a 200 success
-                    // first check here if Canvas got the grade
-                    // console.log(result)
-                    if (result["success"] === 1) {
-                        // then case on full mark or not
-                        if (correctPts === totalPts) {
-                            // render the full-marks page
-                            renderFullMarksPage(correctPts, totalPts);
-                        } else {
-                            // render the partial credit page with option to reload the welcome section
-                            renderPartialCreditPage(correctPts, totalPts);
-                        }
-                    }
-                })
-                .catch(error => {
-                    // here server is dead
-                    // console.error('Error:', error);
-                });
-            } else {
-                renderWrongImagePage();
-            }
-
-            })
-            dropZoneElement.querySelector(".drop-zone__prompt").remove();
-  
-        }
-
-    // First time - there is no thumbnail element, so lets create it
-    if (!thumbnailElement) {
-        thumbnailElement = document.createElement("div");
-        thumbnailElement.classList.add("drop-zone__thumb");
-        dropZoneElement.appendChild(thumbnailElement);
+    var t0 = performance.now()
+    Tesseract.recognize(
+        file,
+        'eng', {
+        logger: m => console.log(m)
     }
+    ).then(({
+        data: {
+            text
+        }
+    }) => {
+        var t1 = performance.now()
+        console.log("OCR took " + (t1 - t0) + " milliseconds.")        
+        var numCorrect = ""
+        var correctPts = -1
+        var numIncorrect = ""
+        var totalPts = -1
+        try{
+            var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
+            numCorrect = splitCorrect[splitCorrect.length - 1];
+            correctPts = parseInt(numCorrect);
 
-    thumbnailElement.dataset.label = file.name;
-    thumbnailElement.style.backgroundImage = null;
+            var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
+            numIncorrect = splitIncorrect[splitIncorrect.length - 1];
+            totalPts = parseInt(numCorrect) + parseInt(numIncorrect);
+
+        } catch(err){
+            console.log("error")
+        }
+        
+        if (!isNaN(correctPts) || !isNaN(totalPts)){
+            
+            fetch('/grade', {
+                method: 'post',
+                body: JSON.stringify({
+                    correct_pts: correctPts, 
+                    total_pts: totalPts, 
+                    lis_result_sourcedid: lis_result_sourcedid, 
+                    lis_outcome_service_url: lis_outcome_service_url 
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': Rails.csrfToken()
+                },
+                credentials: 'same-origin'
+            })
+            .then(response => response.json())
+            .then(result => {
+                // here server will respond a 200 success
+                // first check here if Canvas got the grade
+                // console.log(result)
+                if (result["success"] === 1) {
+                    // then case on full mark or not
+                    if (correctPts === totalPts) {
+                        // render the full-marks page
+                        renderFullMarksPage(correctPts, totalPts);
+                    } else {
+                        // render the partial credit page with option to reload the welcome section
+                        renderPartialCreditPage(correctPts, totalPts);
+                    }
+                }
+            })
+            .catch(error => {
+                // here server is dead
+                // console.error('Error:', error);
+            });
+        } else {
+            renderWrongImagePage();
+        }
+
+    })
 }
 
 // 1
@@ -202,50 +177,13 @@ function showResultSection() {
 
 function addInputEventListeners() {
     $(document).ready(function() {
-        document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-            const dropZoneElement = inputElement.closest(".drop-zone");
-
-            dropZoneElement.addEventListener("click", (e) => {
-                inputElement.click();
-            });
-
-
-            inputElement.addEventListener("change", (e) => {
-                console.log("inside change");
-                console.log(inputElement.files.length);
-                if (inputElement.files.length != 0) {
-                    updateThumbnail(dropZoneElement, inputElement.files[inputElement.files.length - 1]);
-                }
-            });
-
-
-            dropZoneElement.addEventListener("dragover", (e) => {
-                e.preventDefault();
-                dropZoneElement.classList.add("drop-zone--over");
-            });
-
-            ["dragleave", "dragend"].forEach((type) => {
-                dropZoneElement.addEventListener(type, (e) => {
-                    dropZoneElement.classList.remove("drop-zone--over");
-                });
-            });
-
-            dropZoneElement.addEventListener("drop", (e) => {
-                e.preventDefault();
-
-                var t0 = performance.now()
-                if (e.dataTransfer.files.length) {
-                    inputElement.files = e.dataTransfer.files;
-                    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-                    file = e.dataTransfer.files[0];
-                    
-                }
-                dropZoneElement.classList.remove("drop-zone--over");
-            });
+        let inputElement = document.getElementById("upload");
+        inputElement.addEventListener("change", (e) => {
+            if (inputElement.files.length != 0) {
+                process_screenshot(inputElement.files[inputElement.files.length - 1]);
+            }
         });
-
     });
-   
 }
 
 var removeBlanks = function (imgWidth, imgHeight) {
@@ -330,14 +268,16 @@ var removeBlanks = function (imgWidth, imgHeight) {
 //});
 
 $('.eng').hide();
-
+var lakhota = true;
 $(document).on('click', '#Lak', function() {
     console.log("in lak")
     $(".eng").css("display", "none");
     $(".lkt").css("display", "block");
+    lakhota = true;
 });
 $(document).on('click', '#Eng', function() {
     console.log("in eng")
     $(".lkt").css("display", "none");
     $(".eng").css("display", "block");
+    lakhota = false;
 });
