@@ -20,9 +20,14 @@
         <img class="sample-image leading-margin" src="wrong.png" height="200" alt="Wrong">
         <h2 class="subtitle"><%= image_tag "icons/icon_upload.png", class: "heading-icon" %> Submit here</h2>
 
-        <div class="drop-zone leading-margin" id="dropzone">
-            <span class="drop-zone__prompt caption">Drop file here or click to upload</span>
-            <input type="file" name="myFile" class="drop-zone__input" id="drop-zone-input">
+        <div class="leading-margin">
+            <input type="file" id="upload" hidden />
+            <label for="upload">
+                <div class="upload-container">
+                    <%= image_tag "icons/icon_photo.png", id: 'icon-photo' %> <br>
+                    <span class="upload-label">Click to Upload</span>
+                </div>
+            </label>
         </div>
     </div>
 </div>
@@ -102,7 +107,7 @@
                 "&#129419;", // butterfly
                 "&#128029;", // bee
                 "&#128030;", // ladybug
-                "&#129410;"  // scorpion
+                "&#129410;" // scorpion
             ];
             var gift = possible_gifts[Math.floor(Math.random() * possible_gifts.length)];
             document.getElementById("gift").innerHTML = "It's a " + gift + "!";
