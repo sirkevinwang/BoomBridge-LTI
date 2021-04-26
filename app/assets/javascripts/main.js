@@ -268,16 +268,17 @@ var removeBlanks = function (imgWidth, imgHeight) {
 //});
 
 $('.eng').hide();
-var lakhota = true;
+let lakhota = true;
 $(document).on('click', '#Lak', function() {
     console.log("in lak")
+    lakhota = true;
     $(".eng").css("display", "none");
     $(".lkt").css("display", "block");
-    lakhota = true;
 });
 $(document).on('click', '#Eng', function() {
     console.log("in eng")
+    lakhota = false;
     $(".lkt").css("display", "none");
     $(".eng").css("display", "block");
-    lakhota = false;
+    
 });
