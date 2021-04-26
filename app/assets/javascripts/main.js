@@ -18,7 +18,7 @@ function process_screenshot(file) {
     renderProcessingSection();
     console.log(typeof file)
 
-    //var img = new Image(),
+    //let img = new Image(),
     //$canvas = $("<canvas>"),
     //canvas = $canvas[0],
     //context;
@@ -40,11 +40,11 @@ function process_screenshot(file) {
     // define here an image from your domain
     //img.src = file;
     //file = img.src;
-    //var timeCrop = performance.now();
+    //let timeCrop = performance.now();
     //console.log("cropping took " + (timeCrop - t0) + " milliseconds.")
 
 
-    var t0 = performance.now()
+    let t0 = performance.now()
     Tesseract.recognize(
         file,
         'eng', {
@@ -55,18 +55,18 @@ function process_screenshot(file) {
             text
         }
     }) => {
-        var t1 = performance.now()
+        let t1 = performance.now()
         console.log("OCR took " + (t1 - t0) + " milliseconds.")        
-        var numCorrect = ""
-        var correctPts = -1
-        var numIncorrect = ""
-        var totalPts = -1
+        let numCorrect = ""
+        let correctPts = -1
+        let numIncorrect = ""
+        let totalPts = -1
         try{
-            var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
+            let splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
             numCorrect = splitCorrect[splitCorrect.length - 1];
             correctPts = parseInt(numCorrect);
 
-            var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
+            let splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
             numIncorrect = splitIncorrect[splitIncorrect.length - 1];
             totalPts = parseInt(numCorrect) + parseInt(numIncorrect);
 
@@ -187,12 +187,12 @@ function addInputEventListeners() {
     });
 }
 
-var removeBlanks = function (imgWidth, imgHeight) {
+let removeBlanks = function (imgWidth, imgHeight) {
     console.log("in removeBlanks");
-    var imageData = context.getImageData(0, 0, imgWidth, imgHeight),
+    let imageData = context.getImageData(0, 0, imgWidth, imgHeight),
         data = imageData.data,
         getRBG = function(x, y) {
-            var offset = imgWidth * y + x;
+            let offset = imgWidth * y + x;
             return {
                 red:     data[offset * 4],
                 green:   data[offset * 4 + 1],
@@ -205,14 +205,14 @@ var removeBlanks = function (imgWidth, imgHeight) {
             return rgb.red > 200 && rgb.green > 200 && rgb.blue > 200;
         },
         scanY = function (fromTop) {
-            var offset = fromTop ? 1 : -1;
+            let offset = fromTop ? 1 : -1;
             
             // loop through each row
-            for(var y = fromTop ? 0 : imgHeight - 1; fromTop ? (y < imgHeight) : (y > -1); y += offset) {
+            for(let y = fromTop ? 0 : imgHeight - 1; fromTop ? (y < imgHeight) : (y > -1); y += offset) {
                 
                 // loop through each column
-                for(var x = 0; x < imgWidth; x++) {
-                    var rgb = getRBG(x, y);
+                for(let x = 0; x < imgWidth; x++) {
+                    let rgb = getRBG(x, y);
                     if (!isWhite(rgb)) {
                         return y;                        
                     }      
@@ -221,14 +221,14 @@ var removeBlanks = function (imgWidth, imgHeight) {
             return null; // all image is white
         },
         scanX = function (fromLeft) {
-            var offset = fromLeft? 1 : -1;
+            let offset = fromLeft? 1 : -1;
             
             // loop through each column
-            for(var x = fromLeft ? 0 : imgWidth - 1; fromLeft ? (x < imgWidth) : (x > -1); x += offset) {
+            for(let x = fromLeft ? 0 : imgWidth - 1; fromLeft ? (x < imgWidth) : (x > -1); x += offset) {
                 
                 // loop through each row
-                for(var y = 0; y < imgHeight; y++) {
-                    var rgb = getRBG(x, y);
+                for(let y = 0; y < imgHeight; y++) {
+                    let rgb = getRBG(x, y);
                     if (!isWhite(rgb)) {
                         return x;                        
                     }      
@@ -237,14 +237,14 @@ var removeBlanks = function (imgWidth, imgHeight) {
             return null; // all image is white
         };
     
-    var cropTop = scanY(true),
+    let cropTop = scanY(true),
         cropBottom = scanY(false),
         cropLeft = scanX(true),
         cropRight = scanX(false),
         cropWidth = cropRight - cropLeft,
         cropHeight = cropBottom - cropTop;
     
-    var $croppedCanvas = $("<canvas>").attr({ width: cropWidth, height: cropHeight });
+    let $croppedCanvas = $("<canvas>").attr({ width: cropWidth, height: cropHeight });
     
     // finally crop the guy
     $croppedCanvas[0].getContext("2d").drawImage(canvas,
