@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    console.log("in ready");
     renderWelcomeSection();
     addInputEventListeners();
 
@@ -256,3 +255,29 @@ let removeBlanks = function (imgWidth, imgHeight) {
         append($croppedCanvas);
     console.log(cropTop, cropBottom, cropLeft, cropRight);
 };
+
+//$('#sel').change(function(){
+//    if($(this).val()=="lak"){
+//            $('.lakota').show();
+//            $('.english').hide();
+//    }
+//    else{
+//            $('.english').show();
+//            $('.lakota').hide();
+//    }       
+//});
+
+$('.eng').hide();
+var lakhota = true;
+$(document).on('click', '#Lak', function() {
+    console.log("in lak")
+    $(".eng").css("display", "none");
+    $(".lkt").css("display", "block");
+    lakhota = true;
+});
+$(document).on('click', '#Eng', function() {
+    console.log("in eng")
+    $(".lkt").css("display", "none");
+    $(".eng").css("display", "block");
+    lakhota = false;
+});
