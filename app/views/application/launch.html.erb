@@ -140,7 +140,11 @@
             ];
             console.log(lakhota);
             var gift = possible_gifts[Math.floor(Math.random() * possible_gifts.length)];
-            document.getElementById("gift").innerHTML = "It's a " + gift + "!";
+            if (lakhota == true){
+                document.getElementById("gift").innerHTML = "It's a " + gift + "!";
+            }else{
+                document.getElementById("gift").innerHTML = gift + " héčha!";
+            }
         </script>
 
         <h5 class="completion-subheading eng" id="full-marks-page-note">Your score is <%= session[:correct_pts] %> / <%= session[:total_pts]%>!</h5>
