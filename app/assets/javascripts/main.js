@@ -1,4 +1,18 @@
+var lakhota = true;
 $(document).ready(function () {
+    $('.eng').addClass('hidden');
+    $('.lkt').addClass('inline');
+    $(document).on('click', '#Lak', function () {
+        console.log("in lak")
+        $('.eng').removeClass('inline').addClass('hidden');
+        $('.lkt').removeClass('hidden').addClass('inline');
+        lakhota = true;
+    });
+    $(document).on('click', '#Eng', function () {
+        $('.eng').removeClass('hidden').addClass('inline');
+        $('.lkt').removeClass('inline').addClass('hidden');
+        lakhota = false;
+    });
     renderWelcomeSection();
     addInputEventListeners();
 
@@ -135,7 +149,11 @@ function renderFullMarksPage(correctPts, totalPts) {
     hideProcessingSection();
     $("#result-section").css("display", "block");
     $("#full-marks-page").css("display", "block");
-    $("#full-marks-page-note").html("Your score is " + correctPts + " / " + totalPts + "!");
+    if (!lakhota) {
+        $("#partial-credit-page-note").html("<span class='eng'>Your score is " + correctPts + " / " + totalPts + "!</span>");
+    } else {
+        $("#partial-credit-page-note").html("<span class='lkt'>" + correctPts + " / " + totalPts + "yákámna!</span>");
+    }
     confetti();
 }
 
@@ -143,7 +161,13 @@ function renderFullMarksPage(correctPts, totalPts) {
 function renderPartialCreditPage(correctPts, totalPts) {
     hideProcessingSection();
     $("#result-section").css("display", "block");
-    $("#partial-credit-page-note").html("You didn’t get all questions (" + correctPts + " / " + totalPts + ").");
+
+    if (!lakhota) {
+        $("#partial-credit-page-note").html("<span class='eng'>You didn’t get all questions (" + correctPts + " / " + totalPts + ").</span>");
+    } else {
+        $("#partial-credit-page-note").html("<span class='lkt'>Wóiyuŋǧe kiŋ iyúha taŋyáŋ alúpte šni (" + correctPts + " / " + totalPts + ").</span>");
+    }
+
     $("#partial-credit-page").css("display", "block");
     
 }
@@ -151,7 +175,11 @@ function renderPartialCreditPage(correctPts, totalPts) {
 function renderWrongImagePage(){
     hideProcessingSection();
     $("#result-section").css("display", "block");
-    $("#wrong-image-page-note").html("Perhaps you turned in the wrong screenshot. Try again.");
+    if (!lakhota) {
+        $("#wrong-image-page-note").html("<span class='eng'>Perhaps you turned in the wrong screenshot. Try again.</span>");
+    } else {
+        $("#wrong-image-page-note").html("<span class='lkt'>Itówapi héčhetu šni waŋ iyáyeyayiŋ kte séče. Akhé iyútȟa yo/ye.</span>");
+    }
     $("#wrong-image-page").css("display", "block");
 }
 
@@ -255,29 +283,3 @@ let removeBlanks = function (imgWidth, imgHeight) {
         append($croppedCanvas);
     console.log(cropTop, cropBottom, cropLeft, cropRight);
 };
-
-//$('#sel').change(function(){
-//    if($(this).val()=="lak"){
-//            $('.lakota').show();
-//            $('.english').hide();
-//    }
-//    else{
-//            $('.english').show();
-//            $('.lakota').hide();
-//    }       
-//});
-
-$('.eng').hide();
-var lakhota = true;
-$(document).on('click', '#Lak', function() {
-    console.log("in lak")
-    $(".eng").css("display", "none");
-    $(".lkt").css("display", "block");
-    lakhota = true;
-});
-$(document).on('click', '#Eng', function() {
-    console.log("in eng")
-    $(".lkt").css("display", "none");
-    $(".eng").css("display", "block");
-    lakhota = false;
-});

@@ -98,6 +98,11 @@
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
-.eng{
-  display: none;
+.hidden{
+  display: none !important;
 }
+
+.inline {
+  display: inline-block !important;
+}
+

@@ -6,13 +6,10 @@
     var lis_outcome_service_url = "<%= session[:lis_outcome_service_url] %>";
     <% end %>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
-    <h1 class = "eng">
-        Hi, <%= @lis_person_name_given %>
+    <h1>
+        <span class="eng">Hi, <%= @lis_person_name_given %></span>
+        <span class="lkt">Hau, <%= @lis_person_name_given %></span>
     </h1>
-    <h1 class = "lkt">
-        Hau, <%= @lis_person_name_given %>
-    </h1>
-
 
     <button id="Eng">English</button>
     <button id="Lak">Lakȟótiyapi</button>
@@ -23,12 +20,17 @@
             <span class="text eng">Screenshot Your Boom Cards</span>
             <span class="text lkt">Boom Cards kiŋ itówapi ikíkču wo/we</span>
         </h2>
-        <h3 class="caption leading-margin eng">Make sure they look like these:</h3>
-        <h3 class="caption leading-margin lkt">Léčheča kte héčha:</h3>
+        <h3 class="caption leading-margin">
+            <span class="eng">Make sure they look like these:</span>
+            <span class="lkt">Léčheča kte héčha:</span>
+        </h3>
         <img class="sample-image leading-margin" src="correct.png" height="200" alt="Correct">
         <img class="sample-image leading-margin" src="wrong.png" height="200" alt="Wrong">
-        <h2 class="subtitle eng"><%= image_tag "icons/icon_upload.png", class: "heading-icon" %> Submit here</h2>
-        <h2 class="subtitle lkt"><%= image_tag "icons/icon_upload.png", class: "heading-icon" %> Lél iyáyeya yo/ye</h2>
+        <h2 class="subtitle">
+        <%= image_tag "icons/icon_upload.png", class: "heading-icon" %> 
+        <span class="eng">Submit here</span>
+        <span class="lkt">Lél iyáyeya yo/ye</span>
+        </h2>
 
         <div class="leading-margin">
             <input type="file" id="upload" hidden />
@@ -46,8 +48,10 @@
 
 <!-- Processing (Spinner) Section -->
 <div id="processing-section" class="text-center" style="display:none;">
-    <h1 class = "eng">Unwrapping Your Gift...</h1>
-    <h1 class = "lkt">Wak’úpi Yaglúžužu (kte)...</h1>
+    <h1>
+        <span class="eng">Unwrapping Your Gift...</span>
+        <span class="lkt">Wak’úpi Yaglúžužu (kte)...</span>
+    </h1>
 
     <div class="margin-center">
         <%= image_tag "icons/icon_gift.png", id: "icon_gift" %>
@@ -58,35 +62,41 @@
 <!-- Result Section -->
 <div id="result-section" class="text-center" style="display: none;">
     <div id="partial-credit-page" style="display: none;">
-        <h1 class = "eng">Uh oh, no gift &#128577;</h1>
-        <h1 class = "lkt">Akšáka, wak’úpi waníče &#128577;</h1>
+        <h1>
+            <span class="eng">Uh oh, no gift &#128577;</span>
+            <span class="lkt">Akšáka, wak’úpi waníče &#128577;</span>
+        </h1>
 
-        <h2 class="completion-subheading eng" id="partial-credit-page-note">You didn’t get all questions (<%= session[:correct_pts] %> / <%= session[:total_pts]%>).</h2>
-        <h2 class="completion-subheading lkt" id="partial-credit-page-note">Wóiyuŋǧe kiŋ iyúha taŋyáŋ alúpte šni (<%= session[:correct_pts] %> / <%= session[:total_pts]%>).</h2>
+        <h2 class="completion-subheading" id="partial-credit-page-note">
+            <span class="eng">You didn’t get all questions (<%= session[:correct_pts] %> / <%= session[:total_pts]%>).</span>
+            <span class="lkt">Wóiyuŋǧe kiŋ iyúha taŋyáŋ alúpte šni (<%= session[:correct_pts] %> / <%= session[:total_pts]%>).</span>
+        </h2>
 
         <div class="text-center card-button" id="failure-reload-btn">
             <%= image_tag "icons/icon_reload.png", id: 'icon-reload'%>
-            <h5 class="card-button-label eng">Try Again</h5>
-            <h5 class="card-button-label lkt">Akhé iyútȟa yo/ye</h5>
-
+            <h5 class="card-button-label">
+                <span class="eng">Try Again</span>
+                <span class="lkt">Akhé iyútȟa yo/ye</span>
+            </h5>
         </div>
     </div>
 
     <div id="wrong-image-page" style="display: none;">
-        <h1 class = "eng">Uh oh, no gift &#128577;</h1>
-        <h1 class = "lkt">Akšáka, wak’úpi waníče &#128577;</h1>
-        <h2 class="completion-subheading eng" id="wrong-image-page-note">
-            Perhaps you turned in the wrong screenshot. Try again.
+        <h1>
+            <span class="eng">Uh oh, no gift &#128577;</span>
+            <span class="lkt">Akšáka, wak’úpi waníče &#128577;</span>
+        </h1>
+        <h2 class="completion-subheading" id="wrong-image-page-note">
+            <span class="eng">Perhaps you turned in the wrong screenshot. Try again.</span>
+            <span class="lkt">Itówapi héčhetu šni waŋ iyáyeyayiŋ kte séče. Akhé iyútȟa yo/ye.</span>
         </h2>
-        <h2 class="completion-subheading lkt" id="wrong-image-page-note">
-            Itówapi héčhetu šni waŋ iyáyeyayiŋ kte séče. Akhé iyútȟa yo/ye.
-        </h2>
-        
+
         <div class="text-center card-button" id="failure-reload-btn">
             <%= image_tag "icons/icon_reload.png", id: 'icon-reload'%>
-            <h5 class="card-button-label eng">Try Again</h5>
-            <h5 class="card-button-label lkt">Akhé iyútȟa yo/ye</h5>
-
+            <h5 class="card-button-label">
+                <span class="eng">Try Again</span>
+                <span class="lkt">Akhé iyútȟa yo/ye</h5>
+            </h5>
         </div>
     </div>
 
@@ -140,9 +150,9 @@
             ];
             console.log(lakhota);
             var gift = possible_gifts[Math.floor(Math.random() * possible_gifts.length)];
-            if (lakhota == true){
+            if (lakhota == true) {
                 document.getElementById("gift").innerHTML = "It's a " + gift + "!";
-            }else{
+            } else {
                 document.getElementById("gift").innerHTML = gift + " héčha!";
             }
         </script>
@@ -151,5 +161,4 @@
         <h5 class="completion-subheading lkt" id="full-marks-page-note"><%= session[:correct_pts] %> / <%= session[:total_pts]%> yákámna!</h5>
 
     </div>
-
 </div>
