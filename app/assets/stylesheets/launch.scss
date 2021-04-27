@@ -112,3 +112,21 @@ body {
   color: #42A4FF;
   font-weight: 500;
 }
+
+#translate {
+  background-color:rgba(91, 91, 91, 0.4);
+  padding: 0.5rem 1rem;
+  border-radius: 4rem;
+  float: right;
+  font-weight: 400;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#translate-icon {
+  height: 1.25rem;
+  display: inline-block;
+  vertical-align: middle;
+  flex-direction: row;
+  padding-bottom: 0.15rem;
+}

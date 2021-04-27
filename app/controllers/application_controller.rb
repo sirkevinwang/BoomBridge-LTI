@@ -37,17 +37,14 @@ class ApplicationController < ActionController::Base
     session[:lis_result_sourcedid] = params.require :lis_result_sourcedid unless params[:lis_result_sourcedid].nil?
     # stores the url for grade passback
     session[:lis_outcome_service_url] = params.require :lis_outcome_service_url unless params[:lis_outcome_service_url].nil?
-    # TODO: stores the canvas max points
+
+    # TODO: potentially, if full marks, should store score here
 
     # set variables for use by the template
     @lis_person_name_given = session[:lis_person_name_given]
 
   end
 
-  def success
-     render :completion
-  end
-  
   def grade
     correct_pts = params[:correct_pts]
     total_pts = params[:total_pts]
@@ -93,6 +90,7 @@ class ApplicationController < ActionController::Base
       return
     end
   end 
+
   # lTI XML Configuration
   # Used for easily installing your LTI into an LMS
   def lti_config
