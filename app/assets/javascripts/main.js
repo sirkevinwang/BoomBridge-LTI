@@ -81,6 +81,8 @@ function process_screenshot(file) {
             let splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
             numIncorrect = splitIncorrect[splitIncorrect.length - 1];
             totalPts = parseInt(numCorrect) + parseInt(numIncorrect);
+            console.log("correct");
+            console.log(correctPts);
 
         } catch(err){
             console.log("error")
@@ -106,7 +108,6 @@ function process_screenshot(file) {
             .then(result => {
                 // here server will respond a 200 success
                 // first check here if Canvas got the grade
-                // console.log(result)
                 if (result["success"] === 1) {
                     // then case on full mark or not
                     if (correctPts === totalPts) {
@@ -143,13 +144,56 @@ function renderProcessingSection() {
 
 // 3
 function renderFullMarksPage(correctPts, totalPts) {
+    var possible_gifts = [
+        "&#128018;", // monkey
+        "&#129421;", // gorilla
+        "&#128021;", // dog
+        "&#128008;", // cat
+        "&#128005;", // tiger
+        "&#128006;", // leopard
+        "&#128014;", // horse
+        "&#129420;", // deer
+        "&#128002;", // ox
+        "&#128003;", // water buffalo
+        "&#128004;", // cow
+        "&#128022;", // pig
+        "&#128017;", // sheep
+        "&#128042;", // camel
+        "&#128043;", // two-hump camel
+        "&#128024;", // elephant
+        "&#129423;", // rhinoceros
+        "&#128001;", // mouse
+        "&#128007;", // rabbit
+        "&#129415;", // bat
+        "&#129411;", // turkey
+        "&#128038;", // bird
+        "&#128039;", // penguin
+        "&#128010;", // crocodile
+        "&#128034;", // turtle
+        "&#129422;", // lizard
+        "&#128013;", // snake
+        "&#128009;", // dragon
+        "&#128051;", // whale
+        "&#128032;", // fish
+        "&#129416;", // shark
+        "&#128025;", // octopus
+        "&#129425;", // squid
+        "&#129419;", // butterfly
+        "&#128029;", // bee
+        "&#128030;", // ladybug
+        "&#129410;" // scorpion
+    ];
+    var gift = possible_gifts[Math.floor(Math.random() * possible_gifts.length)];
+    
     hideProcessingSection();
     $("#result-section").css("display", "block");
     $("#full-marks-page").css("display", "block");
     if (!lakhota) {
         $("#partial-credit-page-note").html("<span class='eng'>Your score is " + correctPts + " / " + totalPts + "!</span>");
+        $("#gift").html("It's a " + gift + "!");
     } else {
         $("#partial-credit-page-note").html("<span class='lkt'>" + correctPts + " / " + totalPts + "yákámna!</span>");
+        $("#gift").html(gift + " héčha!");
     }
     confetti();
 }
