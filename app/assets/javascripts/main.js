@@ -2,16 +2,15 @@ var lakhota = true;
 $(document).ready(function () {
     $('.eng').addClass('hidden');
     $('.lkt').addClass('inline');
-    $(document).on('click', '#Lak', function () {
-        console.log("in lak")
-        $('.eng').removeClass('inline').addClass('hidden');
-        $('.lkt').removeClass('hidden').addClass('inline');
-        lakhota = true;
-    });
-    $(document).on('click', '#Eng', function () {
-        $('.eng').removeClass('hidden').addClass('inline');
-        $('.lkt').removeClass('inline').addClass('hidden');
-        lakhota = false;
+    $(document).on('click', '#translate', function () {
+        lakhota = !lakhota;
+        if (lakhota) {
+            $('.eng').removeClass('inline').addClass('hidden');
+            $('.lkt').removeClass('hidden').addClass('inline');
+        } else {
+            $('.eng').removeClass('hidden').addClass('inline');
+            $('.lkt').removeClass('inline').addClass('hidden');
+        }
     });
     renderWelcomeSection();
     addInputEventListeners();
@@ -19,7 +18,6 @@ $(document).ready(function () {
     $("div.text-center.card-button").click(function() {
         renderWelcomeSection();
         let inputElement = document.getElementById("upload");
-
         if (inputElement.file != null) {
             inputElement.file = null;
             addInputEventListeners();
@@ -61,20 +59,21 @@ function process_screenshot(file) {
     Tesseract.recognize(
         file,
         'eng', {
-        logger: m => console.log(m)
+        logger: m => {} // logger is removed here
     }
     ).then(({
         data: {
             text
         }
     }) => {
-        let t1 = performance.now()
-        console.log("OCR took " + (t1 - t0) + " milliseconds.")        
+        // let t1 = performance.now()
+        // console.log("OCR took " + (t1 - t0) + " milliseconds.")        
         let numCorrect = ""
         let correctPts = -1
         let numIncorrect = ""
         let totalPts = -1
         try{
+            // here we attempt to determine the grades
             let splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
             numCorrect = splitCorrect[splitCorrect.length - 1];
             correctPts = parseInt(numCorrect);
@@ -88,7 +87,7 @@ function process_screenshot(file) {
         }
         
         if (!isNaN(correctPts) || !isNaN(totalPts)){
-            
+            // encrypted grade pass back
             fetch('/grade', {
                 method: 'post',
                 body: JSON.stringify({
@@ -120,19 +119,17 @@ function process_screenshot(file) {
                 }
             })
             .catch(error => {
-                // here server is dead
+                // here server is dead :(
                 // console.error('Error:', error);
             });
         } else {
             renderWrongImagePage();
         }
-
     })
 }
 
 // 1
 function renderWelcomeSection() {
-    console.log("in render welcome")
     hideProcessingSection();
     hideResultSection();
     $("#welcome-section").css("display", "block");
@@ -214,8 +211,8 @@ function addInputEventListeners() {
     });
 }
 
+// TODO: remove the blank space in screenshots to accelerate OCR speed
 let removeBlanks = function (imgWidth, imgHeight) {
-    console.log("in removeBlanks");
     let imageData = context.getImageData(0, 0, imgWidth, imgHeight),
         data = imageData.data,
         getRBG = function(x, y) {

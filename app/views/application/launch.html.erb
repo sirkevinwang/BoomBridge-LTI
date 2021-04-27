@@ -6,14 +6,20 @@
     var lis_outcome_service_url = "<%= session[:lis_outcome_service_url] %>";
     <% end %>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
-    <h1>
-        <span class="eng">Hi, <%= @lis_person_name_given %></span>
-        <span class="lkt">Hau, <%= @lis_person_name_given %></span>
-    </h1>
+    <div class="greeting">
+        <h1>
+            <span class="eng">Hi, <%= @lis_person_name_given %></span>
+            <span class="lkt">Hau, <%= @lis_person_name_given %></span>
+            <div id="translate">
+                <%= image_tag "icons/icon_switch.png", id: 'translate-icon' %>
+                <!--- note this lkt - eng inverse is intentional --->
+                <span class="lkt">English</span>
+                <span class="eng">Lakȟótiyapi</span>
+            </div>
+        </h1>
 
-    <button id="Eng">English</button>
-    <button id="Lak">Lakȟótiyapi</button>
 
+    </div>
     <div>
         <h2 class="subtitle" style="margin-bottom: 0.3rem;">
             <%= image_tag "icons/icon_screenshot.png", class: "heading-icon"%>
@@ -27,13 +33,13 @@
         <img class="sample-image leading-margin" src="correct.png" height="200" alt="Correct">
         <img class="sample-image leading-margin" src="wrong.png" height="200" alt="Wrong">
         <h2 class="subtitle">
-        <%= image_tag "icons/icon_upload.png", class: "heading-icon" %> 
-        <span class="eng">Submit here</span>
-        <span class="lkt">Lél iyáyeya yo/ye</span>
+            <%= image_tag "icons/icon_upload.png", class: "heading-icon" %>
+            <span class="eng">Submit here</span>
+            <span class="lkt">Lél iyáyeya yo/ye</span>
         </h2>
 
         <div class="leading-margin">
-            <input type="file" id="upload" hidden />
+            <input type="file" id="upload" hidden onclick="this.value=null;" />
             <label for="upload">
                 <div class="upload-container">
                     <%= image_tag "icons/icon_photo.png", id: 'icon-photo' %> <br>
