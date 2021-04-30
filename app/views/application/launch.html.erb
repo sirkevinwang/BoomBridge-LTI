@@ -39,7 +39,7 @@
         </h2>
 
         <div class="leading-margin">
-            <input type="file" id="upload" hidden onclick="this.value=null;" />
+            <input type="file" id="upload" accept=".png, .jpg, .jpeg" hidden onclick="this.value=null;" />
             <label for="upload">
                 <div class="upload-container">
                     <%= image_tag "icons/icon_photo.png", id: 'icon-photo' %> <br>
@@ -77,7 +77,7 @@
         </h2>
 
         <div class="text-center card-button">
-            <%= image_tag "icons/icon_reload.png", id: 'icon-reload'%>
+            <%= image_tag "icons/icon_reload.png", class: 'icon-reload'%>
             <h5 class="card-button-label">
                 <span class="eng">Try Again</span>
                 <span class="lkt">Akhé iyútȟa yo/ye</span>
@@ -96,7 +96,7 @@
         </h2>
 
         <div class="text-center card-button">
-            <%= image_tag "icons/icon_reload.png", id: 'icon-reload'%>
+            <%= image_tag "icons/icon_reload.png", class: 'icon-reload'%>
             <h5 class="card-button-label">
                 <span class="eng">Try Again</span>
                 <span class="lkt">Akhé iyútȟa yo/ye</h5>
