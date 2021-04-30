@@ -1,11 +1,23 @@
+var lakhota = true;
 $(document).ready(function () {
+    $('.eng').addClass('hidden');
+    $('.lkt').addClass('inline');
+    $(document).on('click', '#translate', function () {
+        lakhota = !lakhota;
+        if (lakhota) {
+            $('.eng').removeClass('inline').addClass('hidden');
+            $('.lkt').removeClass('hidden').addClass('inline');
+        } else {
+            $('.eng').removeClass('hidden').addClass('inline');
+            $('.lkt').removeClass('inline').addClass('hidden');
+        }
+    });
     renderWelcomeSection();
     addInputEventListeners();
 
     $("div.text-center.card-button").click(function() {
         renderWelcomeSection();
         let inputElement = document.getElementById("upload");
-
         if (inputElement.file != null) {
             inputElement.file = null;
             addInputEventListeners();
@@ -17,7 +29,7 @@ function process_screenshot(file) {
     renderProcessingSection();
     console.log(typeof file)
 
-    //var img = new Image(),
+    //let img = new Image(),
     //$canvas = $("<canvas>"),
     //canvas = $canvas[0],
     //context;
@@ -39,42 +51,45 @@ function process_screenshot(file) {
     // define here an image from your domain
     //img.src = file;
     //file = img.src;
-    //var timeCrop = performance.now();
+    //let timeCrop = performance.now();
     //console.log("cropping took " + (timeCrop - t0) + " milliseconds.")
 
 
-    var t0 = performance.now()
+    let t0 = performance.now()
     Tesseract.recognize(
         file,
         'eng', {
-        logger: m => console.log(m)
+        logger: m => {} // logger is removed here
     }
     ).then(({
         data: {
             text
         }
     }) => {
-        var t1 = performance.now()
-        console.log("OCR took " + (t1 - t0) + " milliseconds.")        
-        var numCorrect = ""
-        var correctPts = -1
-        var numIncorrect = ""
-        var totalPts = -1
+        // let t1 = performance.now()
+        // console.log("OCR took " + (t1 - t0) + " milliseconds.")        
+        let numCorrect = ""
+        let correctPts = -1
+        let numIncorrect = ""
+        let totalPts = -1
         try{
-            var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
+            // here we attempt to determine the grades
+            let splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
             numCorrect = splitCorrect[splitCorrect.length - 1];
             correctPts = parseInt(numCorrect);
 
-            var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
+            let splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
             numIncorrect = splitIncorrect[splitIncorrect.length - 1];
             totalPts = parseInt(numCorrect) + parseInt(numIncorrect);
+            console.log("correct");
+            console.log(correctPts);
 
         } catch(err){
             console.log("error")
         }
         
         if (!isNaN(correctPts) || !isNaN(totalPts)){
-            
+            // encrypted grade pass back
             fetch('/grade', {
                 method: 'post',
                 body: JSON.stringify({
@@ -93,7 +108,6 @@ function process_screenshot(file) {
             .then(result => {
                 // here server will respond a 200 success
                 // first check here if Canvas got the grade
-                // console.log(result)
                 if (result["success"] === 1) {
                     // then case on full mark or not
                     if (correctPts === totalPts) {
@@ -106,19 +120,17 @@ function process_screenshot(file) {
                 }
             })
             .catch(error => {
-                // here server is dead
+                // here server is dead :(
                 // console.error('Error:', error);
             });
         } else {
             renderWrongImagePage();
         }
-
     })
 }
 
 // 1
 function renderWelcomeSection() {
-    console.log("in render welcome")
     hideProcessingSection();
     hideResultSection();
     $("#welcome-section").css("display", "block");
@@ -132,10 +144,57 @@ function renderProcessingSection() {
 
 // 3
 function renderFullMarksPage(correctPts, totalPts) {
+    var possible_gifts = [
+        "&#128018;", // monkey
+        "&#129421;", // gorilla
+        "&#128021;", // dog
+        "&#128008;", // cat
+        "&#128005;", // tiger
+        "&#128006;", // leopard
+        "&#128014;", // horse
+        "&#129420;", // deer
+        "&#128002;", // ox
+        "&#128003;", // water buffalo
+        "&#128004;", // cow
+        "&#128022;", // pig
+        "&#128017;", // sheep
+        "&#128042;", // camel
+        "&#128043;", // two-hump camel
+        "&#128024;", // elephant
+        "&#129423;", // rhinoceros
+        "&#128001;", // mouse
+        "&#128007;", // rabbit
+        "&#129415;", // bat
+        "&#129411;", // turkey
+        "&#128038;", // bird
+        "&#128039;", // penguin
+        "&#128010;", // crocodile
+        "&#128034;", // turtle
+        "&#129422;", // lizard
+        "&#128013;", // snake
+        "&#128009;", // dragon
+        "&#128051;", // whale
+        "&#128032;", // fish
+        "&#129416;", // shark
+        "&#128025;", // octopus
+        "&#129425;", // squid
+        "&#129419;", // butterfly
+        "&#128029;", // bee
+        "&#128030;", // ladybug
+        "&#129410;" // scorpion
+    ];
+    var gift = possible_gifts[Math.floor(Math.random() * possible_gifts.length)];
+    
     hideProcessingSection();
     $("#result-section").css("display", "block");
     $("#full-marks-page").css("display", "block");
-    $("#full-marks-page-note").html("Your score is " + correctPts + " / " + totalPts + "!");
+    if (!lakhota) {
+        $("#partial-credit-page-note").html("<span class='eng'>Your score is " + correctPts + " / " + totalPts + "!</span>");
+        $("#gift").html("It's a " + gift + "!");
+    } else {
+        $("#partial-credit-page-note").html("<span class='lkt'>" + correctPts + " / " + totalPts + "yákámna!</span>");
+        $("#gift").html(gift + " héčha!");
+    }
     confetti();
 }
 
@@ -143,7 +202,13 @@ function renderFullMarksPage(correctPts, totalPts) {
 function renderPartialCreditPage(correctPts, totalPts) {
     hideProcessingSection();
     $("#result-section").css("display", "block");
-    $("#partial-credit-page-note").html("You didn’t get all questions (" + correctPts + " / " + totalPts + ").");
+
+    if (!lakhota) {
+        $("#partial-credit-page-note").html("<span class='eng'>You didn’t get all questions (" + correctPts + " / " + totalPts + ").</span>");
+    } else {
+        $("#partial-credit-page-note").html("<span class='lkt'>Wóiyuŋǧe kiŋ iyúha taŋyáŋ alúpte šni (" + correctPts + " / " + totalPts + ").</span>");
+    }
+
     $("#partial-credit-page").css("display", "block");
     
 }
@@ -151,7 +216,11 @@ function renderPartialCreditPage(correctPts, totalPts) {
 function renderWrongImagePage(){
     hideProcessingSection();
     $("#result-section").css("display", "block");
-    $("#wrong-image-page-note").html("Perhaps you turned in the wrong screenshot. Try again.");
+    if (!lakhota) {
+        $("#wrong-image-page-note").html("<span class='eng'>Perhaps you turned in the wrong screenshot. Try again.</span>");
+    } else {
+        $("#wrong-image-page-note").html("<span class='lkt'>Itówapi héčhetu šni waŋ iyáyeyayiŋ kte séče. Akhé iyútȟa yo/ye.</span>");
+    }
     $("#wrong-image-page").css("display", "block");
 }
 
@@ -185,100 +254,3 @@ function addInputEventListeners() {
         });
     });
 }
-
-var removeBlanks = function (imgWidth, imgHeight) {
-    console.log("in removeBlanks");
-    var imageData = context.getImageData(0, 0, imgWidth, imgHeight),
-        data = imageData.data,
-        getRBG = function(x, y) {
-            var offset = imgWidth * y + x;
-            return {
-                red:     data[offset * 4],
-                green:   data[offset * 4 + 1],
-                blue:    data[offset * 4 + 2],
-                opacity: data[offset * 4 + 3]
-            };
-        },
-        isWhite = function (rgb) {
-            // many images contain noise, as the white is not a pure #fff white
-            return rgb.red > 200 && rgb.green > 200 && rgb.blue > 200;
-        },
-        scanY = function (fromTop) {
-            var offset = fromTop ? 1 : -1;
-            
-            // loop through each row
-            for(var y = fromTop ? 0 : imgHeight - 1; fromTop ? (y < imgHeight) : (y > -1); y += offset) {
-                
-                // loop through each column
-                for(var x = 0; x < imgWidth; x++) {
-                    var rgb = getRBG(x, y);
-                    if (!isWhite(rgb)) {
-                        return y;                        
-                    }      
-                }
-            }
-            return null; // all image is white
-        },
-        scanX = function (fromLeft) {
-            var offset = fromLeft? 1 : -1;
-            
-            // loop through each column
-            for(var x = fromLeft ? 0 : imgWidth - 1; fromLeft ? (x < imgWidth) : (x > -1); x += offset) {
-                
-                // loop through each row
-                for(var y = 0; y < imgHeight; y++) {
-                    var rgb = getRBG(x, y);
-                    if (!isWhite(rgb)) {
-                        return x;                        
-                    }      
-                }
-            }
-            return null; // all image is white
-        };
-    
-    var cropTop = scanY(true),
-        cropBottom = scanY(false),
-        cropLeft = scanX(true),
-        cropRight = scanX(false),
-        cropWidth = cropRight - cropLeft,
-        cropHeight = cropBottom - cropTop;
-    
-    var $croppedCanvas = $("<canvas>").attr({ width: cropWidth, height: cropHeight });
-    
-    // finally crop the guy
-    $croppedCanvas[0].getContext("2d").drawImage(canvas,
-        cropLeft, cropTop, cropWidth, cropHeight,
-        0, 0, cropWidth, cropHeight);
-    
-    $("body").
-        append("<p>same image with white spaces cropped:</p>").
-        append($croppedCanvas);
-    console.log(cropTop, cropBottom, cropLeft, cropRight);
-};
-
-//$('#sel').change(function(){
-//    if($(this).val()=="lak"){
-//            $('.lakota').show();
-//            $('.english').hide();
-//    }
-//    else{
-//            $('.english').show();
-//            $('.lakota').hide();
-//    }       
-//});
-
-$('.eng').hide();
-let lakhota = true;
-$(document).on('click', '#Lak', function() {
-    console.log("in lak")
-    lakhota = true;
-    $(".eng").css("display", "none");
-    $(".lkt").css("display", "block");
-});
-$(document).on('click', '#Eng', function() {
-    console.log("in eng")
-    lakhota = false;
-    $(".lkt").css("display", "none");
-    $(".eng").css("display", "block");
-    
-});
