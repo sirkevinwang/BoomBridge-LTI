@@ -189,10 +189,10 @@ function renderFullMarksPage(correctPts, totalPts) {
     $("#result-section").css("display", "block");
     $("#full-marks-page").css("display", "block");
     if (!lakhota) {
-        $("#partial-credit-page-note").html("<span class='eng'>Your score is " + correctPts + " / " + totalPts + "!</span>");
+        $("#full-marks-page-note").html("<span class='eng'>Your score is " + correctPts + " / " + totalPts + "!</span>");
         $("#gift").html("It's a " + gift + "!");
     } else {
-        $("#partial-credit-page-note").html("<span class='lkt'>" + correctPts + " / " + totalPts + "yákámna!</span>");
+        $("#full-marks-page-note").html("<span class='lkt'>" + correctPts + " / " + totalPts + " yákámna!</span>");
         $("#gift").html(gift + " héčha!");
     }
     confetti();
