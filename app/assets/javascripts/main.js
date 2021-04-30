@@ -189,10 +189,10 @@ function renderFullMarksPage(correctPts, totalPts) {
     $("#result-section").css("display", "block");
     $("#full-marks-page").css("display", "block");
     if (!lakhota) {
-        $("#partial-credit-page-note").html("<span class='eng'>Your score is " + correctPts + " / " + totalPts + "!</span>");
+        $("#full-marks-page-note").html("<span class='eng'>Your score is " + correctPts + " / " + totalPts + "!</span>");
         $("#gift").html("It's a " + gift + "!");
     } else {
-        $("#partial-credit-page-note").html("<span class='lkt'>" + correctPts + " / " + totalPts + "yákámna!</span>");
+        $("#full-marks-page-note").html("<span class='lkt'>" + correctPts + " / " + totalPts + " yákámna!</span>");
         $("#gift").html(gift + " héčha!");
     }
     confetti();
@@ -254,73 +254,3 @@ function addInputEventListeners() {
         });
     });
 }
-
-// TODO: remove the blank space in screenshots to accelerate OCR speed
-let removeBlanks = function (imgWidth, imgHeight) {
-    let imageData = context.getImageData(0, 0, imgWidth, imgHeight),
-        data = imageData.data,
-        getRBG = function(x, y) {
-            let offset = imgWidth * y + x;
-            return {
-                red:     data[offset * 4],
-                green:   data[offset * 4 + 1],
-                blue:    data[offset * 4 + 2],
-                opacity: data[offset * 4 + 3]
-            };
-        },
-        isWhite = function (rgb) {
-            // many images contain noise, as the white is not a pure #fff white
-            return rgb.red > 200 && rgb.green > 200 && rgb.blue > 200;
-        },
-        scanY = function (fromTop) {
-            let offset = fromTop ? 1 : -1;
-            
-            // loop through each row
-            for(let y = fromTop ? 0 : imgHeight - 1; fromTop ? (y < imgHeight) : (y > -1); y += offset) {
-                
-                // loop through each column
-                for(let x = 0; x < imgWidth; x++) {
-                    let rgb = getRBG(x, y);
-                    if (!isWhite(rgb)) {
-                        return y;                        
-                    }      
-                }
-            }
-            return null; // all image is white
-        },
-        scanX = function (fromLeft) {
-            let offset = fromLeft? 1 : -1;
-            
-            // loop through each column
-            for(let x = fromLeft ? 0 : imgWidth - 1; fromLeft ? (x < imgWidth) : (x > -1); x += offset) {
-                
-                // loop through each row
-                for(let y = 0; y < imgHeight; y++) {
-                    let rgb = getRBG(x, y);
-                    if (!isWhite(rgb)) {
-                        return x;                        
-                    }      
-                }
-            }
-            return null; // all image is white
-        };
-    
-    let cropTop = scanY(true),
-        cropBottom = scanY(false),
-        cropLeft = scanX(true),
-        cropRight = scanX(false),
-        cropWidth = cropRight - cropLeft,
-        cropHeight = cropBottom - cropTop;
-    
-    let $croppedCanvas = $("<canvas>").attr({ width: cropWidth, height: cropHeight });
-    
-    // finally crop the guy
-    $croppedCanvas[0].getContext("2d").drawImage(canvas,
-        cropLeft, cropTop, cropWidth, cropHeight,
-        0, 0, cropWidth, cropHeight);
-    
-    $("body").
-        append("<p>same image with white spaces cropped:</p>").
-        append($croppedCanvas);
-    console.log(cropTop, cropBottom, cropLeft, cropRight);
-};
