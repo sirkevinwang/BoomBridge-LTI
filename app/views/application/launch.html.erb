@@ -1,30 +1,116 @@
-<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-a11y="true"></script>
-
-<h1>
-    Welcome, <%= @lis_person_name_full %>
-</h1>
-
-<div>
-    <h2> <i class="fas fa-camera"></i> Screenshot Your Boom Cards</h2>
-    <h3>Make sure they look like these:</h3>
-    <img src="correct.png" height="200" alt="Correct">
-    <img src="wrong.png" height="200" alt="Wrong">
-    <h2><i class="fas fa-upload"></i> Submit here</h2>
-
-    <div class="drop-zone">
-        <span class="drop-zone__prompt">Drop file here or click to upload</span>
-        <input type="file" name="myFile" class="drop-zone__input">
-    </div>
-    <div id="spinner" class="spinner" style="display:none;">
-        <span class="spinner-inner-1"></span>
-        <span class="spinner-inner-2"></span>
-        <span class="spinner-inner-3"></span>
-    </div>
-
-</div>
-
-
-<%= javascript_tag do %>
+<!-- Welcome Section -->
+<div id="welcome-section" style="display:none;">
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-a11y="true"></script>
+    <%= javascript_tag do %>
     var lis_result_sourcedid = "<%= session[:lis_result_sourcedid] %>";
     var lis_outcome_service_url = "<%= session[:lis_outcome_service_url] %>";
-<% end %>
+    <% end %>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <div class="greeting">
+        <h1>
+            <span class="eng">Hi, <%= @lis_person_name_given %></span>
+            <span class="lkt">Hau, <%= @lis_person_name_given %></span>
+            <div id="translate">
+                <%= image_tag "icons/icon_switch.png", id: 'translate-icon' %>
+                <!--- note this lkt - eng inverse is intentional --->
+                <span class="lkt">English</span>
+                <span class="eng">Lakȟótiyapi</span>
+            </div>
+        </h1>
+
+
+    </div>
+    <div>
+        <h2 class="subtitle" style="margin-bottom: 0.3rem;">
+            <%= image_tag "icons/icon_screenshot.png", class: "heading-icon"%>
+            <span class="text eng">Screenshot Your Boom Cards</span>
+            <span class="text lkt">Boom Cards kiŋ itówapi ikíkču wo/we</span>
+        </h2>
+        <h3 class="caption leading-margin">
+            <span class="eng">Make sure they look like these:</span>
+            <span class="lkt">Léčheča kte héčha:</span>
+        </h3>
+        <img class="sample-image leading-margin" src="correct.png" height="200" alt="Correct">
+        <img class="sample-image leading-margin" src="wrong.png" height="200" alt="Wrong">
+        <h2 class="subtitle">
+            <%= image_tag "icons/icon_upload.png", class: "heading-icon" %>
+            <span class="eng">Submit here</span>
+            <span class="lkt">Lél iyáyeya yo/ye</span>
+        </h2>
+
+        <div class="leading-margin">
+            <input type="file" id="upload" hidden onclick="this.value=null;" />
+            <label for="upload">
+                <div class="upload-container">
+                    <%= image_tag "icons/icon_photo.png", id: 'icon-photo' %> <br>
+                    <span class="upload-label eng">Click to Upload</span>
+                    <!--check this translation-->
+                    <span class="upload-label lkt">naíŋš waŋkál okšú kta akákpi yo/ye</span>
+                </div>
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- Processing (Spinner) Section -->
+<div id="processing-section" class="text-center" style="display:none;">
+    <h1>
+        <span class="eng">Unwrapping Your Gift...</span>
+        <span class="lkt">Wak’úpi Yaglúžužu (kte)...</span>
+    </h1>
+
+    <div class="margin-center">
+        <%= image_tag "icons/icon_gift.png", id: "icon_gift" %>
+        <div class="loader"></div>
+    </div>
+</div>
+
+<!-- Result Section -->
+<div id="result-section" class="text-center" style="display: none;">
+    <div id="partial-credit-page" style="display: none;">
+        <h1>
+            <span class="eng">Uh oh, no gift &#128577;</span>
+            <span class="lkt">Akšáka, wak’úpi waníče &#128577;</span>
+        </h1>
+
+        <h2 class="completion-subheading" id="partial-credit-page-note">
+            <span class="eng">You didn’t get all questions (<%= session[:correct_pts] %> / <%= session[:total_pts]%>).</span>
+            <span class="lkt">Wóiyuŋǧe kiŋ iyúha taŋyáŋ alúpte šni (<%= session[:correct_pts] %> / <%= session[:total_pts]%>).</span>
+        </h2>
+
+        <div class="text-center card-button" id="failure-reload-btn">
+            <%= image_tag "icons/icon_reload.png", id: 'icon-reload'%>
+            <h5 class="card-button-label">
+                <span class="eng">Try Again</span>
+                <span class="lkt">Akhé iyútȟa yo/ye</span>
+            </h5>
+        </div>
+    </div>
+
+    <div id="wrong-image-page" style="display: none;">
+        <h1>
+            <span class="eng">Uh oh, no gift &#128577;</span>
+            <span class="lkt">Akšáka, wak’úpi waníče &#128577;</span>
+        </h1>
+        <h2 class="completion-subheading" id="wrong-image-page-note">
+            <span class="eng">Perhaps you turned in the wrong screenshot. Try again.</span>
+            <span class="lkt">Itówapi héčhetu šni waŋ iyáyeyayiŋ kte séče. Akhé iyútȟa yo/ye.</span>
+        </h2>
+
+        <div class="text-center card-button" id="failure-reload-btn">
+            <%= image_tag "icons/icon_reload.png", id: 'icon-reload'%>
+            <h5 class="card-button-label">
+                <span class="eng">Try Again</span>
+                <span class="lkt">Akhé iyútȟa yo/ye</h5>
+            </h5>
+        </div>
+    </div>
+
+
+    <div id="full-marks-page" style="display: none;">
+        <h1 id="gift"></h1>
+        <h5 class="completion-subheading eng" id="full-marks-page-note">Your score is <%= session[:correct_pts] %> / <%= session[:total_pts]%>!</h5>
+        <h5 class="completion-subheading lkt" id="full-marks-page-note"><%= session[:correct_pts] %> / <%= session[:total_pts]%> yákámna!</h5>
+
+    </div>
+</div>

@@ -6,10 +6,11 @@ Rails.application.routes.draw do
 
   # LTI LAUNCH URL (responds to get and post)
   match 'launch' => 'application#launch', via: [:get, :post], as: :lti_launch
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  match '/' => 'application#launch', via: [:get, :post]
 
-  # testing purposes only
-  # post 'grade/:correct_pts/:total_pts', to: 'application#grade', as: :lti_grade
+  # Link to privacy page
+  get 'privacy', to: 'application#privacy', as: :lti_privacy
+
+  # Grade callback: grades assignment
   post 'grade', to: 'application#grade', as: :lti_grade
-  get 'success', to: 'application#success', as: :lti_success
 end

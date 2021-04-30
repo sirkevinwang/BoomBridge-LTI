@@ -1,164 +1,326 @@
-// FIXME: this thing gets called twice!
+var lakhota = true;
 $(document).ready(function () {
-    document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
-        const dropZoneElement = inputElement.closest(".drop-zone");
+    $('.eng').addClass('hidden');
+    $('.lkt').addClass('inline');
+    $(document).on('click', '#translate', function () {
+        lakhota = !lakhota;
+        if (lakhota) {
+            $('.eng').removeClass('inline').addClass('hidden');
+            $('.lkt').removeClass('hidden').addClass('inline');
+        } else {
+            $('.eng').removeClass('hidden').addClass('inline');
+            $('.lkt').removeClass('inline').addClass('hidden');
+        }
+    });
+    renderWelcomeSection();
+    addInputEventListeners();
 
-        dropZoneElement.addEventListener("click", (e) => {
-            inputElement.click();
-        });
-
-        inputElement.addEventListener("change", (e) => {
-            if (inputElement.files.length) {
-                updateThumbnail(dropZoneElement, inputElement.files[0]);
-            }
-        });
-
-        dropZoneElement.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            dropZoneElement.classList.add("drop-zone--over");
-        });
-
-        ["dragleave", "dragend"].forEach((type) => {
-            dropZoneElement.addEventListener(type, (e) => {
-                dropZoneElement.classList.remove("drop-zone--over");
-            });
-        });
-
-
-        dropZoneElement.addEventListener("drop", (e) => {
-            e.preventDefault();
-
-            //var t0 = performance.now()
-            if (e.dataTransfer.files.length) {
-                inputElement.files = e.dataTransfer.files;
-                updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
-                file = e.dataTransfer.files[0];
-                // Tesseract.recognize(
-                //     file,
-                //     'eng', {
-                //     logger: m => console.log(m)
-                // }
-                // ).then(({
-                //     data: {
-                //         text
-                //     }
-                // }) => {
-                //     //var t1 = performance.now()
-                //     //console.log("OCR took " + (t1 - t0) + " milliseconds.")
-                //     var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
-                //     var numCorrect = splitCorrect[splitCorrect.length - 1]
-
-                //     var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
-                //     var numIncorrect = splitIncorrect[splitIncorrect.length - 1]
-
-                //     console.log(lis_outcome_service_url);
-                //     console.log(lis_result_sourcedid);
-
-                //     fetch('/grade', {
-                //         method: 'post',
-                //         body: JSON.stringify({
-                //             correct_pts: parseInt(numCorrect), total_pts: parseInt(numCorrect) + parseInt(numIncorrect), lis_result_sourcedid: lis_result_sourcedid, lis_outcome_service_url: lis_outcome_service_url }),
-                //         headers: {
-                //             'Content-Type': 'application/json',
-                //             'X-CSRF-Token': Rails.csrfToken()
-                //         },
-                //         credentials: 'same-origin'
-                //     }).then(function (response) {
-                //         //             obj = JSON.parse(response.responseText);
-                //         //             if (obj['success'] = 1) {
-                //         //                 var tag = document.createElement("p");
-                //         //                 var text = document.createTextNode("Got" + obj['numCorrect'] + "correct and " + 
-                //         // obj['numTotal']) + "incorrect.";
-                //         //                 tag.appendChild(text);
-                //         //                 document.body.appendChild(tag);
-                //         //             }
-                //         window.location.replace("/success");
-                //     }).then(function (data) {
-                //         console.log(data);
-                //     });
-
-                // })
-            }
-            dropZoneElement.classList.remove("drop-zone--over");
-        });
+    $("div.text-center.card-button").click(function() {
+        renderWelcomeSection();
+        let inputElement = document.getElementById("upload");
+        if (inputElement.file != null) {
+            inputElement.file = null;
+            addInputEventListeners();
+        }
     });
 });
-// });
 
-/**
- * Updates the thumbnail on a drop zone element.
- *
- * @param {HTMLElement} dropZoneElement
- * @param {File} file
- */
-function updateThumbnail(dropZoneElement, file) {
+function process_screenshot(file) {
+    renderProcessingSection();
+    console.log(typeof file)
 
-    $('#spinner').css('display', 'inline');
-    let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+    //let img = new Image(),
+    //$canvas = $("<canvas>"),
+    //canvas = $canvas[0],
+    //context;
 
-    // First time - remove the prompt
-    if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+    //img.crossOrigin = "anonymous";
+    //img.onload = function () {
+    //    $canvas.attr({ width: this.width, height: this.height });
+    //    context = canvas.getContext("2d");
+    //    if (context) {
+    //        context.drawImage(this, 0, 0);
+    //        $("body").append("<p>original image:</p>").append($canvas);
+        
+    //        removeBlanks(this.width, this.height);
+    //    } else {
+    //        alert('Get a real browser!');
+    //    }
+    //};
 
-        //var t0 = performance.now()
-        Tesseract.recognize(
-            file,
-            'eng', {
-            logger: m => console.log(m)
+    // define here an image from your domain
+    //img.src = file;
+    //file = img.src;
+    //let timeCrop = performance.now();
+    //console.log("cropping took " + (timeCrop - t0) + " milliseconds.")
+
+
+    let t0 = performance.now()
+    Tesseract.recognize(
+        file,
+        'eng', {
+        logger: m => {} // logger is removed here
+    }
+    ).then(({
+        data: {
+            text
         }
-        ).then(({
-            data: {
-                text
-            }
-        }) => {
-            //var t1 = performance.now()
-            //console.log("OCR took " + (t1 - t0) + " milliseconds.")
-            var splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
-            var numCorrect = splitCorrect[splitCorrect.length - 1]
+    }) => {
+        // let t1 = performance.now()
+        // console.log("OCR took " + (t1 - t0) + " milliseconds.")        
+        let numCorrect = ""
+        let correctPts = -1
+        let numIncorrect = ""
+        let totalPts = -1
+        try{
+            // here we attempt to determine the grades
+            let splitCorrect = text.substr(0, text.indexOf(' correct')).split(" ");
+            numCorrect = splitCorrect[splitCorrect.length - 1];
+            correctPts = parseInt(numCorrect);
 
-            var splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
-            var numIncorrect = splitIncorrect[splitIncorrect.length - 1]
+            let splitIncorrect = text.substr(0, text.indexOf(' incorrect')).split(" ");
+            numIncorrect = splitIncorrect[splitIncorrect.length - 1];
+            totalPts = parseInt(numCorrect) + parseInt(numIncorrect);
+            console.log("correct");
+            console.log(correctPts);
 
+        } catch(err){
+            console.log("error")
+        }
+        
+        if (!isNaN(correctPts) || !isNaN(totalPts)){
+            // encrypted grade pass back
             fetch('/grade', {
                 method: 'post',
                 body: JSON.stringify({
-                    correct_pts: parseInt(numCorrect), 
-                    total_pts: parseInt(numCorrect) + parseInt(numIncorrect), 
+                    correct_pts: correctPts, 
+                    total_pts: totalPts, 
                     lis_result_sourcedid: lis_result_sourcedid, 
-                    lis_outcome_service_url: lis_outcome_service_url }
-                ),
+                    lis_outcome_service_url: lis_outcome_service_url 
+                }),
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-Token': Rails.csrfToken()
                 },
                 credentials: 'same-origin'
-            }).then(function (response) {
-                window.location.replace("/success");
-            }).then(function (data) {
-                console.log(data);
+            })
+            .then(response => response.json())
+            .then(result => {
+                // here server will respond a 200 success
+                // first check here if Canvas got the grade
+                if (result["success"] === 1) {
+                    // then case on full mark or not
+                    if (correctPts === totalPts) {
+                        // render the full-marks page
+                        renderFullMarksPage(correctPts, totalPts);
+                    } else {
+                        // render the partial credit page with option to reload the welcome section
+                        renderPartialCreditPage(correctPts, totalPts);
+                    }
+                }
+            })
+            .catch(error => {
+                // here server is dead :(
+                // console.error('Error:', error);
             });
-
-        })
-        dropZoneElement.querySelector(".drop-zone__prompt").remove();
-    }
-
-    // First time - there is no thumbnail element, so lets create it
-    if (!thumbnailElement) {
-        thumbnailElement = document.createElement("div");
-        thumbnailElement.classList.add("drop-zone__thumb");
-        dropZoneElement.appendChild(thumbnailElement);
-    }
-
-    thumbnailElement.dataset.label = file.name;
-
-    // Show thumbnail for image files
-    if (file.type.startsWith("image/")) {
-        const reader = new FileReader();
-
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            thumbnailElement.style.backgroundImage = url('${reader.result}');
-        };
-    } else {
-        thumbnailElement.style.backgroundImage = null;
-    }
+        } else {
+            renderWrongImagePage();
+        }
+    })
 }
+
+// 1
+function renderWelcomeSection() {
+    hideProcessingSection();
+    hideResultSection();
+    $("#welcome-section").css("display", "block");
+}
+
+// 2
+function renderProcessingSection() {
+    hideWelcomeSection();
+    $("#processing-section").css("display", "inline");
+}
+
+// 3
+function renderFullMarksPage(correctPts, totalPts) {
+    var possible_gifts = [
+        "&#128018;", // monkey
+        "&#129421;", // gorilla
+        "&#128021;", // dog
+        "&#128008;", // cat
+        "&#128005;", // tiger
+        "&#128006;", // leopard
+        "&#128014;", // horse
+        "&#129420;", // deer
+        "&#128002;", // ox
+        "&#128003;", // water buffalo
+        "&#128004;", // cow
+        "&#128022;", // pig
+        "&#128017;", // sheep
+        "&#128042;", // camel
+        "&#128043;", // two-hump camel
+        "&#128024;", // elephant
+        "&#129423;", // rhinoceros
+        "&#128001;", // mouse
+        "&#128007;", // rabbit
+        "&#129415;", // bat
+        "&#129411;", // turkey
+        "&#128038;", // bird
+        "&#128039;", // penguin
+        "&#128010;", // crocodile
+        "&#128034;", // turtle
+        "&#129422;", // lizard
+        "&#128013;", // snake
+        "&#128009;", // dragon
+        "&#128051;", // whale
+        "&#128032;", // fish
+        "&#129416;", // shark
+        "&#128025;", // octopus
+        "&#129425;", // squid
+        "&#129419;", // butterfly
+        "&#128029;", // bee
+        "&#128030;", // ladybug
+        "&#129410;" // scorpion
+    ];
+    var gift = possible_gifts[Math.floor(Math.random() * possible_gifts.length)];
+    
+    hideProcessingSection();
+    $("#result-section").css("display", "block");
+    $("#full-marks-page").css("display", "block");
+    if (!lakhota) {
+        $("#partial-credit-page-note").html("<span class='eng'>Your score is " + correctPts + " / " + totalPts + "!</span>");
+        $("#gift").html("It's a " + gift + "!");
+    } else {
+        $("#partial-credit-page-note").html("<span class='lkt'>" + correctPts + " / " + totalPts + "yákámna!</span>");
+        $("#gift").html(gift + " héčha!");
+    }
+    confetti();
+}
+
+// 3
+function renderPartialCreditPage(correctPts, totalPts) {
+    hideProcessingSection();
+    $("#result-section").css("display", "block");
+
+    if (!lakhota) {
+        $("#partial-credit-page-note").html("<span class='eng'>You didn’t get all questions (" + correctPts + " / " + totalPts + ").</span>");
+    } else {
+        $("#partial-credit-page-note").html("<span class='lkt'>Wóiyuŋǧe kiŋ iyúha taŋyáŋ alúpte šni (" + correctPts + " / " + totalPts + ").</span>");
+    }
+
+    $("#partial-credit-page").css("display", "block");
+    
+}
+
+function renderWrongImagePage(){
+    hideProcessingSection();
+    $("#result-section").css("display", "block");
+    if (!lakhota) {
+        $("#wrong-image-page-note").html("<span class='eng'>Perhaps you turned in the wrong screenshot. Try again.</span>");
+    } else {
+        $("#wrong-image-page-note").html("<span class='lkt'>Itówapi héčhetu šni waŋ iyáyeyayiŋ kte séče. Akhé iyútȟa yo/ye.</span>");
+    }
+    $("#wrong-image-page").css("display", "block");
+}
+
+// hide view utilities
+function hideWelcomeSection() {
+    $("#welcome-section").css("display", "none");
+}
+
+function hideProcessingSection() {
+    $("#processing-section").css("display", "none");
+}
+
+function hideResultSection() {
+    $("#display-section").css("display", "none");
+    $("#partial-credit-page").css("display", "none");
+    $("#full-marks-page").css("display", "none");
+    $("#wrong-image-page").css("display", "none");
+}
+
+function showResultSection() {
+    $("#display-section").css("display", "block");
+}
+
+function addInputEventListeners() {
+    $(document).ready(function() {
+        let inputElement = document.getElementById("upload");
+        inputElement.addEventListener("change", (e) => {
+            if (inputElement.files.length != 0) {
+                process_screenshot(inputElement.files[inputElement.files.length - 1]);
+            }
+        });
+    });
+}
+
+// TODO: remove the blank space in screenshots to accelerate OCR speed
+let removeBlanks = function (imgWidth, imgHeight) {
+    let imageData = context.getImageData(0, 0, imgWidth, imgHeight),
+        data = imageData.data,
+        getRBG = function(x, y) {
+            let offset = imgWidth * y + x;
+            return {
+                red:     data[offset * 4],
+                green:   data[offset * 4 + 1],
+                blue:    data[offset * 4 + 2],
+                opacity: data[offset * 4 + 3]
+            };
+        },
+        isWhite = function (rgb) {
+            // many images contain noise, as the white is not a pure #fff white
+            return rgb.red > 200 && rgb.green > 200 && rgb.blue > 200;
+        },
+        scanY = function (fromTop) {
+            let offset = fromTop ? 1 : -1;
+            
+            // loop through each row
+            for(let y = fromTop ? 0 : imgHeight - 1; fromTop ? (y < imgHeight) : (y > -1); y += offset) {
+                
+                // loop through each column
+                for(let x = 0; x < imgWidth; x++) {
+                    let rgb = getRBG(x, y);
+                    if (!isWhite(rgb)) {
+                        return y;                        
+                    }      
+                }
+            }
+            return null; // all image is white
+        },
+        scanX = function (fromLeft) {
+            let offset = fromLeft? 1 : -1;
+            
+            // loop through each column
+            for(let x = fromLeft ? 0 : imgWidth - 1; fromLeft ? (x < imgWidth) : (x > -1); x += offset) {
+                
+                // loop through each row
+                for(let y = 0; y < imgHeight; y++) {
+                    let rgb = getRBG(x, y);
+                    if (!isWhite(rgb)) {
+                        return x;                        
+                    }      
+                }
+            }
+            return null; // all image is white
+        };
+    
+    let cropTop = scanY(true),
+        cropBottom = scanY(false),
+        cropLeft = scanX(true),
+        cropRight = scanX(false),
+        cropWidth = cropRight - cropLeft,
+        cropHeight = cropBottom - cropTop;
+    
+    let $croppedCanvas = $("<canvas>").attr({ width: cropWidth, height: cropHeight });
+    
+    // finally crop the guy
+    $croppedCanvas[0].getContext("2d").drawImage(canvas,
+        cropLeft, cropTop, cropWidth, cropHeight,
+        0, 0, cropWidth, cropHeight);
+    
+    $("body").
+        append("<p>same image with white spaces cropped:</p>").
+        append($croppedCanvas);
+    console.log(cropTop, cropBottom, cropLeft, cropRight);
+};

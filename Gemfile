@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.10'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'ims-lti'
+gem 'dropzonejs-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
