@@ -144,6 +144,8 @@ function renderProcessingSection() {
 
 // 3
 function renderFullMarksPage(correctPts, totalPts) {
+    // Emoji codes found from https://www.quackit.com/character_sets/emoji/emoji_v3.0/unicode_emoji_v3.0_characters_all.cfm
+    // Use decimal codes if adding to this list.
     var possible_gifts = [
         "&#128018;", // monkey
         "&#129421;", // gorilla
@@ -181,7 +183,43 @@ function renderFullMarksPage(correctPts, totalPts) {
         "&#129419;", // butterfly
         "&#128029;", // bee
         "&#128030;", // ladybug
-        "&#129410;" // scorpion
+        "&#129410;", // scorpion
+        "&#127918;", // video game
+        "&#127875;", // jack-o-lantern
+        "&#127878;", // fireworks
+        "&#127886;", // dolls
+        "&#127942;", // trophy
+        "&#9917;",   // soccer
+        "&#9918;",   // baseball
+        "&#127936;", // basketball
+        "&#127944;", // football
+        "&#127923;", // bowling
+        "&#9971;",   // golf
+        "&#127940;", // surfing
+        "&#128692;", // cycling
+        "&#127815;", // grapes
+        "&#127817;", // watermelon
+        "&#127820;", // banana
+        "&#127825;", // peach
+        "&#129373;", // kiwi
+        "&#129364;", // potato
+        "&#127812;", // mushroom
+        "&#129374;", // pancakes
+        "&#127829;", // pizza
+        "&#129370;", // egg
+        "&#127849;", // donut
+        "&#127856;", // cake
+        "&#129371;", // milk
+        "&#127755;", // volcano
+        "&#127979;", // school
+        "&#127756;", // galaxy
+        "&#127917;", // masks
+        "&#9875;",   // anchor
+        "&#9992;",   // airplane
+        "&#128640;", // rocket ship
+        "&#128701;", // toilet
+        "&#127770;", // moon
+        "&#127774;"  // sun
     ];
     var gift = possible_gifts[Math.floor(Math.random() * possible_gifts.length)];
     
