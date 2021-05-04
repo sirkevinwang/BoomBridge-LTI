@@ -7,9 +7,11 @@ $(document).ready(function () {
         if (lakhota) {
             $('.eng').removeClass('inline').addClass('hidden');
             $('.lkt').removeClass('hidden').addClass('inline');
+            $('#upload-container').css("padding", "4rem 2rem");
         } else {
             $('.eng').removeClass('hidden').addClass('inline');
             $('.lkt').removeClass('inline').addClass('hidden');
+            $('#upload-container').css("padding", "4rem 5.25rem");
         }
     });
     renderWelcomeSection();
@@ -27,35 +29,6 @@ $(document).ready(function () {
 
 function process_screenshot(file) {
     renderProcessingSection();
-    console.log(typeof file)
-
-    //let img = new Image(),
-    //$canvas = $("<canvas>"),
-    //canvas = $canvas[0],
-    //context;
-
-    //img.crossOrigin = "anonymous";
-    //img.onload = function () {
-    //    $canvas.attr({ width: this.width, height: this.height });
-    //    context = canvas.getContext("2d");
-    //    if (context) {
-    //        context.drawImage(this, 0, 0);
-    //        $("body").append("<p>original image:</p>").append($canvas);
-        
-    //        removeBlanks(this.width, this.height);
-    //    } else {
-    //        alert('Get a real browser!');
-    //    }
-    //};
-
-    // define here an image from your domain
-    //img.src = file;
-    //file = img.src;
-    //let timeCrop = performance.now();
-    //console.log("cropping took " + (timeCrop - t0) + " milliseconds.")
-
-
-    let t0 = performance.now()
     Tesseract.recognize(
         file,
         'eng', {
@@ -65,9 +38,7 @@ function process_screenshot(file) {
         data: {
             text
         }
-    }) => {
-        // let t1 = performance.now()
-        // console.log("OCR took " + (t1 - t0) + " milliseconds.")        
+    }) => {     
         let numCorrect = ""
         let correctPts = -1
         let numIncorrect = ""
@@ -85,7 +56,7 @@ function process_screenshot(file) {
             console.log(correctPts);
 
         } catch(err){
-            console.log("error")
+            alert("Error :( - Cannot read your screenshot. Try again by refreshing.")
         }
         
         if (!isNaN(correctPts) || !isNaN(totalPts)){
@@ -121,7 +92,7 @@ function process_screenshot(file) {
             })
             .catch(error => {
                 // here server is dead :(
-                // console.error('Error:', error);
+                alert("Server error :( - Cannot talk to BoomBridge. Try refreshing in a few minutes.")
             });
         } else {
             renderWrongImagePage();
@@ -242,9 +213,9 @@ function renderPartialCreditPage(correctPts, totalPts) {
     $("#result-section").css("display", "block");
 
     if (!lakhota) {
-        $("#partial-credit-page-note").html("<span class='eng'>You didn’t get all questions (" + correctPts + " / " + totalPts + ").</span>");
+        $("#partial-credit-page-note").html("<span class='eng'>Your score is " + correctPts + " / " + totalPts + "</span>");
     } else {
-        $("#partial-credit-page-note").html("<span class='lkt'>Wóiyuŋǧe kiŋ iyúha taŋyáŋ alúpte šni (" + correctPts + " / " + totalPts + ").</span>");
+        $("#partial-credit-page-note").html("<span class='lkt'>" + correctPts + " / " + totalPts + " yákámna</span>");
     }
 
     $("#partial-credit-page").css("display", "block");
