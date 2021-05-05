@@ -1,0 +1,36 @@
+<h1>BoomBridge</h1>
+
+<h2>What is BoomBridge?</h2>
+<p>We created BoomBridge to help address the disconnection between Canvas and BoomCards. It is a Canvas plug-in that processes student-submitted BoomCards screenshots and automatically grades the corresponding Canvas assignments.</p>
+
+
+<h2>Configuring the Canvas Plug-in</h2>
+<p>
+    We designed this tool to work with any learning management tool that supports Learning Tools Interoperability (LTI). The tool is optimized for Canvas as it is the current learning management system used at Red Cloud. BoomBridge needs to be configured with each Canvas course. The following are instructions for loading BoomBridge as an External App in Canvas.
+</p>
+<ol>
+    <li>Go to your Canvas course and click on Settings > Apps > View App Configurations. Then click on “+App” to add a new External App.
+    <li>
+        Fill in the Name, Consumer Key, and Shared Secret as shown below. Set the Privacy to Public.
+        <ol style="list-style-type: lower-alpha; padding-bottom: 0;">
+            <li style="margin-left:2em">
+                You should change the consumer key and shared secret if you have changed them on the server’s “config/lti_settings.yml” file.
+            </li>
+            <li style="margin-left:2em; padding-bottom: 0;">
+                If you have migrated from the CMU-hosted server to your on-premise server, you should use the domain pointing to that server for the launch URL. For example, if your domain name is apple.com, then your new launch URL should be “https://apple.com/launch"
+            </li>
+            <li style="margin-left:2em; padding-bottom: 0;">
+                You must set the privacy setting to Public.
+            </li>
+        </ol>
+    </li>
+    <li>Finally, click “Submit”.</li>
+</ol>
+
+<h2>LTI Launch</h2>
+
+<p>View the LTI Launch endpoint <a href="<%= lti_launch_path %>" data-turbolinks="false">here</a></p>
+
+<p>Note, this URL is typically sent a POST request with all sorts of LTI data. If you access it directly, it'll display an error page indicating your request did not validate.</p>
+
+<h3><a href="<%= lti_privacy_path %>" style="color: white;" data-turbolinks="false"> Privacy Policy</a></h3>
