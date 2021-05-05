@@ -23,11 +23,13 @@
     <div>
         <h2 class="subtitle" style="margin-bottom: 0.3rem;">
             <%= image_tag "icons/icon_screenshot.png", class: "heading-icon"%>
-            <span class="text eng">Screenshot the results page for your assigned Boom Cards deck</span>
-            <span class="text lkt">Tókhel ečhánuŋ k’uŋ itówapi ikíkču na ečhél Boom Cards kȟaŋsú etáŋ nič’úpi kte</span>
+            <span class="text eng">Screenshot Your Boom Cards</span>
+            <span class="text lkt">Boom Cards kiŋ itówapi ikíkču wo/we</span>
         </h2>
         <h3 class="caption leading-margin">
+            <span class="eng">Screenshot the results page for your assigned Boom Cards deck.</span> <br class="eng" />
             <span class="eng">Make sure they look like these:</span>
+            <span class="lkt">Tókhel ečhánuŋ k’uŋ itówapi ikíkču na ečhél Boom Cards kȟaŋsú etáŋ nič’úpi kte.</span> <br class="lkt" />
             <span class="lkt">Léčheča kte héčha:</span>
         </h3>
         <img class="sample-image leading-margin" src="correct.png" height="200" alt="Correct">
@@ -41,7 +43,7 @@
         <div class="leading-margin">
             <input type="file" id="upload" accept=".png, .jpg, .jpeg" hidden onclick="this.value=null;" />
             <label for="upload">
-                <div class="upload-container">
+                <div class="upload-container" id="upload-container">
                     <%= image_tag "icons/icon_photo.png", id: 'icon-photo' %> <br>
                     <span class="upload-label eng">Click to Upload</span>
                     <!--check this translation-->
@@ -68,19 +70,19 @@
 <!-- Result Section -->
 <div id="result-section" class="text-center" style="display: none;">
     <div id="partial-credit-page" style="display: none;">
-        <h1>
-            <span class="eng">Uh oh, no gift &#128577;</span>
-            <span class="lkt">Akšáka, wak’úpi waníče &#128577;</span>
-        </h1>
+        <h1 id="partial-credit-page-note"></h1>
 
-        <h2 class="completion-subheading" id="partial-credit-page-note">
+        <h2 class="completion-subheading">
+            <span class="eng">The next lesson might be unlocked.</span>
+            <!--- TODO: add translation ---->
+            <span class="lkt">Owáuŋspe iyókhihe kiŋ yuǧáŋ-hiŋ kte séče.</span>
         </h2>
 
         <div class="text-center card-button">
             <%= image_tag "icons/icon_reload.png", class: 'icon-reload'%>
             <h5 class="card-button-label">
-                <span class="eng">Try Again</span>
-                <span class="lkt">Akhé iyútȟa yo/ye</span>
+                <span class="eng">New Attempt</span>
+                <span class="lkt">Iyútȟapi Lečhála</span>
             </h5>
         </div>
     </div>
